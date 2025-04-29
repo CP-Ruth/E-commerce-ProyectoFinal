@@ -1,9 +1,9 @@
 /*vista del telefono*/
 .footer {
-    background-color: #1D1B1B ;
-    color: white;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    gap: 15px
+  background-color: #1d1b1b;
+  color: white;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }

@@ -1,14 +1,11 @@
 import styles from "./Header.module.css";
-import carrito from "../../../assets/icons/shop.svg";
-import { IoMenuOutline } from "react-icons/io5";
+import carrito from "../../assets/svg/shop.svg";
 
 export const Header = () => {
   return (
-    <div className={styles.containerHeader}>
-      /* si es m */
-      {<IoMenuOutline />}
+    <header className={styles.containerHeader}>
       <img src="/logo.svg" className={styles.headerLogo} />
-      <div className={styles.headerOptions}>
+      <nav className={styles.headerOptions}>
         <div className={styles.headerNavSearch}>
           <a href="">Home</a>
           <a href="">Mujer</a>
@@ -20,7 +17,7 @@ export const Header = () => {
           </button>
           <button>Login</button>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 };
