@@ -1,0 +1,23 @@
+.container {
+  width: 45%;
+}
+
+.image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+.details {
+  padding: 30px 20px;
+}
+
+.details h3 {
+ margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.details p{
+    text-align: center;
+}

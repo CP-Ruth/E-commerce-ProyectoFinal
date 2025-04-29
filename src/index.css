@@ -1,4 +1,9 @@
-*{
+:root {
+  --font-lg: 1.875rem;
+  --font-xl: 2.5rem;
+}
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
