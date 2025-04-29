@@ -1,26 +1,26 @@
 .containerHeader {
   background-color: rgba(25, 25, 25, 1);
   display: flex;
-  padding: 10px 20px;
-  color: rgb(255, 255, 255);
+  padding: 5px 20px;
+  color: #fff;
 }
 
 .headerOptions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  flex-grow: 1;
 }
 
 .headerNavSearch {
   display: flex;
-  gap: 55px;
-  padding: 0 55px;
+  gap: 60px;
+  padding-left: 80px;
 }
 
 .headerBuyLogin {
   display: flex;
   align-items: center;
-  gap: 45px;
-  padding: 0 55px;
+  gap: 50px;
+  padding-right: 50px;
 }
