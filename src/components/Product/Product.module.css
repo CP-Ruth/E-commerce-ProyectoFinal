@@ -1,0 +1,16 @@
+.product {
+  position: relative;
+  flex: 0 0 calc(100% / 5);
+  height: 350px;
+}
+
+.productImage {
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.product h4 {
+    padding: 10px 0px;
+}
+

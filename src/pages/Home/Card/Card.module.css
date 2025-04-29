@@ -14,6 +14,7 @@
 
 .details h3 {
  margin-bottom: 20px;
+ font-size: var(--font-x);
   text-align: center;
   text-transform: uppercase;
 }
