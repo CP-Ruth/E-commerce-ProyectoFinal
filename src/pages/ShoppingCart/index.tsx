@@ -12,6 +12,7 @@ export const ShoppingCart = () => {
         <section>
             <ProductsToBuy />
             {/**Detalle de la compra */}
+            {/** */}
         </section>
     </main>
     <Footer />
