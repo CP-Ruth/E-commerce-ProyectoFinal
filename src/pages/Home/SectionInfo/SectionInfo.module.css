@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  gap: 0px 50px;
+  gap: 0px 30px;
   width: 80%;
   margin: 50px auto;
 }

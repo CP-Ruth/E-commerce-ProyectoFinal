@@ -1,0 +1,23 @@
+.container {
+  position: relative;
+  margin: 70px auto 130px auto;
+  width: 75%;
+}
+
+.containerSlider {
+  display: flex;
+  gap: 30px;
+  overflow-x: hidden;
+}
+
+.prevBtn {
+  position: absolute;
+  top: 40%;
+  left: -50px;
+}
+
+.nextBtn {
+  position: absolute;
+  top: 40%;
+  right: -50px;
+}
