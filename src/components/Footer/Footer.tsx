@@ -1,11 +1,11 @@
 import styles from "./Footer.module.css";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer_info}>
         <p>© 2025 E-commerce Proyecto Final</p>
-        <p>Desarrollado por Paula, Uriel, Walter y Ruth</p>
+        <p>Desarrollado por Walter, Ruth, Paula y Uriel</p>
         <p>
           <a href="/terminos">Términos y condiciones</a>
           <a href="/contacto">Contacto</a>
@@ -15,3 +15,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;

@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import carrito from "../../assets/svg/shop.svg";
 
-export const Header = () => {
+const Header = () => {
   return (
     <header className={styles.containerHeader}>
       <img src="/logo.svg" className={styles.headerLogo} />
@@ -21,3 +21,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header
