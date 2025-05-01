@@ -15,3 +15,4 @@ export const OptionCategory: FC<Prop> = ({ src, alt, text }) => {
     </article>
   );
 };
+

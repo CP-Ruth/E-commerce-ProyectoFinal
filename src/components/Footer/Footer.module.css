@@ -4,5 +4,12 @@
   color: white;
   display: flex;
   align-items: center;
-  gap: 15px;
+  width: 100%;
+}
+
+.footer_info{
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

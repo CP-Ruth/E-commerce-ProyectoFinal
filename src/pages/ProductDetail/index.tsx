@@ -4,9 +4,12 @@ import { Header } from "../../components/Header/Header";
 export const ProductDetail = () => {
   return (
     <>
-      <Header />
-      <main></main>
-      <Footer />
+
+    <Header />
+    <main>
+
+    </main>
+    <Footer />
     </>
-  );
-};
+  )
+}
