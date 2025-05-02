@@ -1,5 +1,8 @@
 import styles from "./Header.module.css";
 import carrito from "../../assets/svg/shop.svg";
+import { Link } from "react-router";
+
+
 
 export const Header = () => {
   return (
@@ -7,14 +10,14 @@ export const Header = () => {
       <img src="/logo.svg" className={styles.headerLogo} />
       <nav className={styles.headerOptions}>
         <div className={styles.headerNavSearch}>
-          <a href="">Home</a>
-          <a href="">Mujer</a>
-          <a href="">Hombre</a>
+          <Link to="/">Home</Link>
+          <Link to="/catalogo/mujer">Mujer</Link>
+          <Link to="/catalogo/hombre">Hombre</Link>
         </div>
         <div className={styles.headerBuyLogin}>
-          <button>
+          <Link to="/carrito">
             <img src={carrito} alt="Carrito de compras" />
-          </button>
+          </Link>
           <button>Login</button>
         </div>
       </nav>

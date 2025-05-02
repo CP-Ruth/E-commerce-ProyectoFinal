@@ -6,8 +6,11 @@ import foot from "../../assets/images/footWoman.png";
 import { FiltersProducts } from "./FiltersProducts/FiltersProducts";
 import { Title } from "./Title/Title";
 import { Products } from "./Products/Products";
+import { useParams } from "react-router";
 
 export const ProductCatalog = () => {
+  const {sexo}= useParams(); //Dependiendo de el sexo que se le pase se van a mostrar los productos
+  
   return (
     <>
       <Header />
