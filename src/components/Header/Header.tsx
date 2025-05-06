@@ -17,12 +17,6 @@ export const Header = () => {
 
   return (
     <header className={styles.containerHeader}>
-      <button
-        className={styles.burgerButton}
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
-        <img src={menu} alt="Menu" />
-      </button>
       <img src={logo} className={styles.headerLogo} />
 
       <nav className={styles.headerOptions}>
@@ -36,9 +30,15 @@ export const Header = () => {
             <img src={carrito} alt="Carrito de compras" />
           </Link>
           <button onClick={() => setOpenModal(true)}>Login</button>
+          <button
+            className={styles.burgerButton}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <img src={menu} alt="Menu" />
+          </button>
         </div>
       </nav>
-      {openModal && <Modal></Modal>}
+      {openModal && <Modal onClose={() => setOpenModal(false)} />}
     </header>
   );
 };

@@ -22,7 +22,7 @@ export const Home = () => {
           camino. Así que salí ahí fuera, corré libre y descubrí la grandeza en
           tu naturaleza.
         </HeroImage>
-        <SectionInfo title="¿Que tipo de corredor sos?">
+        <SectionInfo title="¿Qué tipo de corredor sos?">
           <Card title="El marcador de ritmo" image={RunMan}>
             Los corredores corren sin importar el horario. Desde despertarse a
             las 5 AM hasta la sesión en la cinta después del trabajo.

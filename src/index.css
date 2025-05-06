@@ -1,7 +1,8 @@
 :root {
-  --font-lg: 1.875rem;
   --font-xl: 2.5rem;
-  --font-x: 1.4rem;
+  --font-lg: 1.875rem;
+  --font-x: 1.5rem;
+  --font-s: 1.3rem;
 }
 
 * {

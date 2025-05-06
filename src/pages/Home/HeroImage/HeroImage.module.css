@@ -1,6 +1,3 @@
-.containerImage {
-  height: 65vh;
-}
 
 .image {
   width: 100%;
@@ -14,12 +11,33 @@
 }
 
 .description h2 {
-  padding: 5px 0px;
-  font-size: var(--font-lg);
-  text-transform: uppercase;
+  font-size: var(--font-x);
 }
 
 .description p {
-  width: 40%;
+  width: 80%;
   margin: 10px auto;
+}
+
+@media (min-width: 768px) {
+  .containerImage {
+    height: 30vh;
+  }
+
+  .description h2 {
+    padding: 5px 0px;
+    font-size: var(--font-lg);
+    text-transform: uppercase;
+  }
+  
+  .description p {
+    width: 60%;
+    margin: 10px auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .containerImage {
+    height: 65vh;
+  }
 }

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import styles from './Modal.module.css'
 import * as Yup from 'yup';
 import Swal from "sweetalert2";
@@ -22,7 +22,11 @@ const schema = Yup.object({
         .required('Campo obligatorio')
 })
 
-export const Modal = () => {
+type ModalProps = {
+    onClose: () => void;
+  };
+
+export const Modal:FC<ModalProps> = ({onClose}) => {
     //Estado del formulario: guarda los valores escritos por el usuario en los inputs
     const [formData, setFormData] = useState({
         name: "",
@@ -74,7 +78,7 @@ export const Modal = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} >
             <div className={styles.modal}>
                 <div className={styles.buttonsOption}>
                     <button
