@@ -7,7 +7,7 @@ interface PropsProduct {
   product: IProduct;
 }
 
-const Product: FC<PropsProduct> = ({ product }) => {
+export const Product: FC<PropsProduct> = ({ product }) => {
   return (
     <article className={styles.product}>
       <img className={styles.productImage} src={ImageProduct} alt="Producto" />
@@ -17,4 +17,3 @@ const Product: FC<PropsProduct> = ({ product }) => {
   );
 };
 
-export default Product;
