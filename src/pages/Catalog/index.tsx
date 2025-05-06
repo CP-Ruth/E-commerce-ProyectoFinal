@@ -1,5 +1,5 @@
 import styles from "./Catalog.module.css";
-import { useSearchParams } from "react-router";
+import { useParams } from "react-router";
 import Header from "../../components/Header/Header";
 import OptionCategory from "./OptionCategory/OptionCategory";
 import Button from "../../components/Button/Button";
@@ -10,8 +10,7 @@ import footWoman from "../../assets/images/footWoman.png";
 import footMan from "../../assets/images/footMan.png";
 
 export const Catalog = () => {
-  const [searchParam] = useSearchParams();
-  const sexo = searchParam.get("sexo");
+  const { sexo } = useParams();
 
   return (
     <>

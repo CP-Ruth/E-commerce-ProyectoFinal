@@ -2,7 +2,7 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { ProductsToBuy } from "./ProductsToBuy/ProductsToBuy";
 
-export const ShoppingCart = () => {
+const ShoppingCart = () => {
   return (
     <>
       <Header />
@@ -19,3 +19,5 @@ export const ShoppingCart = () => {
     </>
   );
 };
+
+export default ShoppingCart
