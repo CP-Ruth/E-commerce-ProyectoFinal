@@ -1,0 +1,35 @@
+import { useParams } from "react-router";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import Product from "../../components/Product/Product";
+import FiltersProducts from "./FiltersProducts/FiltersProducts";
+import styles from "./ProductCatalog.module.css";
+
+const ProductCatalog = () => {
+  const { type, sexo } = useParams();
+  return (
+    <>
+      <Header />
+      <main className={styles.main}>
+        <h2 className={styles.title}>
+          {type} de {sexo}
+        </h2>
+        <section className={styles.flex}>
+          <FiltersProducts />
+          <section className={styles.gridContainer}>
+            <Product product={{ nombre: "Producto 1", precio: 345 }} />
+            <Product product={{ nombre: "Producto 1", precio: 345 }} />
+            <Product product={{ nombre: "Producto 1", precio: 345 }} />
+            <Product product={{ nombre: "Producto 1", precio: 345 }} />
+            <Product product={{ nombre: "Producto 1", precio: 345 }} />
+            <Product product={{ nombre: "Producto 1", precio: 345 }} />
+            <Product product={{ nombre: "Producto 1", precio: 345 }} />
+          </section>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default ProductCatalog;

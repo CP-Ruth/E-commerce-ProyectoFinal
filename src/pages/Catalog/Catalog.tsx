@@ -9,7 +9,7 @@ import clotheMan from "../../assets/images/clotheMan.png";
 import footWoman from "../../assets/images/footWoman.png";
 import footMan from "../../assets/images/footMan.png";
 
-export const Catalog = () => {
+const Catalog = () => {
   const { sexo } = useParams();
 
   return (
@@ -24,12 +24,14 @@ export const Catalog = () => {
               <OptionCategory
                 src={clotheWoman}
                 alt="Opcion de ropa femenina"
-                text="Ropa"
+                text="ropa"
+                sexo="mujer"
               />
               <OptionCategory
                 src={footWoman}
                 alt="Opcion de calzado femenino"
-                text="Calzado"
+                text="calzado"
+                sexo="mujer"
               />
             </>
           ) : (
@@ -37,12 +39,14 @@ export const Catalog = () => {
               <OptionCategory
                 src={clotheMan}
                 alt="Opcion de ropa masculina"
-                text="Ropa"
+                text="ropa"
+                sexo="hombre"
               />
               <OptionCategory
                 src={footMan}
                 alt="Opcion de calzado masculino"
-                text="Calzado"
+                text="calzado"
+                sexo="hombre"
               />
             </>
           )}
@@ -51,3 +55,5 @@ export const Catalog = () => {
     </>
   );
 };
+
+export default Catalog;

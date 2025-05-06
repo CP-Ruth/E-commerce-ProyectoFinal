@@ -1,7 +1,6 @@
 .product {
   position: relative;
   flex: 0 0 calc(100% / 5);
-  height: 350px;
 }
 
 .productImage {
@@ -11,6 +10,5 @@
 }
 
 .product h4 {
-    padding: 10px 0px;
+  padding: 10px 0px;
 }
-

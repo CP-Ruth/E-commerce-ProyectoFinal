@@ -1,0 +1,25 @@
+.filterSection {
+  width: 10%;
+}
+
+.title {
+  padding-bottom: 20px;
+}
+
+.subtitle {
+  padding: 10px 0px;
+}
+
+.filterContainer {
+  margin-bottom: 20px;
+}
+
+.filterContainer span {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.icon {
+  margin-bottom: -5px;
+  margin-right: 10px;
+}
