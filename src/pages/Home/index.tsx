@@ -1,5 +1,5 @@
 import Footer from "../../components/Footer/Footer";
-import Header  from "../../components/Header/Header";
+import Header from "../../components/Header/Header";
 import HeroImage from "./HeroImage/HeroImage";
 import SectionInfo from "./SectionInfo/SectionInfo";
 import Card from "./Card/Card";

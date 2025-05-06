@@ -1,0 +1,50 @@
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 220px;
+  margin-bottom: 30px;
+  border: 1px solid rgb(208, 210, 208);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.select {
+  margin-top: 20px;
+  padding: 8px 25px;
+  border: 1px solid rgb(208, 210, 208);
+}
+
+.details h3 {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.details span,
+.details select {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.amount {
+  display: flex;
+  padding: 0px 20px;
+  height: 80%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.amount span {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: green;
+}
+
+.amount span:last-of-type {
+  color: gray;
+  text-decoration: line-through;
+}

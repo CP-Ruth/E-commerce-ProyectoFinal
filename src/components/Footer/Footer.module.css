@@ -1,8 +1,28 @@
-/*vista del telefono*/
 .footer {
-  background-color: #1d1b1b;
-  color: white;
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
+  padding: 40px 60px;
+  background-color: #1d1b1b;
+  color: white;
+}
+
+.logo{
+    width: 180px;
+}
+
+.footer_one{
+    display: flex;
+}
+
+.footer_info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ul{
+    display: flex;
+    gap: 40px;
+    list-style: none;
 }

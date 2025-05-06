@@ -1,23 +1,42 @@
-import Footer from "../../components/Footer/Footer";
+import styles from "./ShoppingCart.module.css";
 import Header from "../../components/Header/Header";
-import { ProductsToBuy } from "./ProductsToBuy/ProductsToBuy";
+import Button from "../../components/Button/Button";
+import ProductsToBuy from "./ProductsToBuy/ProductsToBuy";
 
 const ShoppingCart = () => {
   return (
     <>
       <Header />
-      <main>
-        {/** Acá va el titulo y la cantidad de productos a comprar */}
-        <h2>Carrito</h2>
-        <section>
-          <ProductsToBuy />
-          {/**Detalle de la compra */}
-          {/** */}
+      <main className={styles.container}>
+        <h2 className={styles.title}>
+          Carrito <span>(2)</span>
+        </h2>
+        <section className={styles.flexSection}>
+          <section className={styles.sectionProducts}>
+            <ProductsToBuy />
+            <ProductsToBuy />
+            <ProductsToBuy />
+            <ProductsToBuy />
+          </section>
+          <section className={styles.sectionDetails}>
+            <div className={styles.details}>
+              <span>Subtotal:</span>
+              <span>$30.000</span>
+            </div>
+            <div className={styles.details}>
+              <span>Envio:</span>
+              <span>Gratis</span>
+            </div>
+            <div className={styles.details}>
+              <span>Total Estimado:</span>
+              <span>$30.000</span>
+            </div>
+            <Button text="Proceder al pago" />
+          </section>
         </section>
       </main>
-      <Footer />
     </>
   );
 };
 
-export default ShoppingCart
+export default ShoppingCart;
