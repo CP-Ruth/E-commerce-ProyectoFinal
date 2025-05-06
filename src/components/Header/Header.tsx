@@ -1,10 +1,17 @@
 import styles from "./Header.module.css";
 import carrito from "../../assets/svg/shop.svg";
 import { Link } from "react-router";
+import { useState } from "react";
+import { Modal } from "../ModalLoginRegister/Modal";
 
 
 
 export const Header = () => {
+
+  const [openModal, setOpenModal] =useState(false);
+
+
+
   return (
     <header className={styles.containerHeader}>
       <img src="/logo.svg" className={styles.headerLogo} />
@@ -18,9 +25,10 @@ export const Header = () => {
           <Link to="/carrito">
             <img src={carrito} alt="Carrito de compras" />
           </Link>
-          <button>Login</button>
+          <button onClick={()=> setOpenModal(true)}>Login</button> 
         </div>
       </nav>
+      {openModal && <Modal></Modal>}
     </header>
   );
 };

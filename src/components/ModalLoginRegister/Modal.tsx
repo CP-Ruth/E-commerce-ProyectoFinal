@@ -94,7 +94,7 @@ export const Modal = () => {
                 </div>
                 <form onSubmit={handleSubmit} className={styles.containerForm}>
                     {isRegisterMode ? (
-                        <div>
+                        <div className={styles.form}>
                             <input
                                 type="email"
                                 name='email'
@@ -111,7 +111,7 @@ export const Modal = () => {
                                 required />
                         </div>
                     ): (
-                        <div>
+                        <div className={styles.form}>
                             <input
                                 type="text"
                                 name='name'
@@ -170,7 +170,7 @@ export const Modal = () => {
                             {errors.confirmPassword && <span className={styles.error}>{errors.confirmPassword}</span>}
                         </div>
                     )}
-
+                    <button  className={styles.buttonConfirmar} type="submit">{isRegisterMode ?'INGRESAR':'REGISTRARME'}</button>
                 </form>
 
             </div>
