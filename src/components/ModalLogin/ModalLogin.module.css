@@ -1,0 +1,130 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  padding-top: 60px;
+}
+
+.modal {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 90%;
+}
+
+.buttonsOption {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.buttonsOption button {
+  color: rgb(150, 150, 150);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.buttonsOption .active {
+  color: rgb(0, 0, 0);
+  height: 3rem;
+  border-bottom: 1px solid black;
+}
+
+.containerForm {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  height: 1.4rem;
+  padding: 0 0.4rem;
+  font-size: 1rem;
+  margin-bottom: 1.4rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.buttonConfirmar {
+  background-color: rgb(150, 150, 150);
+  height: 3rem;
+  width: 15rem;
+  align-self: center;
+  text-align: center;
+}
+
+.buttonConfirmar:hover {
+  background-color: rgb(0, 0, 0);
+}
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    max-width: 500px;
+    padding: 2rem;
+  }
+
+  .buttonsOption button {
+    font-size: 28px;
+  }
+
+  .form input {
+    font-size: 1.1rem;
+    height: 2rem;
+  }
+
+  .buttonConfirmar {
+    width: 12rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    max-width: 700px;
+    padding: 4rem;
+  }
+
+  .buttonsOption button {
+    font-size: 36px;
+    width: 12rem;
+    text-align: center;
+  }
+
+  .buttonsOption .active {
+    height: 4rem;
+  }
+  .containerForm {
+    gap: 2rem;
+  }
+  .form input {
+    font-size: 1.2rem;
+    height: 2.2rem;
+  }
+
+  .buttonConfirmar {
+    width: 25rem;
+    height: 3rem;
+    font-size: 1.4rem;
+  }
+}

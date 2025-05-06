@@ -1,13 +1,33 @@
 import styles from "./Header.module.css";
 import carrito from "../../assets/svg/shop.svg";
 import { Link } from "react-router";
+import { useState } from "react";
+import ModalLogin from "../ModalLogin/ModalLogin";
+// --------------- Imagenes -------------------- //
+import logo from "../../assets/images/myb.png";
+import menu from "../../assets/svg/menu.svg";
 
 const Header = () => {
+  //Estado para abrir el modal
+  const [openModal, setOpenModal] = useState(false);
+  //Estado para la vista de la hamburgesa
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className={styles.containerHeader}>
-      <img src="/logo.svg" className={styles.headerLogo} />
+      <button
+        className={styles.burgerButton}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <img src={menu} alt="Menu" />
+      </button>
+      <img src={logo} className={styles.headerLogo} />
       <nav className={styles.headerOptions}>
-        <div className={styles.headerNavSearch}>
+        <div
+          className={`${styles.headerNavSearch} ${
+            menuOpen ? styles.showMenu : ""
+          }`}
+        >
           <Link to="/">Home</Link>
           <Link to="/catalogo/mujer">Mujer</Link>
           <Link to="/catalogo/hombre">Hombre</Link>
@@ -16,11 +36,12 @@ const Header = () => {
           <Link to="/carrito">
             <img src={carrito} alt="Carrito de compras" />
           </Link>
-          <button>Login</button>
+          <button onClick={() => setOpenModal(true)}>Login</button>
         </div>
       </nav>
+      {openModal && <ModalLogin />}
     </header>
   );
 };
 
-export default Header
+export default Header;

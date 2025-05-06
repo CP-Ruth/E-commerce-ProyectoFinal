@@ -2,20 +2,38 @@
   background-color: rgba(25, 25, 25, 1);
   display: flex;
   padding: 5px 20px;
+  width: 100vw;
   color: #fff;
+  display: flex;
+  justify-content: space-around;
 }
 
 .headerOptions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-grow: 1;
 }
 
 .headerNavSearch {
+  display: none;
+}
+
+.showMenu {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: rgba(25, 25, 25, 0.95);
+  width: 100%;
   display: flex;
-  gap: 60px;
-  padding-left: 80px;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.headerLogo {
+  height: 40px;
+  padding: 5px;
 }
 
 .headerBuyLogin {
@@ -23,4 +41,72 @@
   align-items: center;
   gap: 50px;
   padding-right: 50px;
+}
+
+.headerBuyLogin {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .containerHeader {
+    padding: 5px 20px;
+  }
+
+  .burgerButton {
+    display: none;
+  }
+
+  .headerOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .headerNavSearch {
+    display: flex;
+    gap: 60px;
+    padding-left: 80px;
+  }
+
+  .headerBuyLogin {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .containerHeader {
+    padding: 5px 20px;
+  }
+
+  .burgerButton {
+    display: none;
+  }
+
+  .headerOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .headerNavSearch {
+    display: flex;
+    gap: 60px;
+    padding-left: 80px;
+  }
+
+  .headerBuyLogin {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding-right: 50px;
+    font-size: 16px;
+  }
 }
