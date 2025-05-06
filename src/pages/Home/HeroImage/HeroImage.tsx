@@ -7,7 +7,7 @@ interface PropsHeroImage {
   children: ReactNode;
 }
 
-const HeroImage: FC<PropsHeroImage> = ({ title, image, children }) => {
+export const HeroImage: FC<PropsHeroImage> = ({ title, image, children }) => {
   return (
     <section>
       <div className={styles.containerImage}>
@@ -20,5 +20,3 @@ const HeroImage: FC<PropsHeroImage> = ({ title, image, children }) => {
     </section>
   );
 };
-
-export default HeroImage;

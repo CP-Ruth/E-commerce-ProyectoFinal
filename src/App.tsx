@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
-import Home from "./pages/Home/Home";
 import { ShoppingCart } from "./pages/ShoppingCart/Shopping";
 import { ProductDetail } from "./pages/ProductDetail/ProductDetail";
 import { Catalog } from "./pages/Catalog/Catalog";
 import { ProductCatalog } from "./pages/ProductCatalog/ProductCatalog";
+import { Home } from "./pages/Home/Home";
 
 function App() {
   return (

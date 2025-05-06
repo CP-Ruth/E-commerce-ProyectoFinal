@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styles from './Card.module.css'
-import Button from "../../../components/Button/Button";
+import { Button } from "../../../components/Button/Button";
+
 
 interface PropsCard {
   title: string;
@@ -8,7 +9,7 @@ interface PropsCard {
   image: string;
 }
 
-const Card: FC<PropsCard> = ({ title, image, children}) => {
+export const Card: FC<PropsCard> = ({ title, image, children}) => {
   return (
     <figure className={styles.container}>
       <img className={styles.image} src={image} alt="Persona corriendo" />
@@ -21,4 +22,4 @@ const Card: FC<PropsCard> = ({ title, image, children}) => {
   );
 };
 
-export default Card;
+

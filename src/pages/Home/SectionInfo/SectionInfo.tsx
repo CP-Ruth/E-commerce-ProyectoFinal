@@ -6,7 +6,7 @@ interface PropsSectionInfo {
   children: ReactNode;
 }
 
-const SectionInfo: FC<PropsSectionInfo> = ({ title, children }) => {
+export const SectionInfo: FC<PropsSectionInfo> = ({ title, children }) => {
   return (
     <section className={styles.container}>
       {title && <h2 className={styles.title}>{title}</h2>}
@@ -15,4 +15,4 @@ const SectionInfo: FC<PropsSectionInfo> = ({ title, children }) => {
   );
 };
 
-export default SectionInfo;
+

@@ -1,10 +1,10 @@
 import styles from "./SliderProducts.module.css";
-import Product from "../../../components/Product/Product";
 import { IProduct } from "../../../types/IProduct";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 import { BsArrowRightCircleFill } from "react-icons/bs";
+import { Product } from "../../../components/Product/Product";
 
-const SliderProducts = () => {
+export const SliderProducts = () => {
   const products: IProduct[] = [
     {
       nombre: "Zapatilla Palermo",
@@ -49,4 +49,4 @@ const SliderProducts = () => {
   );
 };
 
-export default SliderProducts;
+
