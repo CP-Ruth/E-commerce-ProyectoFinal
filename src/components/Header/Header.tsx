@@ -2,18 +2,15 @@ import styles from "./Header.module.css";
 import carrito from "../../assets/svg/shop.svg";
 import { Link } from "react-router";
 import { useState } from "react";
-import { Modal } from "../ModalLoginRegister/Modal";
+import  Modal  from "../ModalLoginRegister/Modal";
 import logo from "../../assets/images/myb.png";
 import menu from "../../assets/svg/menu.svg";
 
-export const Header = () => {
+const Header = () => {
   //Estado para abrir el modal
   const [openModal, setOpenModal] = useState(false);
   //Estado para la vista de la hamburgesa
   const [menuOpen, setMenuOpen] = useState(false);
-
-
-
 
   return (
     <header className={styles.containerHeader}>
@@ -42,3 +39,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

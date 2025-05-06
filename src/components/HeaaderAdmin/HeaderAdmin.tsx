@@ -1,12 +1,8 @@
 
-export const HeaderAdmin = () => {
+const HeaderAdmin = () => {
   return (
-    <header>
-        <img src="" alt="" />
-        <nav>
-            <Link></Link>
-            
-        </nav>
-    </header>
+    <div>HeaderAdmin</div>
   )
 }
+
+export default HeaderAdmin

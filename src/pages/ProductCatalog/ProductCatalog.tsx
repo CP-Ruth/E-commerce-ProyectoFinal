@@ -1,11 +1,11 @@
 import { useParams } from "react-router";
 import styles from "./ProductCatalog.module.css";
-import { Footer } from "../../components/Footer/Footer";
-import { Header } from "../../components/Header/Header";
-import { FiltersProducts } from "./FiltersProducts/FiltersProducts";
-import { Product } from "../../components/Product/Product";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import FiltersProducts from "./FiltersProducts/FiltersProducts";
+import Product from "../../components/Product/Product";
 
-export const ProductCatalog = () => {
+const ProductCatalog = () => {
   const { type, sexo } = useParams();
   return (
     <>
@@ -31,3 +31,5 @@ export const ProductCatalog = () => {
     </>
   );
 };
+
+export default ProductCatalog

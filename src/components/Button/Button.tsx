@@ -5,6 +5,8 @@ interface PropsButton {
   text: string;
 }
 
-export const Button: FC<PropsButton> = ({ text }) => {
+const Button: FC<PropsButton> = ({ text }) => {
   return <button className={styles.button}>{text}</button>;
 };
+
+export default Button;

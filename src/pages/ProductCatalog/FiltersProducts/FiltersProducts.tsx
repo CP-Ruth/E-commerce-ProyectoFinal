@@ -2,7 +2,7 @@ import { IoIosOptions } from "react-icons/io";
 import styles from "./FiltersProducts.module.css";
 
 
-export const  FiltersProducts = () => {
+const  FiltersProducts = () => {
   return (
         <section className={styles.filterSection}>
           <h3 className={styles.title}>
@@ -38,3 +38,5 @@ export const  FiltersProducts = () => {
         </section>
   )
 }
+
+export default FiltersProducts;

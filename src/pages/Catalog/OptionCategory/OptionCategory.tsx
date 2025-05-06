@@ -9,7 +9,7 @@ interface Prop {
   text: string;
 }
 
-export const OptionCategory: FC<Prop> = ({ src, alt, text, sexo }) => {
+const OptionCategory: FC<Prop> = ({ src, alt, text, sexo }) => {
   const navigate = useNavigate();
 
   const handlerClick = () => {
@@ -25,3 +25,5 @@ export const OptionCategory: FC<Prop> = ({ src, alt, text, sexo }) => {
     </article>
   );
 };
+
+export  default OptionCategory;

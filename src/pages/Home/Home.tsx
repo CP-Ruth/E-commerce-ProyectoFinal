@@ -1,9 +1,9 @@
-import { Footer } from "../../components/Footer/Footer";
-import { Header } from "../../components/Header/Header";
-import { HeroImage } from "./HeroImage/HeroImage";
-import { SectionInfo } from "./SectionInfo/SectionInfo";
-import { Card } from "./Card/Card";
-import { SliderProducts } from "./SliderProducts/SliderProducts";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import HeroImage from "./HeroImage/HeroImage";
+import SectionInfo from "./SectionInfo/SectionInfo";
+import Card from "./Card/Card";
+import SliderProducts from "./SliderProducts/SliderProducts";
 /* ------------------ Imagenes ------------------------*/
 import ImageHero from "../../assets/images/running-header.png";
 import RunMan from "../../assets/images/runner-man.png";
@@ -11,8 +11,7 @@ import RunWoman from "../../assets/images/runner-woman.png";
 import RunningWoman from "../../assets/images/running_woman.jpg";
 import RunningMan from "../../assets/images/running_man.jpg";
 
-
-export const Home = () => {
+const Home = () => {
   return (
     <>
       <Header />
@@ -44,4 +43,4 @@ export const Home = () => {
   );
 };
 
-
+export default Home;
