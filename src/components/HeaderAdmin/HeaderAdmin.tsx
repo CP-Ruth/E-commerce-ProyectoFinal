@@ -1,10 +1,10 @@
-import { Link, NavLink } from "react-router"
-import styles from "./HeaderAdmin.module.css"
-import logo from "../../assets/svg/myb.svg"
-import { FaUser } from "react-icons/fa"
-import { useState } from "react"
-const HeaderAdmin = () => {
+import { NavLink } from "react-router";
+import styles from "./HeaderAdmin.module.css";
+import logo from "../../assets/svg/myb.svg";
+import { FaUser } from "react-icons/fa";
+import { useState } from "react";
 
+const HeaderAdmin = () => {
   const [showSub, setShowSub] = useState(false);
 
   return (
@@ -13,10 +13,12 @@ const HeaderAdmin = () => {
         <div>
           <img src={logo} alt="Logo" className={styles.logo} />
         </div>
-        <p>Admin <FaUser /></p>
+        <p>
+          Admin <FaUser />
+        </p>
       </div>
       <nav className={styles.navegation}>
-      <NavLink
+        <NavLink
           className={({ isActive }) =>
             `${styles.link} ${isActive ? styles.active : ""}`
           }
@@ -92,7 +94,7 @@ const HeaderAdmin = () => {
           to="/administrador/pedidos" >PEDIDOS</Link> */}
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default HeaderAdmin
+export default HeaderAdmin;
