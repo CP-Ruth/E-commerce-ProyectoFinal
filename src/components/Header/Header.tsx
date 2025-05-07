@@ -4,7 +4,8 @@ import { Link } from "react-router";
 import { useState } from "react";
 import  Modal  from "../ModalLoginRegister/Modal";
 import logo from "../../assets/images/myb.png";
-import menu from "../../assets/svg/menu.svg";
+import { IoMenu } from "react-icons/io5";
+import { FaRegUser } from "react-icons/fa";
 
 const Header = () => {
   //Estado para abrir el modal
@@ -18,20 +19,21 @@ const Header = () => {
 
       <nav className={styles.headerOptions}>
         <div className={`${styles.headerNavSearch} ${menuOpen ? styles.showMenu : ''}`}>
-          <Link to="/">Home</Link>
+          <Link to="/">Inicio</Link>
           <Link to="/catalogo/mujer">Mujer</Link>
           <Link to="/catalogo/hombre">Hombre</Link>
+          <Link to="/administrador">Admin</Link>{/**Quitar despues */}
         </div>
         <div className={styles.headerBuyLogin}>
           <Link to="/carrito">
             <img src={carrito} alt="Carrito de compras" />
           </Link>
-          <button onClick={() => setOpenModal(true)}>Login</button>
+          <button onClick={() => setOpenModal(true)}><FaRegUser /></button>
           <button
             className={styles.burgerButton}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <img src={menu} alt="Menu" />
+            <IoMenu />
           </button>
         </div>
       </nav>
