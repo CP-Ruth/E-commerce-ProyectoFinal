@@ -1,29 +1,58 @@
-.container{
-    position: relative;
-    width: 40%;
-    min-width: 180px;
-    height: 65vh;
-    margin: 10px 0px 50px;
-
-    overflow: hidden;
+.container {
+  width: 100%;
+  height: var(--fluid-250-500);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.image{
-    width: 100%;
-    height: 100%;
-    filter: brightness(.75);
-    object-fit: cover;
-    
+.imgWomanClothe {
+  background-image: url("../../../assets/images/clotheWoman.png");
 }
 
-.containerText{
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    font-size: var(--font-xl);
-    color: #fff;
-    cursor: pointer;
+.imgWomanFoot {
+  background-image: url("../../../assets/images/footWoman.png");
+}
+
+.imgManClothe {
+  background-image: url("../../../assets/images/clotheMan.png");
+}
+
+.imgManFoot {
+  background-image: url("../../../assets/images/footMan.png");
+}
+
+.containerOption {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-size: cover; /* Que la imagen cubra el contenedor */
+  background-position: center; /* Centrada */
+  background-repeat: no-repeat; /* Que no se repita */
+  filter: brightness(0.7);
+}
+
+.container p {
+  text-transform: uppercase;
+  font-size: var(--font-lg);
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+    .container {
+  width: var(--fluid-300-560);
+}
+
+.container p {
+  text-transform: uppercase;
+  font-size: var(--font-xl);
+  color: #ffffff;
+}    
+}
+@media (min-width: 1024px) {
+  
 }

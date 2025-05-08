@@ -19,6 +19,7 @@ interface Producto {
     precioVenta:String,
     estado:String,
 }
+
 export const TableRowUser: FC<Usuario> = ({ nombre, apellido, email, dni, direccion, provincia }) => {
     return (
         <tr className={styles.tableRow}>

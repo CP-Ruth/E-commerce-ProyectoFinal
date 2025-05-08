@@ -1,6 +1,6 @@
 import styles from "./Table.module.css"
 
-export const TableHUser = () => {
+export const TableHeadUser = () => {
     return (
         <tr className={styles.tableRow}>
             <th>Nombre</th>
@@ -13,7 +13,7 @@ export const TableHUser = () => {
     )
 }
 
-export const TableHProduct = () => {
+export const TableHeadProduct = () => {
     return (
         <tr className={styles.tableRow}>
             <th>Nombre</th>
@@ -28,7 +28,7 @@ export const TableHProduct = () => {
     )
 }
 
-export const TableHOrder = () => {
+export const TableHeadOrder = () => {
     return (
         <tr className={styles.tableRow}>
             <th>Nro Pedido</th>

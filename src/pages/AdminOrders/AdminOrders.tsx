@@ -1,5 +1,5 @@
 import { TableRowOrder } from "../../components/Table/TableRow"
-import { TableHOrder } from "../../components/Table/TableRowHead"
+import { TableHeadOrder } from "../../components/Table/TableRowHead"
 import styles from "./Admin.Orders.module.css"
 
 const AdminOrders = () => {
@@ -90,7 +90,7 @@ const AdminOrders = () => {
 
       <table className={styles.tableUser} >
         <thead>
-          <TableHOrder />
+          <TableHeadOrder />
         </thead>
         <tbody>
           {pedidos.length > 0 ? (
