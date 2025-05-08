@@ -4,14 +4,13 @@ import Header from "../../components/Header/Header";
 
 const ProductDetail = () => {
 
-  const {idProduct}= useParams();
+  const {id}= useParams();
   
   return (
     <>
-
     <Header />
     <main>
-
+<h2> Detalle de producto</h2>
     </main>
     <Footer />
     </>

@@ -26,8 +26,10 @@ const Header = () => {
           <Link to="/">Inicio</Link>
           <Link to="/catalogo/mujer">Mujer</Link>
           <Link to="/catalogo/hombre">Hombre</Link>
-          <Link to="/administrador">Admin</Link>
           {/**Quitar despues */}
+          <Link to="/administrador">Admin</Link>
+          <Link to="/producto">detalleProducto</Link>
+          
         </div>
         <div className={styles.headerBuyLogin}>
           <Link to="/carrito">

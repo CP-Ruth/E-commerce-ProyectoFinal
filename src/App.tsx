@@ -8,6 +8,7 @@ import AdminHome from "./pages/AdminHome/AdminHome";
 import AdminOrders from "./pages/AdminOrders/AdminOrders";
 import AdminProducts from "./pages/AdminProducts/AdminProducts";
 import AdminUsers from "./pages/AdminUsers/AdminUsers";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/catalogo/:sexo" element={<Catalog />} />
       <Route path="/catalogo/:sexo/:type" element={<ProductCatalog />} />
+      <Route path="/producto" element={<ProductDetail />} />
       <Route path="/carrito" element={<ShoppingCart />} />
 
       {/**Quitar despues */}
