@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 const SliderProducts = () => {
-
   const products: IProduct[] = [
     {
       nombre: "Zapatilla Palermo",
@@ -49,8 +48,6 @@ const SliderProducts = () => {
 
   return (
     <section className={styles.container}>
-
-
       <div>
         <Swiper
           modules={[Navigation]}
@@ -63,21 +60,24 @@ const SliderProducts = () => {
             500: { slidesPerView: 2 },
             1000: { slidesPerView: 3 },
             1224: { slidesPerView: 4 },
-            
           }}
         >
           {products &&
             products.length > 0 &&
             products.map((product, index) => (
               <SwiperSlide key={index}>
-                <div className={styles.card} >
-                <img className={styles.img} src={ImageProduct} alt="Producto" /> {/**Despues cambiarlo */}
+                <div className={styles.card}>
+                  <img
+                    className={styles.img}
+                    src={ImageProduct}
+                    alt="Producto"
+                  />{" "}
+                  {/**Despues cambiarlo */}
                   <h3>{product.nombre}</h3>
                   <p>${product.precio}</p>
                 </div>
               </SwiperSlide>
-            ))
-          }
+            ))}
         </Swiper>
       </div>
     </section>
