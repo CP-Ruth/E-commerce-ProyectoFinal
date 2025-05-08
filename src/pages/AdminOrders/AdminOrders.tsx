@@ -95,7 +95,8 @@ const AdminOrders = () => {
         <tbody>
           {pedidos.length > 0 ? (
             pedidos.map((pedido) => (
-              <TableRowOrder
+              <TableRowOrder 
+              
                 id={pedido.id}
                 fechaHora={pedido.fechaHora}
                 formaPago={pedido.formaPago}
