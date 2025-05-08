@@ -1,0 +1,15 @@
+.tableRow{
+    height: 3rem;
+  
+}
+
+.tableRow th{
+    background-color: #D9D9D9;
+    padding: 12px;
+    text-align: start;
+}
+
+.tableRow td{
+    padding: 12px;
+    border-bottom: 1px solid #868686;
+}

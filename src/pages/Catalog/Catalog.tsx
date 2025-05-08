@@ -15,10 +15,10 @@ const Catalog = () => {
     return (
         <>
             <Header />
-            <main>
+            <main className={styles.containerMain}>
                 <h2 className={styles.title}>Encuentra lo que buscas</h2>
                 <Button text="Ver todo" />
-                <div className={styles.container}>
+                <div className={styles.containerOptions}>
                     {sexo && sexo === "mujer" ? (
                         <>
                             <OptionCategory

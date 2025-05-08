@@ -1,9 +1,10 @@
 .container{
     position: relative;
     width: 40%;
+    min-width: 180px;
     height: 65vh;
     margin: 10px 0px 50px;
-    border-radius: 20px;
+
     overflow: hidden;
 }
 
@@ -12,6 +13,7 @@
     height: 100%;
     filter: brightness(.75);
     object-fit: cover;
+    
 }
 
 .containerText{

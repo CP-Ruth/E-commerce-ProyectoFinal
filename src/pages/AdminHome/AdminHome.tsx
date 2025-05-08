@@ -1,5 +1,6 @@
 import { Outlet } from "react-router"
-import HeaderAdmin from "../../components/HeaaderAdmin/HeaderAdmin"
+import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin"
+
 
 
 const AdminHome = () => {
