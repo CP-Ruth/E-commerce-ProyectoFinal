@@ -13,12 +13,11 @@
   align-items: center;
 }
 
-.headerNavSearch{
+.headerNavSearch {
   display: none;
-  
 }
 
-.showMenu  {
+.showMenu {
   position: absolute;
   top: 40px;
   left: 0;
@@ -31,9 +30,8 @@
   padding: 1rem 0;
 }
 
-
-.headerLogo{
-  height: 40px;
+.headerLogo {
+  height: 50px;
   padding: 5px;
 }
 
@@ -43,7 +41,6 @@
   gap: 1rem;
   font-size: 14px;
 }
-
 
 @media (min-width: 768px) {
   .containerHeader {
@@ -73,7 +70,6 @@
     gap: 50px;
     padding-right: 50px;
   }
-  
 }
 @media (min-width: 1024px) {
   .containerHeader {
@@ -104,5 +100,4 @@
     padding-right: 50px;
     font-size: 16px;
   }
-  
 }

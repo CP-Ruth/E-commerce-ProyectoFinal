@@ -29,7 +29,6 @@ const Header = () => {
           {/**Quitar despues */}
           <Link to="/administrador">Admin</Link>
           <Link to="/producto">detalleProducto</Link>
-          
         </div>
         <div className={styles.headerBuyLogin}>
           <Link to="/carrito">

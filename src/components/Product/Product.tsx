@@ -1,10 +1,12 @@
 import { FC } from "react";
 import styles from "./Product.module.css";
-import { IProduct } from "../../types/IProduct";
 import ImageProduct from "../../assets/images/product.png";
 
 interface PropsProduct {
-  product: IProduct;
+  product: {
+    nombre: string;
+    precio: string;
+  };
 }
 
 const Product: FC<PropsProduct> = ({ product }) => {

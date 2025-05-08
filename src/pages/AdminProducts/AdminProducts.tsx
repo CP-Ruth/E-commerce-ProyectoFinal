@@ -1,15 +1,16 @@
-import { useParams } from "react-router"
-
+import { useParams } from "react-router";
+import TableHead from "../AdminHome/TableHead/TableHead";
 
 const AdminProducts = () => {
-  const {tipo} = useParams();
+  const { tipo } = useParams();
+  const columns = ["Nombre", "Color", "Sexo", "Cantidad", "Estado"];
 
   return (
     <>
-    {tipo 
-    }
+      <TableHead columns={columns} />
+      {tipo}
     </>
-  )
-}
+  );
+};
 
-export default AdminProducts
+export default AdminProducts;
