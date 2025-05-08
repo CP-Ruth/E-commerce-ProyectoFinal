@@ -73,7 +73,7 @@ const SliderProducts = () => {
                 <div className={styles.card} >
                 <img className={styles.img} src={ImageProduct} alt="Producto" /> {/**Despues cambiarlo */}
                   <h3>{product.nombre}</h3>
-                  <p>{product.precio}</p>
+                  <p>${product.precio}</p>
                 </div>
               </SwiperSlide>
             ))
