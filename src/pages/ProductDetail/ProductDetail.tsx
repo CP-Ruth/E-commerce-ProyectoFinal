@@ -4,22 +4,27 @@ import Header from "../../components/Header/Header";
 import { Photos } from "./Photos/Photos";
 import { Description } from "./Description/Description";
 import { Details } from "./Details/Details";
+import styles from "./ProductDetail.module.css"
+
 
 const ProductDetail = () => {
 
   const {id}= useParams();
   
   return (
-    <>
-    <Header />
-    <main>
-      <h2> Detalle de producto</h2>
-      <Photos/>
-      <Description/>
-      <Details />
-    </main>
-    <Footer />
-    </>
+    <div className={styles.pageContainer}>
+
+      <Header />
+      <main className={styles.mainContainer}>
+        <Photos/>
+        <Details />
+        <Description/>
+      </main>
+      <Footer />
+
+    </div>
+
+
   )
 }
 
