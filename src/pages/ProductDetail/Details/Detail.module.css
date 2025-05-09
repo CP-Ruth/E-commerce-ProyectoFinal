@@ -21,6 +21,7 @@ gap: 0.9rem;
     color: #727272;
     width: 2.5rem;
     height: 2.5rem;
+    cursor: pointer;
 }
 .talleContainer {
     display: flex;
@@ -28,7 +29,8 @@ gap: 0.9rem;
     flex-wrap: wrap;
 }
 .containerData select{
-    width: 2.5rem;
+    width: 3rem;
+    height: 1.4rem;
     font-size: 0.8rem;
 }
 .carritoButton{
@@ -39,4 +41,10 @@ gap: 0.9rem;
     justify-content: center;
     height: 2.5rem;
     
+}
+
+@media (min-width: 768px){
+    .containerData button{
+        height: 3rem;
+    }
 }

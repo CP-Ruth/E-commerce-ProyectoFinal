@@ -1,6 +1,10 @@
+import styles from "./Photos.module.css"
+
 
 export const Photos = () => {
   return (
-    <div>Photos</div>
+    <div className={styles.containerPrincipal}>
+      Photos
+    </div>
   )
 }
