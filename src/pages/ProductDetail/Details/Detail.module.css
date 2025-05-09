@@ -40,11 +40,22 @@ gap: 0.9rem;
     align-items: center;
     justify-content: center;
     height: 2.5rem;
-    
 }
 
 @media (min-width: 768px){
     .containerData button{
         height: 3rem;
+    }
+    .containerPrincipal{
+        gap:2rem
+    }
+    .containerPrincipal h2{
+        font-size: 1.9rem;
+    }
+    .containerPrincipal h3{
+        font-size: 1.5rem;
+    }
+    .containerData{
+        font-size: 1rem;
     }
 }

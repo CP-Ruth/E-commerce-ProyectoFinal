@@ -5,6 +5,7 @@ import styles from "./Detail.module.css"
 export const Details = () => {
   return (
     <div className={styles.containerPrincipal}>
+      
       <h2>NombreZapatilla</h2>
       <h3>$20.000</h3>
       <div className={styles.containerData}>

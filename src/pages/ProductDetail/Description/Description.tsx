@@ -1,4 +1,4 @@
-import { FaPlus } from "react-icons/fa"
+import { FaPlus, FaMinus } from "react-icons/fa";
 import { useAccordionStore } from "../../../store/useAccordionStore";
 import styles from "./Description.module.css"
 
@@ -8,7 +8,7 @@ export const Description = () => {
         <div className={styles.principalContainer}>
             <button className={styles.buttonAccordion} onClick={toggle}>
                 <strong>Descripción</strong>
-                <FaPlus />
+                {isOpen ? <FaMinus /> : <FaPlus />}
             </button>
             <hr />
             {isOpen && (
