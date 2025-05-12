@@ -4,12 +4,14 @@
   --font-x: 1.5rem;
   --font-s: 1.3rem;
   /* Para las imagenes */
- --fluid-250-500: clamp(250px, 145.3202px + 24.6305vw, 490px);
-  --fluid-300-560: clamp(300px, 2.8571px + 38.6905vw, 560px);
- /*para las letras titulos*/
---fluid-20-40: clamp(20px, 5.9507px + 2.3645vw, 40px);
-}
+  --fluid-250-500: clamp(250px, 145.3202px + 24.6305vw, 490px);
+  --fluid-300-600: clamp(300px, -42.8571px + 44.6429vw, 600px);
+  /*para las letras titulos*/
+  --fluid-20-40: clamp(20px, 5.9507px + 2.3645vw, 40px);
 
+  /*Texto*/
+  --fluid-6-16: clamp(6px, -5.4286px + 1.4881vw, 16px);
+}
 * {
   padding: 0;
   margin: 0;

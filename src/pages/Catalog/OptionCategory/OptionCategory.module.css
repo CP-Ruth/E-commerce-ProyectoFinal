@@ -44,7 +44,7 @@
 
 @media (min-width: 768px) {
     .container {
-  width: var(--fluid-300-560);
+  width: var(--fluid-300-600);
 }
 
 .container p {

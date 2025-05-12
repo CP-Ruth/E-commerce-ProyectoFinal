@@ -14,14 +14,15 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/catalogo/:sexo" element={<Catalog />} />
-      <Route path="/catalogo/:sexo/:type" element={<ProductCatalog />} />
+      <Route path="/catalogo/:sexo" element={<Catalog />}>
+        <Route path="/catalogo/:sexo/:type" element={<ProductCatalog />} />
+      </Route>
       <Route path="/producto" element={<ProductDetail />} />
       <Route path="/carrito" element={<ShoppingCart />} />
 
       {/**Quitar despues */}
       <Route path="/administrador" element={<AdminHome />}>
-        <Route path="usuarios" element={<AdminUsers />} />
+        <Route index path="usuarios" element={<AdminUsers />} />
         <Route path="producto/:tipo" element={<AdminProducts />} />
         <Route path="pedidos" element={<AdminOrders />} />
       </Route>

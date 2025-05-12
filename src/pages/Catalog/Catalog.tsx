@@ -1,5 +1,5 @@
 import styles from './Catalog.module.css';
-import { useParams } from "react-router";
+import { Outlet, useParams } from "react-router";
 import Header from "../../components/Header/Header";
 import OptionCategory from "./OptionCategory/OptionCategory";
 import Button from "../../components/Button/Button";
@@ -23,7 +23,7 @@ const Catalog = () => {
                                 sexo="mujer"
                             />
                             <OptionCategory
-                                
+
                                 alt="Opcion de calzado femenino"
                                 text="calzado"
                                 sexo="mujer"
@@ -44,6 +44,7 @@ const Catalog = () => {
                         </>
                     )}
                 </div>
+                <Outlet />
             </main>
         </>
 

@@ -1,9 +1,10 @@
 .filterSection {
-  width: 10%;
+  width: 30%;
+  display: none;
 }
 
 .title {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .subtitle {
@@ -11,15 +12,33 @@
 }
 
 .filterContainer {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.filterContainer span {
+.filterContainer label {
   display: block;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
+  font-size: var(--fluid-6-16);
 }
 
 .icon {
   margin-bottom: -5px;
   margin-right: 10px;
+}
+
+
+@media (min-width: 768px) {
+.filterSection {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+}
+
+}
+
+
+@media (min-width: 1024px) {
+.filterSection {
+  width: 20%;
+}
 }
