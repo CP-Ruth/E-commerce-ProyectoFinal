@@ -1,0 +1,20 @@
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.mainContainer {
+    display: grid;
+    grid-template-columns: 1fr; 
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 1rem;
+    flex: 1;
+}
+
+
+@media (min-width: 768px) {
+    .mainContainer {
+    grid-template-columns: 2fr 1fr; 
+    }
+}
