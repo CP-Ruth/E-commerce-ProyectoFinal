@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router";
 import "./App.css";
 import ShoppingCart from "./pages/ShoppingCart/Shopping";
 import Catalog from "./pages/Catalog/Catalog";
-import ProductCatalog from "./pages/ProductCatalog/ProductCatalog";
 import Home from "./pages/Home/Home";
 import AdminHome from "./pages/AdminHome/AdminHome";
 import AdminOrders from "./pages/AdminOrders/AdminOrders";
@@ -14,9 +13,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/catalogo/:sexo" element={<Catalog />}>
-        <Route path="/catalogo/:sexo/:type" element={<ProductCatalog />} />
-      </Route>
+      <Route path="/catalogo/:sexo" element={<Catalog />} />
       <Route path="/producto" element={<ProductDetail />} />
       <Route path="/carrito" element={<ShoppingCart />} />
 

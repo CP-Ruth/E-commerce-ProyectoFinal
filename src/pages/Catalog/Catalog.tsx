@@ -1,13 +1,23 @@
 import styles from './Catalog.module.css';
-import { Outlet, useParams } from "react-router";
+import { useParams } from "react-router";
 import Header from "../../components/Header/Header";
 import OptionCategory from "./OptionCategory/OptionCategory";
 import Button from "../../components/Button/Button";
+import ProductCatalog from '../ProductCatalog/ProductCatalog';
+import Footer from '../../components/Footer/Footer';
+import { useRef, useState } from 'react';
 
 
 const Catalog = () => {
     const { sexo } = useParams();
+    const catalogRef = useRef<HTMLDivElement>(null);
 
+    const [filtro, setFiltro] = useState<{
+        categoria: string | null;
+        sexo: string | undefined;
+    }>();
+
+    // Hacer una función para hacer scroll para el boton VER TODO
     return (
         <>
             <Header />
@@ -44,8 +54,9 @@ const Catalog = () => {
                         </>
                     )}
                 </div>
-                <Outlet />
+                <ProductCatalog />
             </main>
+            <Footer />
         </>
 
     )

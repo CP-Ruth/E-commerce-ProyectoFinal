@@ -5,12 +5,14 @@ import {
   getDetallesProductos,
   getDetalleProductoPorIdProducto,
 } from '../services/productsService';
+import { ProductFilters } from '../types/ProductFilter';
 
 interface ProductState {
   detallesProductos: DetalleProducto[];
   loading: boolean;
   error: string | null;
-
+  filters: ProductFilters;
+  setFilters: (filters: ProductFilters) => void;
   fetchDetallesProductos: () => Promise<void>;
   fetchDetalleProductoPorId: (idProducto: number) => Promise<DetalleProducto | undefined>;
 }
@@ -19,6 +21,9 @@ export const useProductStore = create<ProductState>((set) => ({
   detallesProductos: [],
   loading: false,
   error: null,
+  filters: {},
+
+  setFilters: (filters: ProductFilters) => set({ filters }),
 
   fetchDetallesProductos: async () => {
     set({ loading: true, error: null });
