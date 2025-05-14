@@ -1,13 +1,19 @@
 import { useParams } from "react-router";
 import styles from "./ProductCatalog.module.css";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
 import FiltersProducts from "./FiltersProducts/FiltersProducts";
 import Product from "../../components/Product/Product";
 import { IoIosOptions } from "react-icons/io";
+import { useEffect } from "react";
+import { useProductos } from "../../hooks/useProducts";
 
 const ProductCatalog = () => {
   const { type, sexo } = useParams();
+
+  const { detallesProductos, fetchDetallesProductos } = useProductos();
+  
+    useEffect(() => {
+      fetchDetallesProductos();
+    }, []);
   return (
 
     <section className={styles.containerSection}>
@@ -19,14 +25,11 @@ const ProductCatalog = () => {
       <div className={styles.containerProducts}>
         <FiltersProducts />
         <section className={styles.gridContainer}>
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
-          <Product product={{ nombre: "Producto 1", precio: 345 }} />
+          {detallesProductos && detallesProductos.map((dProducto) => (
+            <Product detProducto={dProducto} />
+          ))
+          }
+          
         </section>
       </div>
     </section>

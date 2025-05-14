@@ -13,6 +13,8 @@ const { detallesProductos, fetchDetallesProductos } = useProductos();
   useEffect(() => {
     fetchDetallesProductos();
   }, []);
+
+  const detProdCalzados = detallesProductos.filter((detPro)=> detPro.producto.tipoProducto === "CALZADO");
   return (
     <section className={styles.container}>
       <div>
@@ -29,8 +31,8 @@ const { detallesProductos, fetchDetallesProductos } = useProductos();
             1224: { slidesPerView: 4 },
           }}
         >
-          {detallesProductos &&
-            detallesProductos.map((dProducto) => (
+          {detProdCalzados &&
+            detProdCalzados.map((dProducto) => (
               <SwiperSlide key={dProducto.id}>
                 <div className={styles.card}>
                   <img
