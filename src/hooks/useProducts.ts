@@ -1,5 +1,3 @@
-// hooks/useProductos.ts
-
 import { useProductStore } from "../store/useProductStore";
 
 

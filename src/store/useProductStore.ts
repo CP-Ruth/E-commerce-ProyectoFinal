@@ -1,11 +1,11 @@
 // store/productStore.ts
 import { create } from "zustand";
-import { ProductFilters } from "../types/typesFilter";
 import { IDetalleProducto } from "../types/typesProduct";
 import {
   getDetallesProductos,
   getDetalleProductoPorIdProducto,
 } from "../services/productsService";
+import { ProductFilters } from '../types/ProductFilter';
 
 interface ProductState {
   detallesProductos: IDetalleProducto[];
