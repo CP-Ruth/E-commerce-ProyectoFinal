@@ -1,8 +1,9 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import styles from "./ModalLoginRegister.module.css";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { schemaForm } from "../../validations/validationForm";
+import { IoMdClose } from "react-icons/io";
 
 type ModalProps = {
   onClose: () => void;
@@ -18,7 +19,7 @@ const initial = {
   confirmPassword: "",
 };
 
-const ModalLoginRegister: FC<ModalProps> = () => {
+const ModalLoginRegister: FC<ModalProps> = ({ onClose }) => {
   const [formData, setFormData] = useState(initial);
   const [isRegisterMode, setIsRegisterMode] = useState(true);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -31,17 +32,15 @@ const ModalLoginRegister: FC<ModalProps> = () => {
   };
 
   //Funcion para cuando enviamos el formulario.
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      // valida todo el formulario
       await schemaForm.validate(formData, { abortEarly: false });
       Swal.fire("Formulario enviado correctamente", "", "success");
-      //Limpiamos el formulario si todo va bien
+
       setFormData(initial);
       setErrors({});
     } catch (err) {
-      // Si hay errores de validación,
       if (err instanceof Yup.ValidationError) {
         const newErrors: { [key: string]: string } = {};
         err.inner.forEach((e) => {
@@ -55,6 +54,7 @@ const ModalLoginRegister: FC<ModalProps> = () => {
   return (
     <div className={styles.container}>
       <div className={styles.modal}>
+        <IoMdClose color="#000" size={30} cursor="pointer" onClick={onClose} />
         <div className={styles.buttonsOption}>
           <button
             type="button"

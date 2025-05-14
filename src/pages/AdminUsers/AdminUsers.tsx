@@ -1,6 +1,7 @@
 import { TableRowUser } from "../../components/Table/TableRow";
 import { TableHeadUser } from "../../components/Table/TableRowHead"
 import styles from "./AdminUsers.module.css"
+
 interface Usuario {
   nombre: string;
   apellido: string;
@@ -99,7 +100,6 @@ const AdminUsers = () => {
   return (
     <section>
       <div></div>
-
       <table className={styles.tableUser} >
         <thead>
           <TableHeadUser />

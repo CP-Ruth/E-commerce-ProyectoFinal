@@ -2,7 +2,7 @@ import styles from "./Header.module.css";
 import carrito from "../../assets/svg/shop.svg";
 import { Link } from "react-router";
 import { useState } from "react";
-import Modal from "../ModalLoginRegister/ModalLoginRegister";
+import ModalLoginRegister from "../ModalLoginRegister/ModalLoginRegister";
 import logo from "../../assets/images/myb.png";
 import { IoMenu } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
@@ -16,7 +16,6 @@ const Header = () => {
   return (
     <header className={styles.containerHeader}>
       <img src={logo} className={styles.headerLogo} />
-
       <nav className={styles.headerOptions}>
         <div
           className={`${styles.headerNavSearch} ${
@@ -26,17 +25,15 @@ const Header = () => {
           <Link to="/">Inicio</Link>
           <Link to="/catalogo/mujer">Mujer</Link>
           <Link to="/catalogo/hombre">Hombre</Link>
-          {/**Quitar despues */}
-          <Link to="/administrador">Admin</Link>
-          <Link to="/producto">detalleProducto</Link>
-          
+          {/* <Link to="/administrador">Admin</Link>
+          <Link to="/producto">detalleProducto</Link> */}
         </div>
         <div className={styles.headerBuyLogin}>
           <Link to="/carrito">
             <img src={carrito} alt="Carrito de compras" />
           </Link>
           <button onClick={() => setOpenModal(true)}>
-            <FaRegUser />
+            <FaRegUser size={25} />
           </button>
           <button
             className={styles.burgerButton}
@@ -46,7 +43,7 @@ const Header = () => {
           </button>
         </div>
       </nav>
-      {openModal && <Modal onClose={() => setOpenModal(false)} />}
+      {openModal && <ModalLoginRegister onClose={() => setOpenModal(false)} />}
     </header>
   );
 };

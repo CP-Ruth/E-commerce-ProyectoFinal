@@ -1,24 +1,32 @@
 // store/productStore.ts
-import { create } from 'zustand';
-import { DetalleProducto } from '../types/IProduct';
+import { create } from "zustand";
+import { ProductFilters } from "../types/typesFilter";
+import { IDetalleProducto } from "../types/typesProduct";
 import {
   getDetallesProductos,
   getDetalleProductoPorIdProducto,
-} from '../services/productsService';
+} from "../services/productsService";
 
 interface ProductState {
-  detallesProductos: DetalleProducto[];
+  detallesProductos: IDetalleProducto[];
   loading: boolean;
   error: string | null;
+  filters: ProductFilters;
+  setFilters: (filters: ProductFilters) => void;
 
   fetchDetallesProductos: () => Promise<void>;
-  fetchDetalleProductoPorId: (idProducto: number) => Promise<DetalleProducto | undefined>;
+  fetchDetalleProductoPorId: (
+    idProducto: number
+  ) => Promise<IDetalleProducto | undefined>;
 }
 
 export const useProductStore = create<ProductState>((set) => ({
   detallesProductos: [],
   loading: false,
   error: null,
+  filters: {},
+
+  setFilters: (filters: ProductFilters) => set({ filters }),
 
   fetchDetallesProductos: async () => {
     set({ loading: true, error: null });
@@ -26,7 +34,10 @@ export const useProductStore = create<ProductState>((set) => ({
       const detalles = await getDetallesProductos();
       set({ detallesProductos: detalles, loading: false });
     } catch (error: any) {
-      set({ loading: false, error: error.message || 'Error al cargar detalles de productos' });
+      set({
+        loading: false,
+        error: error.message || "Error al cargar detalles de productos",
+      });
     }
   },
 
@@ -34,7 +45,7 @@ export const useProductStore = create<ProductState>((set) => ({
     try {
       return await getDetalleProductoPorIdProducto(idProducto);
     } catch (error: any) {
-      console.error('Error al obtener detalle del producto:', error.message);
+      console.error("Error al obtener detalle del producto:", error.message);
       return undefined;
     }
   },
