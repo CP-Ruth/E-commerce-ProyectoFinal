@@ -1,6 +1,5 @@
 import { useProductStore } from "../store/useProductStore";
 
-
 export const useProductos = () => {
   const {
     detallesProductos,

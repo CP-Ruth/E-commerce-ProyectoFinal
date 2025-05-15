@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./Product.module.css";
-import { DetalleProducto } from "../../types/typesProduct";
+import { DetalleProducto } from "../../types/IDetailsProduct";
 import ImageProduct from "../../assets/images/product.png";
 
 interface PropsProduct {

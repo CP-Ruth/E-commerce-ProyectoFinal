@@ -8,13 +8,15 @@ import { useProductos } from "../../../hooks/useProducts";
 import { useEffect } from "react";
 
 const SliderProducts = () => {
-const { detallesProductos, fetchDetallesProductos } = useProductos();
+  const { detallesProductos, fetchDetallesProductos } = useProductos();
 
   useEffect(() => {
     fetchDetallesProductos();
   }, []);
 
-  const detProdCalzados = detallesProductos.filter((detPro)=> detPro.producto.tipoProducto === "CALZADO");
+  const detProdCalzados = detallesProductos.filter(
+    (detPro) => detPro.producto.tipoProducto === "CALZADO"
+  );
   return (
     <section className={styles.container}>
       <div>
@@ -37,7 +39,11 @@ const { detallesProductos, fetchDetallesProductos } = useProductos();
                 <div className={styles.card}>
                   <img
                     className={styles.img}
-                    src={dProducto.imagenes && dProducto.imagenes.length > 0 ? dProducto.imagenes[0].url : ImageProduct}
+                    src={
+                      dProducto.imagenes && dProducto.imagenes.length > 0
+                        ? dProducto.imagenes[0].url
+                        : ImageProduct
+                    }
                     alt={dProducto.producto?.nombre || "Producto"}
                   />
                   <h3>{dProducto.producto.nombre}</h3>

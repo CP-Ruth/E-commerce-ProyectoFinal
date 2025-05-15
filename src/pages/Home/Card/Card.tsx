@@ -1,7 +1,5 @@
 import { FC } from "react";
 import styles from './Card.module.css'
-import Button from "../../../components/Button/Button";
-
 
 interface PropsCard {
   title: string;
@@ -16,7 +14,6 @@ const Card: FC<PropsCard> = ({ title, image, children}) => {
       <figcaption className={styles.details}>
         <h3>{title}</h3>
         {children && <p>{children}</p>}
-        <Button text="Comprar" />
       </figcaption>
     </figure>
   );

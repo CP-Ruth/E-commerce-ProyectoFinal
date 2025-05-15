@@ -1,14 +1,15 @@
 // store/productStore.ts
 import { create } from "zustand";
-import { IDetalleProducto } from "../types/typesProduct";
+
+import { ProductFilters } from "../types/typesFilter";
 import {
   getDetallesProductos,
   getDetalleProductoPorIdProducto,
 } from "../services/productsService";
-import { ProductFilters } from '../types/ProductFilter';
+import { IDetailsProduct } from "../types/IDetailsProduct";
 
 interface ProductState {
-  detallesProductos: IDetalleProducto[];
+  detallesProductos: IDetailsProduct[];
   loading: boolean;
   error: string | null;
   filters: ProductFilters;
@@ -17,7 +18,7 @@ interface ProductState {
   fetchDetallesProductos: () => Promise<void>;
   fetchDetalleProductoPorId: (
     idProducto: number
-  ) => Promise<IDetalleProducto | undefined>;
+  ) => Promise<IDetailsProduct  | undefined>;
 }
 
 export const useProductStore = create<ProductState>((set) => ({
