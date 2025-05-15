@@ -1,4 +1,13 @@
+import { Locality } from "./ILocality"
+
 type Rol = "USUARIO" | "ADMIN"
+
+export interface Address {
+   id: number
+   domicilio: string
+   casa: string
+   localidad: Locality
+}
 
 export interface IUser {
    id: number
@@ -8,4 +17,5 @@ export interface IUser {
    username: string
    password: string
    rol: Rol
+   direccion: Address
 }

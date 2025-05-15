@@ -20,7 +20,7 @@ export const useListUsers = () => {
     const usuarios = await getUsers();
 
     if (usuarios) {
-      setAllUsers(users);
+      setAllUsers(usuarios);
     }
   };
 

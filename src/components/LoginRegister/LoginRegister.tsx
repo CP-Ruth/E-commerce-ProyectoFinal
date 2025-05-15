@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
-import styles from "./ModalLoginRegister.module.css";
+import styles from "./LoginRegister.module.css";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import { schemaForm } from "../../validations/validationForm";
@@ -19,7 +19,7 @@ const initial = {
   confirmPassword: "",
 };
 
-const ModalLoginRegister: FC<ModalProps> = ({ onClose }) => {
+const LoginRegister: FC<ModalProps> = ({ onClose }) => {
   const [formData, setFormData] = useState(initial);
   const [isRegisterMode, setIsRegisterMode] = useState(true);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -181,4 +181,4 @@ const ModalLoginRegister: FC<ModalProps> = ({ onClose }) => {
   );
 };
 
-export default ModalLoginRegister;
+export default LoginRegister;

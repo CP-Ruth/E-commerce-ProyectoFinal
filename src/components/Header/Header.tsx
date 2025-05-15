@@ -1,11 +1,11 @@
 import styles from "./Header.module.css";
-import carrito from "../../assets/svg/shop.svg";
-import { Link } from "react-router";
+import LoginRegister from "../LoginRegister/LoginRegister";
 import { useState } from "react";
-import ModalLoginRegister from "../ModalLoginRegister/ModalLoginRegister";
-import logo from "../../assets/images/myb.png";
-import { IoMenu } from "react-icons/io5";
+import { Link } from "react-router";
+import carrito from "../../assets/svg/shop.svg";
 import { FaRegUser } from "react-icons/fa";
+import { IoMenu } from "react-icons/io5";
+import logo from "../../assets/images/myb.png";
 
 const Header = () => {
   //Estado para abrir el modal
@@ -43,7 +43,7 @@ const Header = () => {
           </button>
         </div>
       </nav>
-      {openModal && <ModalLoginRegister onClose={() => setOpenModal(false)} />}
+      {openModal && <LoginRegister onClose={() => setOpenModal(false)} />}
     </header>
   );
 };

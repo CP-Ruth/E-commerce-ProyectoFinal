@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import styles from "./HeaderAdmin.module.css";
-import logo from "../../assets/svg/myb.svg";
+import logo from "../../../assets/svg/myb.svg";
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 
