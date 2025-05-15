@@ -1,10 +1,9 @@
 import styles from "./ProductCatalog.module.css";
 import { IoIosOptions } from "react-icons/io";
 import { FC, useEffect, useState } from "react";
-import { IDetailsProduct } from "../../../types/IDetailsProduct";
-import { getProductsBySexoAndType } from "../../../services/productService";
 import FiltersProducts from "../FiltersProducts/FiltersProducts";
 import Product from "../../../components/Product/Product";
+import { useFilter } from "../../../hooks/UseFilter";
 
 interface PropsProductCatalog {
   sexo: String | undefined;
@@ -12,16 +11,15 @@ interface PropsProductCatalog {
 }
 
 const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter }) => {
-  const [productos, setProductos] = useState<IDetailsProduct[]>([]);
+  const { productos, getProducts } = useFilter();
+  const [filters, setFilters] = useState<String[]>([]);
+
+  const handleFilter = (filter: String) => {
+    setFilters([...filters, filter]);
+  };
 
   useEffect(() => {
-    const getProducts = async () => {
-      const response = await getProductsBySexoAndType(
-        `sexo=${sexo}${filter && "&tipoProducto=" + filter}`
-      );
-      setProductos(response);
-    };
-    getProducts();
+    getProducts(sexo!, filter);
   }, [filter, sexo]);
 
   return (
@@ -31,9 +29,10 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter }) => {
         Filtros
       </button>
       <div className={styles.containerProducts}>
-        <FiltersProducts />
+        <FiltersProducts handleFilter={handleFilter} />
         <section className={styles.gridContainer}>
-          {productos && productos.length > 0 &&
+          {productos &&
+            productos.length > 0 &&
             productos.map((producto) => (
               <Product key={producto.id} detProducto={producto} />
             ))}
