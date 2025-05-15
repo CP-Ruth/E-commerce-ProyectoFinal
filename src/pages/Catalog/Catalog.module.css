@@ -8,6 +8,7 @@
 .title{
   font-size: var(--fluid-20-40);
   text-transform: uppercase;
+  margin-bottom: 30px;
 }
 
 .containerOptions {

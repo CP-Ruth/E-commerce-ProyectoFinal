@@ -5,9 +5,10 @@ interface Prop {
   sexo: string;
   alt: string;
   text: string;
+  onClick: (text: string) => void;
 }
 
-const OptionCategory: FC<Prop> = ({ alt, text, sexo }) => {
+const OptionCategory: FC<Prop> = ({ alt, text, sexo, onClick }) => {
   // Ya habia hecho esto con las imagenes por parametro, porque lo cambiaron 🫡???
   const getImageClass = () => {
     if (sexo === "mujer" && text === "ropa") return styles.imgWomanClothe;
@@ -18,7 +19,7 @@ const OptionCategory: FC<Prop> = ({ alt, text, sexo }) => {
   };
 
   return (
-    <article className={styles.container}>
+    <article className={styles.container} onClick={() => onClick(text)}>
       <div
         className={`${styles.containerOption} ${getImageClass()}`}
         aria-label={alt}

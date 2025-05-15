@@ -12,10 +12,12 @@ type ModalProps = {
 const initial = {
   nombre: "",
   apellido: "",
+  dni: "",
+  email: "",
+  password: "",
   direccion: "",
   localidad: "",
-  username: "",
-  password: "",
+  provincia: ""
 };
 
 const loginInitial = {
@@ -162,8 +164,8 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
               )}
               <input
                 type="email"
-                name="username"
-                value={registerData.username}
+                name="email"
+                value={registerData.email}
                 placeholder="Correo"
                 onChange={handleChange}
                 required

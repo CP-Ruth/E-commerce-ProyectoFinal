@@ -6,7 +6,7 @@ const URL = "http://localhost:8080/api/v1";
 export const getProducts = async () => {
   try {
     const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos`);
-    return response.data;
+    
   } catch (error: any) {
     if (error.response) {
       throw new Error(`Error al obtener los productos: ${error.response.data}`);
@@ -14,6 +14,19 @@ export const getProducts = async () => {
     throw error;
   }
 };
+
+export const getProductsBySexoAndType = async (url: string) => {
+  try {
+    const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos/catalogo?` + url);
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(`Error al obtener los productos: ${error.response.data}`);
+    }
+    throw error;
+  }
+
+}
 
 export const createProduct = async (product: IDetailsProduct) => {
   try {
