@@ -1,15 +1,16 @@
 import { FC } from "react";
 import styles from "./Product.module.css";
-import { DetalleProducto } from "../../types/IDetailsProduct";
+import { IDetailsProduct } from "../../types/IDetailsProduct";
 import ImageProduct from "../../assets/images/product.png";
 
 interface PropsProduct {
-  detProducto: DetalleProducto;
+  detProducto: IDetailsProduct;
+  onClick?: () => void;
 }
 
-const Product: FC<PropsProduct> = ({ detProducto }) => {
+const Product: FC<PropsProduct> = ({ detProducto, onClick }) => {
   return (
-    <article className={styles.product}>
+    <article className={styles.product} onClick={onClick}>
       <img
         className={styles.productImage}
         src={

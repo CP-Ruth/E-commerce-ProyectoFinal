@@ -16,7 +16,6 @@
   display: flex;
   align-items: center;
   gap: 5px;
-
 }
 
 .gridContainer {
@@ -26,24 +25,23 @@
 }
 
 @media (min-width: 768px) {
+  .buttonFilter {
+    display: none;
+  }
+  .containerProducts {
+    display: flex;
+  }
 
-.buttonFilter {
-  display: none;
+  .gridContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
 }
-.containerProducts {
-  display: flex;
-}
-
-.gridContainer {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-}
-
 
 @media (min-width: 1024px) {
- .gridContainer {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-} 
+  .gridContainer {
+    margin-left: 80px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
 }

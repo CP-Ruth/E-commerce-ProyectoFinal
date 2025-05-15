@@ -15,6 +15,18 @@ export const getProducts = async () => {
   }
 };
 
+export const getProductById = async (idProducto: number) => {
+  try {
+    const response = await axios.get<IDetailsProduct>(`${URL}/detalles_productos/${idProducto}`);
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(`Error al obtener el producto: ${error.response.data}`);
+    }
+    throw error;
+  }
+}
+
 export const getProductsByFilters = async (url: string) => {
   try {
     const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos/catalogo?` + url);

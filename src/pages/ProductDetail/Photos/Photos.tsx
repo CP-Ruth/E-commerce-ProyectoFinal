@@ -1,15 +1,18 @@
-import styles from "./Photos.module.css"
+import { FC } from "react";
+import styles from "./Photos.module.css";
+import { IImage } from "../../../types/IDetailsProduct";
 
-
-const Photos = () => {
-    return (
-        <div className={styles.containerPrincipal}>
-            <img src="src\assets\images\product.png" alt="zapatilla1" />
-            <img src="src\assets\images\product.png" alt="zapatilla2" />
-            <img src="src\assets\images\product.png" alt="zapatilla3" />
-            <img src="src\assets\images\product.png" alt="zapatilla4" />
-        </div>
-    )
+interface PropsPhotos {
+  photos: IImage[];
 }
+
+const Photos: FC<PropsPhotos> = ({ photos }) => {
+  return (
+    <div className={styles.containerPrincipal}>
+      <img src={photos[0].url} alt="Imagen del producto" />
+      <img src={photos[1].url} alt="Imagen del producto" />
+    </div>
+  );
+};
 
 export default Photos;

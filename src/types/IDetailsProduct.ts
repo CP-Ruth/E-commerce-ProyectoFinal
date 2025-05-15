@@ -1,4 +1,4 @@
-export type Sex = 'HOMBRE' | 'MUJER';
+export type Sex = "HOMBRE" | "MUJER";
 export type TipoProducto = "CALZADO" | "ROPA";
 
 export interface ICategory {
@@ -18,6 +18,15 @@ export interface IImage {
   url: string;
 }
 
+export interface IStock {
+  id: number;
+  stock: number;
+  talle: {
+    id: number;
+    name: string;
+  };
+}
+
 export interface IProduct {
   id: number;
   nombre: string;
@@ -35,4 +44,5 @@ export interface IDetailsProduct {
   producto: IProduct;
   descuento: IDiscount;
   imagenes: IImage[];
+  stocks: IStock[];
 }

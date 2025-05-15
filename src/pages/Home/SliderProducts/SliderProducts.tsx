@@ -1,14 +1,20 @@
 import styles from "./SliderProducts.module.css";
-import ImageProduct from "../../../assets/images/product.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useProductos } from "../../../hooks/useProducts";
 import { useEffect } from "react";
+import Product from "../../../components/Product/Product";
+import { useNavigate } from "react-router";
 
 const SliderProducts = () => {
   const { detallesProductos, fetchDetallesProductos } = useProductos();
+  const navigate = useNavigate();
+
+  const handleProductClick = (id: number) => {
+    navigate(`/producto/${id}`);
+  };
 
   useEffect(() => {
     fetchDetallesProductos();
@@ -36,19 +42,10 @@ const SliderProducts = () => {
           {detProdCalzados &&
             detProdCalzados.map((dProducto) => (
               <SwiperSlide key={dProducto.id}>
-                <div className={styles.card}>
-                  <img
-                    className={styles.img}
-                    src={
-                      dProducto.imagenes && dProducto.imagenes.length > 0
-                        ? dProducto.imagenes[0].url
-                        : ImageProduct
-                    }
-                    alt={dProducto.producto?.nombre || "Producto"}
-                  />
-                  <h3>{dProducto.producto.nombre}</h3>
-                  <p>${dProducto.producto.precio_venta}</p>
-                </div>
+                <Product
+                  detProducto={dProducto}
+                  onClick={() => handleProductClick(dProducto.id)}
+                />
               </SwiperSlide>
             ))}
         </Swiper>

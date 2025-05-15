@@ -1,10 +1,10 @@
 .product {
-  
+  width: 300px;
+  cursor: pointer;
 }
 
 .productImage {
   width: 100%;
-
   object-fit: cover;
 }
 

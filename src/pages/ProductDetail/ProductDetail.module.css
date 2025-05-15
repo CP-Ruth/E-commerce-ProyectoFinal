@@ -1,20 +1,17 @@
-.pageContainer{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
 .mainContainer {
-    display: grid;
-    grid-template-columns: 1fr; 
-    margin: 0 auto;
-    gap: 2rem;
-    padding: 1rem;
-    flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  gap: 2rem;
+  padding: 1rem;
+  flex: 1;
 }
-
 
 @media (min-width: 768px) {
-    .mainContainer {
-    grid-template-columns: 2fr 1fr; 
-    }
+  .mainContainer {
+    grid-template-columns: 2fr 1fr;
+    width: 80%;
+    margin: 50px auto;
+    min-height: 50vh;
+  }
 }
