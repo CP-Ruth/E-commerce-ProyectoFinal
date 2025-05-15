@@ -7,8 +7,8 @@ import FiltersProducts from "../FiltersProducts/FiltersProducts";
 import Product from "../../../components/Product/Product";
 
 interface PropsProductCatalog {
-  sexo: string | undefined;
-  filter: string;
+  sexo: String | undefined;
+  filter: String;
 }
 
 const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter }) => {
@@ -22,7 +22,7 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter }) => {
       setProductos(response);
     };
     getProducts();
-  }, [filter]);
+  }, [filter, sexo]);
 
   return (
     <section className={styles.containerSection}>

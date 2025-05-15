@@ -2,10 +2,10 @@ import styles from "./Catalog.module.css";
 import { useParams } from "react-router";
 import Header from "../../components/Header/Header";
 import OptionCategory from "./OptionCategory/OptionCategory";
-
 import Footer from "../../components/Footer/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCatalog from "./ProductCatalog/ProductCatalog";
+import Button from "../../components/Button/Button";
 
 const Catalog = () => {
   const { sexo } = useParams();
@@ -15,11 +15,16 @@ const Catalog = () => {
     setFilter(type);
   };
 
+  useEffect(() => {
+    setFilter("");
+  }, [sexo])
+
   return (
     <>
       <Header />
       <main className={styles.containerMain}>
         <h2 className={styles.title}>Encuentra lo que buscas</h2>
+        <Button text="Ver todo" onClick={() => setFilter("")} />
         <div className={styles.containerOptions}>
           {sexo && sexo === "mujer" ? (
             <>
