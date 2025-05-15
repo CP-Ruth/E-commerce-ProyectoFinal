@@ -1,6 +1,5 @@
-import { IProduct } from "./IProduct";
-
 export type Sex = 'HOMBRE' | 'MUJER';
+export type TipoProducto = "CALZADO" | "ROPA";
 
 export interface ICategory {
   id: number;
@@ -17,6 +16,16 @@ export interface IDiscount {
 export interface IImage {
   id: number;
   url: string;
+}
+
+export interface IProduct {
+  id: number;
+  nombre: string;
+  sexo: Sex;
+  categoria: ICategory[] | ICategory;
+  precio_venta: number;
+  precio_compra: number;
+  tipoProducto: TipoProducto;
 }
 
 export interface IDetailsProduct {

@@ -1,7 +1,7 @@
 import { useShallow } from "zustand/shallow";
 import { useStoreProducts } from "../store/useStoreProducts";
 import { createProduct, deleteProduct, getProducts, updateProduct } from "../services/productService";
-import { IProduct } from "../types/IProduct";
+import { IDetailsProduct } from "../types/IDetailsProduct";
 
 export const useListProduct = () => {
   const {
@@ -20,7 +20,7 @@ export const useListProduct = () => {
     }
   };
 
-  const createOneProduct = async (producto: IProduct) => {
+  const createOneProduct = async (producto: IDetailsProduct) => {
     const nuevoProducto = await createProduct(producto);
 
     if (nuevoProducto) {
@@ -28,7 +28,7 @@ export const useListProduct = () => {
     }
   };
 
-  const updateOneProduct = async (producto: IProduct) => {
+  const updateOneProduct = async (producto: IDetailsProduct) => {
     const productoActualizado = await updateProduct(producto);
 
     if (productoActualizado) {

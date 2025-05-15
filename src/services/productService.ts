@@ -1,11 +1,11 @@
 import axios from "axios";
-import { IProduct } from "../types/IProduct";
+import { IDetailsProduct } from "../types/IDetailsProduct";
 
 const URL = "http://localhost:8080/api/v1";
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get<IProduct[]>(`${URL}/productos`);
+    const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos`);
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -15,9 +15,9 @@ export const getProducts = async () => {
   }
 };
 
-export const createProduct = async (product: IProduct) => {
+export const createProduct = async (product: IDetailsProduct) => {
   try {
-    const response = await axios.post<IProduct>(`${URL}/productos`, product);
+    const response = await axios.post<IDetailsProduct>(`${URL}/detalles_productos`, product);
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -27,10 +27,10 @@ export const createProduct = async (product: IProduct) => {
   }
 };
 
-export const updateProduct = async (product: IProduct) => {
+export const updateProduct = async (product: IDetailsProduct) => {
   try {
-    const response = await axios.put<IProduct>(
-      `${URL}/productos/${product.id}`,
+    const response = await axios.put<IDetailsProduct>(
+      `${URL}/detalles_productos/${product.id}`,
       product
     );
     return response.data;
@@ -46,7 +46,7 @@ export const updateProduct = async (product: IProduct) => {
 
 export const deleteProduct = async (id: number) => {
   try {
-    const response = await axios.delete(`${URL}/productos/${id}`);
+    const response = await axios.delete(`${URL}/detalles_productos/${id}`);
     return response.data;
   } catch (error: any) {
     if (error.response) {
