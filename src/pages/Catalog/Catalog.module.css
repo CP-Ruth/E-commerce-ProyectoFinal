@@ -7,7 +7,9 @@
 
 .title{
   font-size: var(--fluid-20-40);
+  text-transform: uppercase;
 }
+
 .containerOptions {
   display: flex;
   flex-wrap: wrap;
@@ -16,10 +18,7 @@
 }
 
 @media (min-width: 768px) {
-
   .containerOptions{
     gap: 20px;
   }
-}
-@media (min-width: 1024px) {
 }

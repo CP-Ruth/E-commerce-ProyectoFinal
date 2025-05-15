@@ -19,10 +19,9 @@ function App() {
       {/**Quitar despues */}
       <Route path="/administrador" element={<AdminHome />}>
         <Route index path="usuarios" element={<AdminUsers />} />
-        <Route path="producto/:tipo" element={<AdminProducts />} />
+        <Route path="productos" element={<AdminProducts />} />
         <Route path="pedidos" element={<AdminOrders />} />
       </Route>
-
     </Routes>
   );
 }

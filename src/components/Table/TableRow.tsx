@@ -1,19 +1,14 @@
 import { FC } from "react";
 import styles from "./Table.module.css";
 import { IUser } from "../../types/IUser";
+import { IDetailsProduct } from "../../types/IDetailsProduct";
 
 interface PropUser {
   usuario: IUser;
 }
 
-interface Producto {
-  nombre: String;
-  color: String;
-  talle: String;
-  sexo: String;
-  cantidad: String;
-  precioVenta: String;
-  estado: String;
+interface PropsProduct {
+  detalle: IDetailsProduct;
 }
 
 export const TableRowUser: FC<PropUser> = ({ usuario }) => {
@@ -32,24 +27,15 @@ export const TableRowUser: FC<PropUser> = ({ usuario }) => {
   );
 };
 
-export const TableRowProduct: FC<Producto> = ({
-  nombre,
-  color,
-  talle,
-  sexo,
-  cantidad,
-  precioVenta,
-  estado,
-}) => {
+export const TableRowProduct: FC<PropsProduct> = ({detalle}) => {
   return (
     <tr className={styles.tableRow}>
-      <td>{nombre}</td>
-      <td>{color}</td>
-      <td>{talle}</td>
-      <td>{sexo}</td>
-      <td>{cantidad}</td>
-      <td>{precioVenta}</td>
-      <td>{estado}</td>
+      <td>{detalle.producto.nombre}</td>
+      <td>{detalle.color}</td>
+      <td>{detalle.producto.sexo}</td>
+      <td>""</td>
+      <td>${detalle.producto.precio_venta}</td>
+      <td>{detalle.activo ? "Activo" : "Inactivo"}</td>
       <td>{/** opciones  */}</td>
     </tr>
   );

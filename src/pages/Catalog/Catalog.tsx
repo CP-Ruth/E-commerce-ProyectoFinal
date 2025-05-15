@@ -3,18 +3,13 @@ import { useParams } from "react-router";
 import Header from "../../components/Header/Header";
 import OptionCategory from "./OptionCategory/OptionCategory";
 import Button from "../../components/Button/Button";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
 import Footer from "../../components/Footer/Footer";
 
 const Catalog = () => {
   const { sexo } = useParams();
   const catalogRef = useRef<HTMLDivElement>(null);
-
-  const [filtro, setFiltro] = useState<{
-    categoria: string | null;
-    sexo: string | undefined;
-  }>();
 
   return (
     <>

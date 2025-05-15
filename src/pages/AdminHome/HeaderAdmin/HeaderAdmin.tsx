@@ -28,15 +28,16 @@ const HeaderAdmin = () => {
           USUARIOS
         </NavLink>
 
-        <div className={styles.links}>
-          <p
-            className={`${styles.link} ${showSub ? styles.active : ""}`}
-            onClick={() => setShowSub((prev) => !prev)}
-          >
-            PRODUCTOS
-          </p>
-
-          {showSub && (
+        <NavLink
+          className={({ isActive }) =>
+            `${styles.link} ${isActive ? styles.active : ""}`
+          }
+          to="/administrador/productos"
+          onClick={() => setShowSub(false)}
+        >
+          PRODUCTOS
+        </NavLink>
+        {/* {showSub && (
             <div className={styles.subOption}>
               <NavLink
                 className={({ isActive }) =>
@@ -55,9 +56,7 @@ const HeaderAdmin = () => {
                 ROPA
               </NavLink>
             </div>
-          )}
-        </div>
-
+          )} */}
         <NavLink
           className={({ isActive }) =>
             `${styles.link} ${isActive ? styles.active : ""}`
@@ -67,6 +66,7 @@ const HeaderAdmin = () => {
         >
           PEDIDOS
         </NavLink>
+
         {/* <Link
           className={`${styles.link} ${active === "usuarios" ? styles.active : ''}`}
           onClick={() => { setActive("usuarios"); setSelect("") }}

@@ -2,7 +2,7 @@ import { ChangeEvent, FC, FormEvent, useState } from "react";
 import styles from "./LoginRegister.module.css";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-import { schemaForm } from "../../validations/validationForm";
+import { schemaRegister, schemaLogin } from "../../validations/validationForm";
 import { IoMdClose } from "react-icons/io";
 
 type ModalProps = {
@@ -10,24 +10,40 @@ type ModalProps = {
 };
 
 const initial = {
-  name: "",
-  lastName: "",
-  address: "",
-  department: "",
-  email: "",
+  nombre: "",
+  apellido: "",
+  direccion: "",
+  localidad: "",
+  username: "",
   password: "",
-  confirmPassword: "",
+};
+
+const loginInitial = {
+  username: "",
+  password: "",
 };
 
 const LoginRegister: FC<ModalProps> = ({ onClose }) => {
-  const [formData, setFormData] = useState(initial);
+  const [loginData, setLoginData] = useState(loginInitial);
+  const [registerData, setRegisterData] = useState(initial);
+  // Manejo de formularios y errores.
   const [isRegisterMode, setIsRegisterMode] = useState(true);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   //Funcion: Maneja el cambio de los inputs y actualiza formData
-  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (
+    e: ChangeEvent<HTMLInputElement>,
+    register?: boolean
+  ) => {
     const { name, value } = e.target;
-    setFormData((state) => ({ ...state, [name]: value }));
+    const validate = register || false;
+
+    if (validate) {
+      setLoginData((state) => ({ ...state, [name]: value }));
+    } else {
+      setRegisterData((state) => ({ ...state, [name]: value }));
+    }
+
     setErrors((errors) => ({ ...errors, [name]: "" }));
   };
 
@@ -35,10 +51,17 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await schemaForm.validate(formData, { abortEarly: false });
-      Swal.fire("Formulario enviado correctamente", "", "success");
+      if (registerData) {
+        await schemaLogin.validate(loginData, { abortEarly: false });
+        Swal.fire("Formulario enviado correctamente", "", "success");
 
-      setFormData(initial);
+        setLoginData(loginInitial);
+      } else {
+        await schemaRegister.validate(registerData, { abortEarly: false });
+        Swal.fire("Formulario enviado correctamente", "", "success");
+
+        setRegisterData(initial);
+      }
       setErrors({});
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
@@ -76,18 +99,18 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
             <div className={styles.form}>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                placeholder="E-mail"
-                onChange={handleChange}
+                name="username"
+                value={loginData.username}
+                placeholder="Correo"
+                onChange={(e) => handleChange(e, true)}
                 required
               />
               <input
                 type="password"
                 name="password"
-                value={formData.password}
+                value={loginData.password}
                 placeholder="Contraseña"
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, true)}
                 required
               />
             </div>
@@ -95,80 +118,69 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
             <div className={styles.form}>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="nombre"
+                value={registerData.nombre}
                 placeholder="Nombre"
                 onChange={handleChange}
                 required
               />
-              {errors.name && (
-                <span className={styles.error}>{errors.name}</span>
+              {errors.nombre && (
+                <span className={styles.error}>{errors.nombre}</span>
               )}
               <input
                 type="text"
-                name="lastName"
-                value={formData.lastName}
+                name="apellido"
+                value={registerData.apellido}
                 placeholder="Apellido"
                 onChange={handleChange}
                 required
               />
-              {errors.lastName && (
-                <span className={styles.error}>{errors.lastName}</span>
+              {errors.apellido && (
+                <span className={styles.error}>{errors.apellido}</span>
               )}
               <input
                 type="text"
-                name="address"
-                value={formData.address}
+                name="direccion"
+                value={registerData.direccion}
                 placeholder="Direccion"
                 onChange={handleChange}
                 required
               />
-              {errors.address && (
-                <span className={styles.error}>{errors.address}</span>
+              {errors.direccion && (
+                <span className={styles.error}>{errors.direccion}</span>
               )}
               <input
                 type="text"
-                name="department"
-                value={formData.department}
-                placeholder="Departamento"
+                name="localidad"
+                value={registerData.localidad}
+                placeholder="Localidad"
                 onChange={handleChange}
                 required
               />
-              {errors.department && (
-                <span className={styles.error}>{errors.department}</span>
+              {errors.localidad && (
+                <span className={styles.error}>{errors.localidad}</span>
               )}
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                placeholder="E-mail"
+                name="username"
+                value={registerData.username}
+                placeholder="Correo"
                 onChange={handleChange}
                 required
               />
-              {errors.email && (
-                <span className={styles.error}>{errors.email}</span>
+              {errors.username && (
+                <span className={styles.error}>{errors.username}</span>
               )}
               <input
                 type="password"
                 name="password"
-                value={formData.password}
+                value={registerData.password}
                 placeholder="Contraseña"
                 onChange={handleChange}
                 required
               />
               {errors.password && (
                 <span className={styles.error}>{errors.password}</span>
-              )}
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                placeholder="Repetir contraseña"
-                onChange={handleChange}
-                required
-              />
-              {errors.confirmPassword && (
-                <span className={styles.error}>{errors.confirmPassword}</span>
               )}
             </div>
           )}

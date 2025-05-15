@@ -19,7 +19,6 @@ export const TableHeadProduct = () => {
     <tr className={styles.tableRow}>
       <th>Nombre</th>
       <th>Color</th>
-      <th>Talle</th>
       <th>Sexo</th>
       <th>Cantidad</th>
       <th>Precio venta</th>

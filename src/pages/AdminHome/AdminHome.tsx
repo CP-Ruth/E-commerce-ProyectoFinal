@@ -1,15 +1,13 @@
-import { Outlet } from "react-router"
-import HeaderAdmin from "./HeaderAdmin/HeaderAdmin"
-
-
+import { Outlet } from "react-router";
+import HeaderAdmin from "./HeaderAdmin/HeaderAdmin";
 
 const AdminHome = () => {
   return (
     <>
-        <HeaderAdmin />
-        <Outlet />
+      <HeaderAdmin />
+      <Outlet />
     </>
-  )
-}
+  );
+};
 
-export default AdminHome
+export default AdminHome;

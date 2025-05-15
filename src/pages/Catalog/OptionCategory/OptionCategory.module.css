@@ -1,6 +1,7 @@
 .container {
   width: 100%;
   height: var(--fluid-250-500);
+  margin-bottom: 40px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
