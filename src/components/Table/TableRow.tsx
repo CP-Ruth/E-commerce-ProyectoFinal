@@ -20,7 +20,6 @@ export const TableRowUser: FC<PropUser> = ({ usuario }) => {
         {usuario.nombre} {usuario.apellido}
       </td>
       <td>{usuario.username}</td>
-      <td>{usuario.dni}</td>
       <td>{usuario.direccion.domicilio}</td>
       <td>{usuario.direccion.localidad.nombre}</td>
       <td>{usuario.direccion.localidad.provincia.nombre}</td>
@@ -35,7 +34,7 @@ export const TableRowProduct: FC<PropsProduct> = ({ detalle, children }) => {
       <td>{detalle.producto.nombre}</td>
       <td>{detalle.color}</td>
       <td>{detalle.producto.sexo}</td>
-      <td>""</td>
+      <td>{detalle.stocks.reduce((itemPrev, item) => itemPrev + item.stock, 0)}</td>
       <td>${detalle.producto.precio_venta}</td>
       <td>{detalle.activo ? "Activo" : "Inactivo"}</td>
       <td>{children}</td>

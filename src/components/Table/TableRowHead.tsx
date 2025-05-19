@@ -5,7 +5,6 @@ export const TableHeadUser = () => {
     <tr className={styles.tableRow}>
       <th>Nombre</th>
       <th>Email</th>
-      <th>DNI</th>
       <th>Direccion</th>
       <th>Localidad</th>
       <th>Provincia</th>
