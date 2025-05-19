@@ -1,0 +1,40 @@
+.filterSection {
+  display: none;
+}
+
+.title {
+  padding-bottom: 10px;
+}
+
+.subtitle {
+  padding: 10px 0px;
+}
+
+.filterContainer {
+  margin-bottom: 10px;
+}
+
+.filterContainer label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: var(--fluid-6-16);
+}
+
+.icon {
+  margin-bottom: -5px;
+  margin-right: 10px;
+}
+
+@media (min-width: 768px) {
+  .filterSection {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1024px) {
+  .filterSection {
+    width: 15%;
+  }
+}

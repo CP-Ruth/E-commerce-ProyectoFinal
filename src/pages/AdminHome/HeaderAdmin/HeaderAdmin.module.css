@@ -1,0 +1,90 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.containerHeader {
+  width: 100vw;
+  height: 100px;
+  background-image: url(../../../assets/images/running-header.png);
+  background-size: cover; /* imagen al ancho del contenedor */
+  background-position: center center; /* Centra la imagen tanto en X como en Y */
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  padding: 0 20px;
+}
+
+.containerHeader div {
+  height: 95px;
+  width: 95px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+    width: 90px;
+}
+
+.containerHeader p {
+  color: white;
+  font-size: var(--font-s);
+}
+
+.navegation{
+    padding: 20px 0;
+display: flex;
+
+}
+
+.link{
+    color: rgb(134, 134, 134);
+    font-weight: bold;
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    font-size: var(--font-x);
+}
+
+.links{
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+.active{
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.links div{
+    display: flex;
+}
+
+.subLink{
+    width: 125px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.subLink:hover{
+    background-color: rgb(73, 73, 73);
+    color: white;
+}
+
+.select{
+    background-color:  rgb(73, 73, 73);;
+    color: white;
+}

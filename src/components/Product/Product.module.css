@@ -1,0 +1,14 @@
+.product {
+  width: 300px;
+  cursor: pointer;
+}
+
+.productImage {
+  width: 100%;
+  object-fit: cover;
+}
+
+.product h4 {
+    padding: 10px 0px;
+}
+

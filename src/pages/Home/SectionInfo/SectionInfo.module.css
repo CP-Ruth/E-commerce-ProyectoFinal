@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 0px 30px;
+  width: 80%;
+  margin: 50px auto;
+}
+
+.container {
+  flex-wrap: wrap;
+}
+
+.title{
+  width: 100%;
+  margin: 10px 0px 40px;
+  font-size: var(--font-x);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    gap: 0px 30px;
+    width: 80%;
+    margin: 50px auto;
+  }
+  
+  .container:has(h2) {
+    flex-wrap: wrap;
+  }
+  
+  .title{
+    width: 100%;
+    margin: 10px 0px 40px;
+    font-size: var(--font-xl);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+}
+
+@media (min-width: 1024px) {
+  
+}

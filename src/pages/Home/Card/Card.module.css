@@ -1,0 +1,30 @@
+.image {
+  width: 100%;
+  height: 430px;
+  object-position: top right;
+  object-fit: cover;
+}
+
+.details {
+  padding: 30px 20px;
+}
+
+.details h3 {
+  margin-bottom: 20px;
+  font-size: var(--font-s);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.details p {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1024px) {
+}
