@@ -7,6 +7,7 @@ import ProductInfo from "./ProductInfo/ProductInfo";
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
+import ProductForm from "./ProductForm/ProductForm";
 
 const AdminProducts = () => {
   const { products, getAllProducts } = useListProduct();
@@ -33,7 +34,11 @@ const AdminProducts = () => {
                     className={styles.icon}
                     onClick={() => handlerOpenModal(producto, "info")}
                   />
-                  <MdEdit size={30} className={styles.icon} />
+                  <MdEdit
+                    size={30}
+                    className={styles.icon}
+                    onClick={() => handlerOpenModal(producto, "edit")}
+                  />
                   <MdDeleteOutline size={30} />
                 </TableRowProduct>
               ))}
@@ -44,6 +49,12 @@ const AdminProducts = () => {
         <ProductInfo
           detalle={productActive!}
           onClose={() => handlerOpenModal(productActive!, "info")}
+        />
+      )}
+      {openModal.edit && (
+        <ProductForm
+          detalle={productActive!}
+          onClose={() => handlerOpenModal(productActive!, "edit")}
         />
       )}
     </>

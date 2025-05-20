@@ -1,48 +1,48 @@
-export type Sex = "HOMBRE" | "MUJER";
-export type TipoProducto = "CALZADO" | "ROPA";
+export type Sex = "HOMBRE" | "MUJER" | "";
+export type TipoProducto = "CALZADO" | "ROPA" | "";
 
 export interface ICategory {
-  id: number;
+  id?: number;
   nombre: string;
 }
 
 export interface IDiscount {
-  id: number;
+  id?: number;
   nombre: string;
   porcentaje: number;
   activo: boolean;
 }
 
 export interface IImage {
-  id: number;
+  id?: number;
   url: string;
 }
 
 export interface IStock {
-  id: number;
+  id?: number;
   stock: number;
   talle: {
-    id: number;
+    id?: number;
     name: string;
   };
 }
 
 export interface IProduct {
-  id: number;
+  id?: number;
   nombre: string;
   sexo: Sex;
-  categoria: ICategory[] | ICategory;
+  categorias: ICategory[];
   precio_venta: number;
   precio_compra: number;
   tipoProducto: TipoProducto;
 }
 
 export interface IDetailsProduct {
-  id: number;
+  id?: number;
   color: string;
-  activo: boolean;
+  activo?: boolean;
   producto: IProduct;
-  descuento: IDiscount;
+  descuento?: IDiscount;
   imagenes: IImage[];
   stocks: IStock[];
 }
