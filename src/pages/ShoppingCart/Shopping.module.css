@@ -1,0 +1,27 @@
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+}
+.mainContainer {
+    display:flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    flex: 1;
+    margin: 1rem ;
+}
+.scrollBox{
+    max-height: 500px;
+    overflow-y: auto;
+}
+@media (min-width: 768px) {
+    .containerSection{
+        display: flex;
+        flex-direction: row;
+    }
+    .scrollBox{
+    width: 60vw;
+    }
+}
