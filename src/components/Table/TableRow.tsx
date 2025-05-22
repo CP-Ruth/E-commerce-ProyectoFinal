@@ -16,6 +16,7 @@ interface PropsProduct {
 export const TableRowUser: FC<PropUser> = ({ usuario }) => {
   return (
     <tr className={styles.tableRow}>
+      <td>{usuario.rol}</td>
       <td>
         {usuario.nombre} {usuario.apellido}
       </td>

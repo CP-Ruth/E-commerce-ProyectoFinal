@@ -7,6 +7,7 @@ import {
   updateUser,
   deleteUser,
 } from "../services/userService";
+import { useStoreUserActive } from "../store/useStoreUserActive";
 
 export const useListUsers = () => {
   const { users, setAllUsers, addUserList, updateUserList, deleteUserList } =
@@ -15,9 +16,10 @@ export const useListUsers = () => {
         ...state,
       }))
     );
+    const token = useStoreUserActive((state) => state.token);
 
   const getAllUsers = async () => {
-    const usuarios = await getUsers();
+    const usuarios = await getUsers(token);
 
     if (usuarios) {
       setAllUsers(usuarios);
@@ -25,7 +27,7 @@ export const useListUsers = () => {
   };
 
   const createOneUser = async (usuario: IUser) => {
-    const nuevoUsuario = await createUser(usuario);
+    const nuevoUsuario = await createUser(usuario, token);
 
     if (nuevoUsuario) {
       addUserList(nuevoUsuario);
@@ -33,7 +35,7 @@ export const useListUsers = () => {
   };
 
   const updateOneUser = async (usuario: IUser) => {
-    const usuarioActualizado = await updateUser(usuario);
+    const usuarioActualizado = await updateUser(usuario, token);
 
     if (usuarioActualizado) {
       updateUserList(usuarioActualizado);

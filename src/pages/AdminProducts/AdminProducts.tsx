@@ -8,10 +8,30 @@ import { MdDeleteOutline, MdEdit } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
 import ProductForm from "./ProductForm/ProductForm";
+import Swal from "sweetalert2";
 
 const AdminProducts = () => {
   const { products, getAllProducts } = useListProduct();
   const { openModal, productActive, handlerOpenModal } = useModal();
+
+  const deleteProduct = () => {
+    Swal.fire({
+      title: "¿Estas seguro de desactivar este producto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#b2bec3",
+      confirmButtonText: "Desactivar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Desactivado!",
+          "El producto ha sido desactivado.",
+          "success"
+        );
+      }
+    });
+  };
 
   useEffect(() => {
     getAllProducts();
@@ -39,7 +59,11 @@ const AdminProducts = () => {
                     className={styles.icon}
                     onClick={() => handlerOpenModal(producto, "edit")}
                   />
-                  <MdDeleteOutline size={30} />
+                  <MdDeleteOutline
+                    className={styles.icon}
+                    size={30}
+                    onClick={deleteProduct}
+                  />
                 </TableRowProduct>
               ))}
           </tbody>

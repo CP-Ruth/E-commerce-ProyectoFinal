@@ -3,6 +3,7 @@ import styles from "./Table.module.css";
 export const TableHeadUser = () => {
   return (
     <tr className={styles.tableRow}>
+      <th>Rol</th>
       <th>Nombre</th>
       <th>Email</th>
       <th>Direccion</th>
