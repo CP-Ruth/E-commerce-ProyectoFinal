@@ -11,11 +11,12 @@ interface ShoppingCart{
   productos : IProduct[]
 }
 //traemos la store del carrito
-const { cartProducts, deleteProduct } = useStoreCart();
 
 //acá cuando este listo el producto, traerlo de productToBuy  y mapearlo. 
 
 const ShoppingCart: FC<ShoppingCart> = ({productos}) => {
+  
+  const { cartProducts, deleteProduct } = useStoreCart();
   //recibir los productos en el componente
   return (
 
@@ -27,7 +28,7 @@ const ShoppingCart: FC<ShoppingCart> = ({productos}) => {
         <section className={styles.containerSection}>
           <div className={styles.scrollBox}>
             {/* eliminar los productstobuy de mas */}
-          {productos.map((product)=> (
+          {productos.map((product)=> ( <p>a</p>
             //producto que recibe, producto que mapea
             // <ProductsToBuy product={product}/>
           ))}
