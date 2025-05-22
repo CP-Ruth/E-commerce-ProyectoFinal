@@ -1,6 +1,9 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
 import styles from "./ProductsToBuy.module.css"
 
+
+//hay que hacerlo un FC que reciba un producto solamente
+//este es solo la carta que va a recibir el producto, no lo mapeo acá. Es solo la carta
 const ProductsToBuy = () => {
   return (
     <div className={styles.containerPrincipal}>

@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-type AccordionState = {
+interface useAccordionState  {
     isOpen: boolean;
     toggle: () => void;
 };
 
-export const useAccordionStore =create<AccordionState> ((set)=>({
+export const useAccordionStore =create<useAccordionState> ((set)=>({
     isOpen:false,
     toggle:()=>set((state)=>({isOpen:!state.isOpen}))
 }));
