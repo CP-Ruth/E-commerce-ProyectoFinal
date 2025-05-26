@@ -1,0 +1,37 @@
+.containerPrincipal{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width:100%;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.2rem;
+} 
+
+.details{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.containerButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.containerButton button{
+    background-color: #3B4047;
+    color: #ffff;
+    padding: 0.7rem;
+}
+
+@media (min-width: 768px) {
+    .containerPrincipal{
+        font-size: 1.5rem;
+        width: 40vw;
+        
+    }
+    
+}

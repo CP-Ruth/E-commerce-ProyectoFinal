@@ -16,7 +16,7 @@ const Catalog = () => {
   };
 
   useEffect(() => {
-    setFilter("");
+    setFilter("ropa");
   }, [sexo])
 
   return (
