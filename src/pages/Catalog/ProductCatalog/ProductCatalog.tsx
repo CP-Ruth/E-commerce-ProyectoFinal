@@ -3,7 +3,7 @@ import { IoIosOptions } from "react-icons/io";
 import { FC, useEffect, useState } from "react";
 import FiltersProducts from "../FiltersProducts/FiltersProducts";
 import Product from "../../../components/Product/Product";
-import { useFilter } from "../../../hooks/UseFilter";
+import { useFilter } from "../../../hooks/useFilter";
 import { useNavigate } from "react-router";
 
 interface PropsProductCatalog {

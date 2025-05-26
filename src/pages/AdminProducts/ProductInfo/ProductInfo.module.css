@@ -1,0 +1,50 @@
+.modal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  cursor: pointer;
+}
+
+.modalInfo {
+  width: 30%;
+  padding: 10px;
+  background-color: white;
+}
+
+.modalInfo h2 {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.details {
+  padding: 10px 15px;
+  font-size: 1.1rem;
+}
+
+.details p {
+  margin-top: 8px;
+}
+
+.details img {
+  display: inline-block;
+  width: 70px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.details span{
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.details .img{
+  display: block;
+}

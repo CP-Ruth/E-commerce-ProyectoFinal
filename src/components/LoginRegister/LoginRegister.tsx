@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import styles from "./LoginRegister.module.css";
 import * as Yup from "yup";
-import Swal from "sweetalert2";
 import { schemaRegister, schemaLogin } from "../../validations/validationForm";
 import { IoMdClose } from "react-icons/io";
+import { useAuth } from "../../hooks/useAuth";
 
 type ModalProps = {
   onClose: () => void;
@@ -17,7 +17,7 @@ const initial = {
   password: "",
   direccion: "",
   localidad: "",
-  provincia: ""
+  provincia: "",
 };
 
 const loginInitial = {
@@ -26,6 +26,7 @@ const loginInitial = {
 };
 
 const LoginRegister: FC<ModalProps> = ({ onClose }) => {
+  const { loginUser, registerUser } = useAuth();
   const [loginData, setLoginData] = useState(loginInitial);
   const [registerData, setRegisterData] = useState(initial);
   // Manejo de formularios y errores.
@@ -45,7 +46,6 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
     } else {
       setRegisterData((state) => ({ ...state, [name]: value }));
     }
-
     setErrors((errors) => ({ ...errors, [name]: "" }));
   };
 
@@ -55,16 +55,12 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
     try {
       if (registerData) {
         await schemaLogin.validate(loginData, { abortEarly: false });
-        Swal.fire("Formulario enviado correctamente", "", "success");
-
-        setLoginData(loginInitial);
+        loginUser(loginData);
       } else {
         await schemaRegister.validate(registerData, { abortEarly: false });
-        Swal.fire("Formulario enviado correctamente", "", "success");
-
-        setRegisterData(initial);
+        registerUser(registerData);
       }
-      setErrors({});
+      onClose();
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const newErrors: { [key: string]: string } = {};
@@ -141,6 +137,15 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
                 <span className={styles.error}>{errors.apellido}</span>
               )}
               <input
+                type="number"
+                name="dni"
+                value={registerData.dni}
+                placeholder="Dni"
+                onChange={handleChange}
+                required
+              />
+              {errors.dni && <span className={styles.error}>{errors.dni}</span>}
+              <input
                 type="text"
                 name="direccion"
                 value={registerData.direccion}
@@ -161,6 +166,17 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
               />
               {errors.localidad && (
                 <span className={styles.error}>{errors.localidad}</span>
+              )}
+              <input
+                type="text"
+                name="provincia"
+                value={registerData.provincia}
+                placeholder="Provincia"
+                onChange={handleChange}
+                required
+              />
+              {errors.provincia && (
+                <span className={styles.error}>{errors.provincia}</span>
               )}
               <input
                 type="email"

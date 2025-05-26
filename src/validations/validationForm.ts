@@ -4,8 +4,11 @@ import * as Yup from "yup";
 export const schemaRegister = Yup.object({
   nombre: Yup.string().required("El nombre es obligatorio"),
   apellido: Yup.string().required("El apellido es obligatorio"),
+  dni: Yup.number().required("El dni es obligatorio"),
   direccion: Yup.string().required("Proporcione una dirección"),
-  username: Yup.string()
+  localidad: Yup.string().required("Proporcione una localidad"),
+  provincia: Yup.string().required("Proporcione una provincia"),
+  email: Yup.string()
     .email("Invalid email")
     .required("El email es obligatorio"),
   password: Yup.string()

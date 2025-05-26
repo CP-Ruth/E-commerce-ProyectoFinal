@@ -7,14 +7,11 @@ import { IDetailsProduct } from "../../types/IDetailsProduct";
 import ProductsToBuy from "./ProductsToBuy/ProductsToBuy";
 import { useProductStore } from "../../store/useProductStore";
 
-interface ShoppingCart{
-  productos : IDetailsProduct[]
-}
-//traemos la store del carrito
+// interface ShoppingCart{
+//   productos : IDetailsProduct[]
+// }
 
-//acá cuando este listo el producto, traerlo de productToBuy  y mapearlo. 
-
-const ShoppingCart: FC<ShoppingCart> = ({productos}) => {
+const ShoppingCart = () => {
   
   //recibir los productos en el componente
 

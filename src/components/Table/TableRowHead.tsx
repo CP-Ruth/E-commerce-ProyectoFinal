@@ -3,13 +3,13 @@ import styles from "./Table.module.css";
 export const TableHeadUser = () => {
   return (
     <tr className={styles.tableRow}>
+      <th>Rol</th>
       <th>Nombre</th>
       <th>Email</th>
-      <th>DNI</th>
       <th>Direccion</th>
       <th>Localidad</th>
       <th>Provincia</th>
-      <th></th>
+      <th className={styles.options}></th>
     </tr>
   );
 };
@@ -23,7 +23,7 @@ export const TableHeadProduct = () => {
       <th>Cantidad</th>
       <th>Precio venta</th>
       <th>Estado</th>
-      <th></th>
+      <th className={styles.options}>Opciones</th>
     </tr>
   );
 };
@@ -36,7 +36,7 @@ export const TableHeadOrder = () => {
       <th>Forma de pago</th>
       <th>Pagado</th>
       <th>Estado</th>
-      <th></th>
+      <th className={styles.options}></th>
     </tr>
   );
 };
