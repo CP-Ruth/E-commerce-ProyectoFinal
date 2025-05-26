@@ -38,10 +38,18 @@ const ProductForm: FC<PropsProductForm> = ({ detalle, onClose }) => {
     handlerDetailsChange,
     handlerProductChange,
     handleCheckboxChange,
+    handlerStockChange,
+    handlerTalleChange,
   } = useFormProduct(initialForm);
 
   useEffect(() => {
     if (detalle) {
+      if (detalle.stocks.length === 1) {
+        detalle.stocks.push({
+          talle: { name: "" },
+          stock: 0,
+        });
+      }
       setForm(detalle);
     }
   }, [detalle]);
@@ -55,7 +63,7 @@ const ProductForm: FC<PropsProductForm> = ({ detalle, onClose }) => {
         </h2>
         <div className={styles.formContainer}>
           <Input
-            name="producto"
+            name="nombre"
             value={form.producto.nombre}
             onChange={handlerProductChange}
             text="Producto"
@@ -79,7 +87,7 @@ const ProductForm: FC<PropsProductForm> = ({ detalle, onClose }) => {
             text="Precio Venta"
           />
           <Select
-            name="tipo_producto"
+            name="tipoProducto"
             value={form.producto.tipoProducto}
             onChange={handlerProductChange}
             text="Tipo"
@@ -94,24 +102,39 @@ const ProductForm: FC<PropsProductForm> = ({ detalle, onClose }) => {
           />
           <RadioInput
             name="Categoria"
-            items={["Deportivo", "Running", "Training", "Futbol"]}
+            items={["Training", "Running", "Urbano", "Futbol"]}
             onChange={handleCheckboxChange}
             categorias={form.producto.categorias}
           />
           <div className={styles.item}>
             <label htmlFor="talle">Talles: </label>
-            <div className={styles.talles}>
-              <input type="text" placeholder="Talle" />
-              <input type="number" placeholder="Cantidad" />
-            </div>
-            <div className={styles.talles}>
-              <input type="text" placeholder="Talle" />
-              <input type="number" placeholder="Cantidad" />
-            </div>
+            {form.stocks.map((stock, index) => (
+              <div key={index} className={styles.talles}>
+                <input
+                  type="text"
+                  placeholder="Talle"
+                  value={stock.talle.name}
+                  onChange={(e) => handlerTalleChange(e, index)}
+                />
+                <input
+                  type="number"
+                  placeholder="Cantidad"
+                  value={stock.stock}
+                  onChange={(e) => handlerStockChange(e, index)}
+                />
+              </div>
+            ))}
           </div>
           <div className={styles.item}>
             <label htmlFor="">Imagenes: </label>
-            <input type="file" multiple />
+            <div>
+              {form.imagenes.map((imagen, index) => (
+                <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
+                  <img key={index} src={imagen.url} alt="" />
+                  <input  name="" style={{width: "135px"}} type="file"  accept="image/*" />
+                </div>
+              ))}
+            </div>
           </div>
           <div className={styles.options}>
             <button className={styles.button} onClick={onClose}>

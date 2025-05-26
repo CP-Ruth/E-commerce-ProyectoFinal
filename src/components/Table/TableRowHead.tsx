@@ -6,10 +6,10 @@ export const TableHeadUser = () => {
       <th>Rol</th>
       <th>Nombre</th>
       <th>Email</th>
-      <th>Direccion</th>
       <th>Localidad</th>
       <th>Provincia</th>
-      <th className={styles.options}></th>
+      <th>Estado</th>
+      <th className={styles.options}>Opciones</th>
     </tr>
   );
 };

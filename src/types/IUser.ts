@@ -18,4 +18,5 @@ export interface IUser {
    password: string
    rol: Rol
    direccion: Address
+   activo: boolean
 }

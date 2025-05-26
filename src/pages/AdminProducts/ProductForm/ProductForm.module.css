@@ -46,6 +46,13 @@
   font-size: 1rem;
 }
 
+.item img{
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 70px;
+  cursor: pointer;
+}
+
 .talles{
   display: flex;
   gap: 10px;
@@ -71,3 +78,4 @@
   border: 1px solid;
   cursor: pointer;
 }
+

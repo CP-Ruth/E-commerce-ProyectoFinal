@@ -4,17 +4,17 @@ import styles from "./AdminProduct.module.css";
 import { TableHeadProduct } from "../../components/Table/TableRowHead";
 import { TableRowProduct } from "../../components/Table/TableRow";
 import ProductInfo from "./ProductInfo/ProductInfo";
-import { MdDeleteOutline, MdEdit } from "react-icons/md";
-import { FaRegEye } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { FaPowerOff, FaRegEye } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
 import ProductForm from "./ProductForm/ProductForm";
 import Swal from "sweetalert2";
 
 const AdminProducts = () => {
-  const { products, getAllProducts } = useListProduct();
+  const { products, getAllProducts, deleteOneProduct } = useListProduct();
   const { openModal, productActive, handlerOpenModal } = useModal();
 
-  const deleteProduct = () => {
+  const deleteProduct = (id: number) => {
     Swal.fire({
       title: "¿Estas seguro de desactivar este producto?",
       icon: "warning",
@@ -24,6 +24,7 @@ const AdminProducts = () => {
       confirmButtonText: "Desactivar",
     }).then((result) => {
       if (result.isConfirmed) {
+        deleteOneProduct(id);
         Swal.fire(
           "Desactivado!",
           "El producto ha sido desactivado.",
@@ -59,10 +60,13 @@ const AdminProducts = () => {
                     className={styles.icon}
                     onClick={() => handlerOpenModal(producto, "edit")}
                   />
-                  <MdDeleteOutline
-                    className={styles.icon}
+
+                  <FaPowerOff
+                    className={`${styles.icon} ${
+                      producto.activo ? styles.active : styles.deactive
+                    }`}
                     size={30}
-                    onClick={deleteProduct}
+                    onClick={() => deleteProduct(producto.id!)}
                   />
                 </TableRowProduct>
               ))}

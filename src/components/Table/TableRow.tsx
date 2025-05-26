@@ -5,7 +5,7 @@ import { IDetailsProduct } from "../../types/IDetailsProduct";
 
 interface PropUser {
   usuario: IUser;
-  
+  children?: ReactNode;
 }
 
 interface PropsProduct {
@@ -13,18 +13,18 @@ interface PropsProduct {
   children?: ReactNode;
 }
 
-export const TableRowUser: FC<PropUser> = ({ usuario }) => {
+export const TableRowUser: FC<PropUser> = ({ usuario, children }) => {
   return (
     <tr className={styles.tableRow}>
       <td>{usuario.rol}</td>
       <td>
         {usuario.nombre} {usuario.apellido}
       </td>
-      <td>{usuario.username}</td>
-      <td>{usuario.direccion.domicilio}</td>
+      <td className={styles.username}>{usuario.username}</td>
       <td>{usuario.direccion.localidad.nombre}</td>
       <td>{usuario.direccion.localidad.provincia.nombre}</td>
-      <td>{}</td>
+      <td>{usuario.activo ? "Activo" : "Inactivo"}</td>
+      <td>{children}</td>
     </tr>
   );
 };

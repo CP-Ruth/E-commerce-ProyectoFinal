@@ -69,10 +69,14 @@ export const updateProduct = async (product: IDetailsProduct) => {
   }
 };
 
-export const deleteProduct = async (id: number) => {
+export const deleteProduct = async (id: number, token: string) => {
   try {
-    const response = await axios.delete(`${URL}/detalles_productos/${id}`);
-    return response.data;
+    const response = await axios.delete(`${URL}/detalles_productos/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status === 200) return true;
   } catch (error: any) {
     if (error.response) {
       throw new Error(`Error al eliminar el producto: ${error.response.data}`);

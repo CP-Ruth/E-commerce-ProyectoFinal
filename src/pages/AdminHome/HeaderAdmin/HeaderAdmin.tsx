@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import styles from "./HeaderAdmin.module.css";
 import logo from "../../../assets/svg/myb.svg";
 import { FaUser } from "react-icons/fa";
@@ -17,6 +17,9 @@ const HeaderAdmin = () => {
           Admin <FaUser />
         </p>
       </div>
+      <Link className={styles.home} to="/" onClick={() => setShowSub(false)}>
+        Volver a Inicio
+      </Link>
       <nav className={styles.navegation}>
         <NavLink
           className={({ isActive }) =>
