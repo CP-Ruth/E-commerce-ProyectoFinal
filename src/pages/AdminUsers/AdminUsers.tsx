@@ -3,6 +3,7 @@ import { TableRowUser } from "../../components/Table/TableRow";
 import { TableHeadUser } from "../../components/Table/TableRowHead";
 import { useListUsers } from "../../hooks/useListUsers";
 import styles from "./AdminUsers.module.css";
+import { FaPowerOff } from "react-icons/fa";
 
 const AdminUsers = () => {
   const { users, getAllUsers } = useListUsers();
@@ -22,7 +23,14 @@ const AdminUsers = () => {
           {users &&
             users.length > 0 &&
             users.map((usuario) => (
-              <TableRowUser key={usuario.id} usuario={usuario} />
+              <TableRowUser key={usuario.id} usuario={usuario}>
+                <FaPowerOff
+                  className={`${styles.icon} ${
+                    usuario.activo ? styles.active : styles.deactive
+                  }`}
+                  size={30}
+                />
+              </TableRowUser>
             ))}
         </tbody>
       </table>

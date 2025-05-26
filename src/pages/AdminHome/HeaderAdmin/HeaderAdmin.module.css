@@ -1,7 +1,7 @@
-.header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .containerHeader {
   width: 100vw;
@@ -17,6 +17,14 @@
   padding: 0 20px;
 }
 
+.home {
+  align-self: start;
+  margin: 5px 15px;
+  padding: 10px 15px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
 .containerHeader div {
   height: 95px;
   width: 95px;
@@ -30,7 +38,7 @@
 }
 
 .logo {
-    width: 90px;
+  width: 90px;
 }
 
 .containerHeader p {
@@ -38,53 +46,49 @@
   font-size: var(--font-s);
 }
 
-.navegation{
-    padding: 20px 0;
-display: flex;
-
+.navegation {
+  padding: 20px 0;
+  display: flex;
 }
 
-.link{
-    color: rgb(134, 134, 134);
-    font-weight: bold;
-    width: 250px;
-    height: 40px;
-    text-align: center;
-    font-size: var(--font-x);
+.link {
+  color: rgb(134, 134, 134);
+  font-weight: bold;
+  width: 250px;
+  height: 40px;
+  text-align: center;
+  font-size: var(--font-x);
 }
 
-.links{
-    width: 250px;
-    text-align: center;
-    cursor: pointer;
+.links {
+  width: 250px;
+  text-align: center;
+  cursor: pointer;
 }
 
-
-
-.active{
-    color: black;
-    border-bottom: 1px solid black;
+.active {
+  color: black;
+  border-bottom: 1px solid black;
 }
 
-.links div{
-    display: flex;
+.links div {
+  display: flex;
 }
 
-.subLink{
-    width: 125px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.subLink {
+  width: 125px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.subLink:hover{
-    background-color: rgb(73, 73, 73);
-    color: white;
+.subLink:hover {
+  background-color: rgb(73, 73, 73);
+  color: white;
 }
 
-.select{
-    background-color:  rgb(73, 73, 73);;
-    color: white;
+.select {
+  background-color: rgb(73, 73, 73);
+  color: white;
 }

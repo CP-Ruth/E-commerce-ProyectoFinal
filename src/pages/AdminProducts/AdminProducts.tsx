@@ -5,7 +5,7 @@ import { TableHeadProduct } from "../../components/Table/TableRowHead";
 import { TableRowProduct } from "../../components/Table/TableRow";
 import ProductInfo from "./ProductInfo/ProductInfo";
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
-import { FaRegEye } from "react-icons/fa";
+import { FaCheckCircle, FaPowerOff, FaRegEye } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
 import ProductForm from "./ProductForm/ProductForm";
 import Swal from "sweetalert2";
@@ -59,8 +59,11 @@ const AdminProducts = () => {
                     className={styles.icon}
                     onClick={() => handlerOpenModal(producto, "edit")}
                   />
-                  <MdDeleteOutline
-                    className={styles.icon}
+
+                  <FaPowerOff
+                    className={`${styles.icon} ${
+                      producto.activo ? styles.active : styles.deactive
+                    }`}
                     size={30}
                     onClick={deleteProduct}
                   />
