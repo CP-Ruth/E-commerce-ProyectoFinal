@@ -2,6 +2,7 @@ import { useShallow } from "zustand/shallow";
 import { useStoreProducts } from "../store/useStoreProducts";
 import { createProduct, deleteProduct, getProducts, updateProduct } from "../services/productService";
 import { IDetailsProduct } from "../types/IDetailsProduct";
+import { useStoreUserActive } from "../store/useStoreUserActive";
 
 export const useListProduct = () => {
   const {
@@ -11,6 +12,8 @@ export const useListProduct = () => {
     updateProductList,
     deleteProductList,
   } = useStoreProducts(useShallow((state) => ({ ...state })));
+
+  const token = useStoreUserActive((state) => state.token);
 
   const getAllProducts = async () => {
     const productos = await getProducts();
@@ -37,7 +40,7 @@ export const useListProduct = () => {
   };
 
   const deleteOneProduct = async (id: number) => {
-    const productoEliminado = await deleteProduct(id);
+    const productoEliminado = await deleteProduct(id, token);
 
     if (productoEliminado) {
       deleteProductList(id);

@@ -19,5 +19,9 @@ export const useStoreProducts = create<StoreProduct>((set) => ({
       products: state.products.map((p) => (p.id === product.id ? product : p)),
     })),
   deleteProductList: (id: number) =>
-    set((state) => ({ products: state.products.filter((p) => p.id !== id) })),
+    set((state) => ({
+      products: state.products.map((u) =>
+        u.id === id ? { ...u, activo: !u.activo } : u
+      ),
+    })),
 }));

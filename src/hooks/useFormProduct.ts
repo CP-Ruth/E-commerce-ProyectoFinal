@@ -28,16 +28,52 @@ export const useFormProduct = (initialForm: IDetailsProduct) => {
   };
 
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
+    const { value } = e.target;
     setForm((prev) => ({
       ...prev,
       producto: {
         ...prev.producto,
-        categorias: prev.producto.categorias.map((categoria) =>
-          categoria.nombre === name ? { ...categoria, checked } : categoria
-        ),
+        categorias: prev.producto.categorias.find((categoria) => categoria.nombre === value)
+          ? prev.producto.categorias.filter((categoria) => categoria.nombre !== value)
+          : [...prev.producto.categorias, { nombre: value }],
       },
     }));
+  };
+
+  const handlerStockChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const { value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      stocks: prev.stocks.map((stock, i) =>
+        i === index ? { ...stock, stock: Number(value) } : stock
+      ),
+    }));
+  };
+
+  const handlerTalleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    const { value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      stocks: prev.stocks.map((stock, i) =>
+        i === index ? { ...stock, talle: { name: value } } : stock
+      ),
+    }));
+  };
+
+  const handlerImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+
+    if (files) {
+      const file = files[0];
+      const url = URL.createObjectURL(file);
+      setForm((prev) => ({
+        ...prev,
+        imagenes: [...prev.imagenes, { url }],
+      }));
+    }
   };
 
   return {
@@ -46,5 +82,8 @@ export const useFormProduct = (initialForm: IDetailsProduct) => {
     handlerDetailsChange,
     handlerProductChange,
     handleCheckboxChange,
+    handlerStockChange,
+    handlerTalleChange,
+    handlerImageChange,
   };
 };

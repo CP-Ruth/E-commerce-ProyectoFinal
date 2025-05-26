@@ -19,42 +19,14 @@ export const getUsers = async (token: string) => {
   }
 };
 
-export const createUser = async (user: IUser, token: string) => {
+export const deleteUser = async (id: number, token: string) => {
   try {
-    const response = await axios.post<IUser>(`${URL}/usuarios`, user, {
+    const response = await axios.delete(`${URL}/usuarios/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    return response.data;
-  } catch (error: any) {
-    if (error.response) {
-      throw new Error(`Error al crear el usuario: ${error.response.data}`);
-    }
-    throw error;
-  }
-};
-
-export const updateUser = async (user: IUser, token: string) => {
-  try {
-    const response = await axios.put<IUser>(`${URL}/usuarios/${user.id}`, user, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error: any) {
-    if (error.response) {
-      throw new Error(`Error al actualizar el usuario: ${error.response.data}`);
-    }
-    throw error;
-  }
-};
-
-export const deleteUser = async (id: number) => {
-  try {
-    const response = await axios.delete(`${URL}/usuarios/${id}`);
-    return response.data;
+    if (response.status === 200) return true;
   } catch (error: any) {
     if (error.response) {
       throw new Error(`Error al eliminar el usuario: ${error.response.data}`);

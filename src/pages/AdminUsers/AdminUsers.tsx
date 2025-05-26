@@ -4,9 +4,26 @@ import { TableHeadUser } from "../../components/Table/TableRowHead";
 import { useListUsers } from "../../hooks/useListUsers";
 import styles from "./AdminUsers.module.css";
 import { FaPowerOff } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AdminUsers = () => {
-  const { users, getAllUsers } = useListUsers();
+  const { users, getAllUsers, deleteOneUser } = useListUsers();
+
+  const deleteProduct = (id: number) => {
+    Swal.fire({
+      title: "¿Estas seguro de desactivar este usuario?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#b2bec3",
+      confirmButtonText: "Desactivar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteOneUser(id)
+        Swal.fire("Desactivado!", "El usuario ha sido desactivado.", "success");
+      }
+    });
+  };
 
   useEffect(() => {
     getAllUsers();
@@ -14,7 +31,6 @@ const AdminUsers = () => {
 
   return (
     <section>
-      <div></div>
       <table className={styles.tableUser}>
         <thead>
           <TableHeadUser />
@@ -29,6 +45,7 @@ const AdminUsers = () => {
                     usuario.activo ? styles.active : styles.deactive
                   }`}
                   size={30}
+                  onClick={() => deleteProduct(usuario.id)}
                 />
               </TableRowUser>
             ))}

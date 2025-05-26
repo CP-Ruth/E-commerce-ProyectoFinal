@@ -12,11 +12,16 @@ interface StoreUser {
 export const useStoreUsers = create<StoreUser>((set) => ({
   users: [],
   setAllUsers: (users: IUser[]) => set({ users }),
-  addUserList: (user: IUser) => set((state) => ({ users: [...state.users, user] })),
+  addUserList: (user: IUser) =>
+    set((state) => ({ users: [...state.users, user] })),
   updateUserList: (user: IUser) =>
     set((state) => ({
       users: state.users.map((u) => (u.id === user.id ? user : u)),
     })),
   deleteUserList: (id: number) =>
-    set((state) => ({ users: state.users.filter((u) => u.id !== id) })),
+    set((state) => ({
+      users: state.users.map((u) =>
+        u.id === id ? { ...u, activo: !u.activo } : u
+      ),
+    })),
 }));
