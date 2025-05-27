@@ -21,7 +21,7 @@ const Product: FC<PropsProduct> = ({ detProducto, onClick }) => {
         alt={detProducto.producto.nombre || "Producto"}
       />
       <h4>{detProducto.producto.nombre}</h4>
-      <h5>${detProducto.producto.precio_venta}</h5>
+      <h5>${detProducto.precio.precio_venta}</h5>
     </article>
   );
 };

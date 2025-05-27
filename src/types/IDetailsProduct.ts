@@ -27,13 +27,17 @@ export interface IStock {
   };
 }
 
+export interface IPrecio {
+  id?: number;
+  precio_venta: number;
+  precio_compra: number;
+}
+
 export interface IProduct {
   id?: number;
   nombre: string;
   sexo: Sex;
   categorias: ICategory[];
-  precio_venta: number;
-  precio_compra: number;
   tipoProducto: TipoProducto;
 }
 
@@ -42,6 +46,7 @@ export interface IDetailsProduct {
   color: string;
   activo?: boolean;
   producto: IProduct;
+  precio: IPrecio;
   descuento?: IDiscount;
   imagenes: IImage[];
   stocks: IStock[];

@@ -35,6 +35,15 @@ const HeaderAdmin = () => {
           className={({ isActive }) =>
             `${styles.link} ${isActive ? styles.active : ""}`
           }
+          to="/administrador/detalles"
+          onClick={() => setShowSub(false)}
+        >
+          DETALLES
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            `${styles.link} ${isActive ? styles.active : ""}`
+          }
           to="/administrador/productos"
           onClick={() => setShowSub(false)}
         >
