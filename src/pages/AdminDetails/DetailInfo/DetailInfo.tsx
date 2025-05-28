@@ -25,7 +25,7 @@ const DetailInfo: FC<PropsDetailsInfo> = ({ detalle, onClose }) => {
             <span>Tipo Producto:</span> {detalle.producto.tipoProducto}
           </p>
           <p>
-            <span>Precio:</span> ${detalle.precio.precioVenta}
+            <span>Precio:</span> ${detalle.precioVenta}
           </p>
           <p>
             <span>Talle:</span>
