@@ -44,7 +44,7 @@ const SliderProducts = () => {
               <SwiperSlide key={dProducto.id}>
                 <Product
                   detProducto={dProducto}
-                  onClick={() => handleProductClick(dProducto.id)}
+                  onClick={() => handleProductClick(dProducto.id!)}
                 />
               </SwiperSlide>
             ))}

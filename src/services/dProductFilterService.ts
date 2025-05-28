@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IDetailsProduct } from "../types/IDetailsProduct";
+import { DetalleProductoFiltroDTO } from "../types/typesFilter";
 
 const URL = "http://localhost:8080/api/v1";
 
@@ -12,6 +13,13 @@ export const getDetallesProductos = async (): Promise<IDetailsProduct[]> => {
 export const getDetalleProductoPorIdProducto = async (idProducto: number) => {
   const response = await axios.get(
     `${URL}/detalles_productos/producto/${idProducto}`
+  );
+  return response.data;
+};
+
+export const filtrarProductos = async (filtros: DetalleProductoFiltroDTO) => {
+  const response = await axios.post(`${URL}/detalles_productos/filtrar`,
+    filtros
   );
   return response.data;
 };
