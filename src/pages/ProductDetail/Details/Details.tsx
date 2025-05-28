@@ -11,7 +11,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   return (
     <div className={styles.containerPrincipal}>
       <h2>{product.producto.nombre}</h2>
-      <h3>${product.precio.precio_venta}</h3>
+      <h3>${product.precioVenta}</h3>
       <div className={styles.containerData}>
         <div>
           <p>Color:</p>
