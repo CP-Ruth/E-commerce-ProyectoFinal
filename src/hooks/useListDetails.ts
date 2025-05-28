@@ -32,7 +32,8 @@ export const useListDetails = () => {
   };
 
   const updateOneDetail = async (detail: IDetailsProduct) => {
-    const detalleActualizado = await updateDetail(detail);
+    const detalleActualizado = await updateDetail(detail, token);
+    console.log(detalleActualizado);
 
     if (detalleActualizado) {
       updateDetailsList(detalleActualizado);

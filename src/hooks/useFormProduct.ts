@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { IProduct } from "../types/IDetailsProduct";
+import { ICategory, IProduct } from "../types/IDetailsProduct";
 
 export const useFormProduct = (initialForm: IProduct) => {
   const [form, setForm] = useState<IProduct>(initialForm);
@@ -16,6 +16,7 @@ export const useFormProduct = (initialForm: IProduct) => {
 
   const handlerCategoriasChange = (
     e: ChangeEvent<HTMLInputElement>,
+    item: ICategory
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -24,7 +25,7 @@ export const useFormProduct = (initialForm: IProduct) => {
         ? prev.categorias.filter(
             (categoria) => categoria.nombre !== value
           )
-        : [...prev.categorias, { nombre: value }],
+        : [...prev.categorias, item],
     }));
   };
 

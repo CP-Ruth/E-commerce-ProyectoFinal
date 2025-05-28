@@ -39,7 +39,7 @@ export const TableRowDetail: FC<PropsDetail> = ({ detalle, children }) => {
     <tr className={styles.tableRow}>
       <td>{detalle.producto.nombre}, {detalle.color}, para {detalle.producto.sexo}</td>
       <td>{detalle.stocks.reduce((itemPrev, item) => itemPrev + item.stock, 0)}</td>
-      <td>${detalle.precio.precio_venta}</td>
+      <td>${detalle.precioVenta}</td>
       <td>{detalle.activo ? "Activo" : "Inactivo"}</td>
       <td>{children}</td>
     </tr>

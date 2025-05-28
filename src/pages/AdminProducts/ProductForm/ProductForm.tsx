@@ -6,6 +6,8 @@ import { useFormProduct } from "../../../hooks/useFormProduct";
 import { IProduct } from "../../../types/IDetailsProduct";
 import Select from "../../../components/Select/Select";
 import RadioInput from "../../../components/RadioInput/RadioInput";
+import Swal from "sweetalert2";
+import { useListProducts } from "../../../hooks/useListProducts";
 
 interface PropsProductForm {
   producto: IProduct;
@@ -20,11 +22,18 @@ const initialForm: IProduct = {
 };
 
 const ProductForm: FC<PropsProductForm> = ({ producto, onClose }) => {
-  const { form, setForm, handlerFormChange, handlerCategoriasChange } = useFormProduct(initialForm);
+  const { form, setForm, handlerFormChange, handlerCategoriasChange } =
+    useFormProduct(initialForm);
+  const { updateOneProduct } = useListProducts();
 
   const handlerSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(form);
+    updateOneProduct(form);
+    Swal.fire({
+      title: "Se ha actualizado correctamente",
+      icon: "success",
+    });
+    onClose();
   };
 
   useEffect(() => {
@@ -64,7 +73,6 @@ const ProductForm: FC<PropsProductForm> = ({ producto, onClose }) => {
           <RadioInput
             name="Categorias"
             onChange={handlerCategoriasChange}
-            items={["Training", "Urbano", "Futbol", "Running"]}
             categorias={form.categorias}
           />
           <div className={styles.options}>

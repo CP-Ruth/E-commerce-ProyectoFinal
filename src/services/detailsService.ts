@@ -37,7 +37,6 @@ export const getDetailsByFilters = async (url: string) => {
     }
     throw error;
   }
-
 }
 
 export const createDetail = async (product: IDetailsProduct) => {
@@ -52,11 +51,16 @@ export const createDetail = async (product: IDetailsProduct) => {
   }
 };
 
-export const updateDetail = async (product: IDetailsProduct) => {
+export const updateDetail = async (product: IDetailsProduct, token: string) => {
   try {
     const response = await axios.put<IDetailsProduct>(
       `${URL}/detalles_productos/${product.id}`,
-      product
+      product,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error: any) {

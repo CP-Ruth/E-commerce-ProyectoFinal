@@ -8,6 +8,8 @@ import {
 import { FC, FormEvent, useEffect } from "react";
 import Input from "../../../components/Input/Input";
 import { useFormDetails } from "../../../hooks/useFormDetails";
+import Swal from "sweetalert2";
+import { useListDetails } from "../../../hooks/useListDetails";
 
 interface PropsDetailForm {
   detalle: IDetailsProduct;
@@ -21,10 +23,8 @@ const initialForm: IDetailsProduct = {
     tipoProducto: "",
     categorias: [],
   },
-  precio: {
-    precio_venta: 0,
-    precio_compra: 0,
-  },
+  precioVenta: 0,
+  precioCompra: 0,
   color: "",
   activo: true,
   imagenes: [],
@@ -40,10 +40,17 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     handlerTalleChange,
     handlerImageChange,
   } = useFormDetails(initialForm);
+  const { updateOneDetail } = useListDetails();
 
   const handlerSubmit = (e: FormEvent) => {
     e.preventDefault();
+    updateOneDetail(form);
     console.log(form);
+    Swal.fire({
+      title: "Se ha actualizado correctamente",
+      icon: "success",
+    });
+    onClose();
   };
 
   useEffect(() => {
@@ -73,14 +80,14 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
             text="Color"
           />
           <Input
-            name="precio_compra"
-            value={form.precio.precio_compra}
+            name="precioCompra"
+            value={form.precioCompra}
             onChange={handlerDetailsChange}
             text="Precio Compra"
           />
           <Input
-            name="precio_venta"
-            value={form.precio.precio_venta}
+            name="precioVenta"
+            value={form.precioVenta}
             onChange={handlerDetailsChange}
             text="Precio Venta"
           />
@@ -95,7 +102,7 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
                   onChange={(e) => handlerTalleChange(e, index)}
                 />
                 <input
-                  type="number"
+                  type="text"
                   placeholder="Cantidad"
                   value={stock.stock}
                   onChange={(e) => handlerStockChange(e, index)}
