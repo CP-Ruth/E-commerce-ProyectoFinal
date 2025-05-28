@@ -4,12 +4,14 @@ import {
   IDetailsProduct,
   IImage,
   IStock,
+  ITalle,
 } from "../../../types/IDetailsProduct";
-import { FC, FormEvent, useEffect } from "react";
+import { FC, FormEvent, useEffect, useState } from "react";
 import Input from "../../../components/Input/Input";
 import { useFormDetails } from "../../../hooks/useFormDetails";
 import Swal from "sweetalert2";
 import { useListDetails } from "../../../hooks/useListDetails";
+import { getTalles } from "../../../services/tallesService";
 
 interface PropsDetailForm {
   detalle: IDetailsProduct;
@@ -41,6 +43,7 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     handlerImageChange,
   } = useFormDetails(initialForm);
   const { updateOneDetail } = useListDetails();
+  const [talles, setTalles] = useState<ITalle[]>([])
 
   const handlerSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -64,6 +67,15 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
       setForm(detalle);
     }
   }, [detalle]);
+
+  useEffect(() => {
+    const fetchTalles = async () => {
+      const talles = await getTalles();
+      setTalles(talles);
+      console.log(talles);
+    };
+    fetchTalles();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -95,12 +107,14 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
             <label htmlFor="talle">Talles: </label>
             {form.stocks.map((stock: IStock, index: number) => (
               <div key={index} className={styles.talles}>
-                <input
-                  type="text"
-                  placeholder="Talle"
-                  value={stock.talle.name}
-                  onChange={(e) => handlerTalleChange(e, index)}
-                />
+                <select name="talle">
+                  {talles.length > 0 &&
+                    talles.map((talle: ITalle, index: number) => (
+                      <option key={index} value={talle.name}>
+                        {talle.name}
+                      </option>
+                    ))}
+                </select>
                 <input
                   type="text"
                   placeholder="Cantidad"

@@ -18,13 +18,15 @@ export interface IImage {
   url: string;
 }
 
+export interface ITalle {
+  id?: number;
+  name: string;
+}
+
 export interface IStock {
   id?: number;
   stock: number;
-  talle: {
-    id?: number;
-    name: string;
-  };
+  talle: ITalle;
 }
 
 export interface IProduct {
