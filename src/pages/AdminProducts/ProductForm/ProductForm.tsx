@@ -24,15 +24,23 @@ const initialForm: IProduct = {
 const ProductForm: FC<PropsProductForm> = ({ producto, onClose }) => {
   const { form, setForm, handlerFormChange, handlerCategoriasChange } =
     useFormProduct(initialForm);
-  const { updateOneProduct } = useListProducts();
+  const { updateOneProduct, createOneProduct } = useListProducts();
 
   const handlerSubmit = (e: FormEvent) => {
     e.preventDefault();
-    updateOneProduct(form);
+
+    if (form.id) {
+      updateOneProduct(form);
+    } else {
+      createOneProduct(form);
+      console.log(form);
+    }
+
     Swal.fire({
-      title: "Se ha actualizado correctamente",
+      title: `Se ha ${producto ? "actualizado" : "creado"} correctamente`,
       icon: "success",
     });
+
     onClose();
   };
 
@@ -54,7 +62,7 @@ const ProductForm: FC<PropsProductForm> = ({ producto, onClose }) => {
             name="nombre"
             value={form.nombre}
             onChange={handlerFormChange}
-            text="Color"
+            text="Nombre"
           />
           <Select
             name="sexo"

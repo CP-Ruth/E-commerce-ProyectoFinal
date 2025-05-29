@@ -16,3 +16,12 @@
 .deactive {
   color: green;
 }
+
+.button {
+  position: relative;
+  left: 90%;
+  margin: 10px 0px;
+  padding: 8px 15px;
+  border: 1px solid;
+  cursor: pointer;
+}

@@ -6,33 +6,17 @@ import { TableRowDetail } from "../../components/Table/TableRow";
 import { MdEdit } from "react-icons/md";
 import { FaPowerOff, FaRegEye } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
-import Swal from "sweetalert2";
 import { IDetailsProduct } from "../../types/IDetailsProduct";
 import DetailInfo from "./DetailInfo/DetailInfo";
 import DetailForm from "./DetailForm/DetailForm";
+import { swalStateMessage } from "../../utils/swalStateMessage";
 
 const AdminDetails = () => {
   const { details, getAllDetails, deleteOneDetail } = useListDetails();
   const { openModal, productActive, handlerOpenModal } = useModal();
 
   const deleteProduct = (id: number) => {
-    Swal.fire({
-      title: "¿Estas seguro de desactivar este producto?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#b2bec3",
-      confirmButtonText: "Desactivar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteOneDetail(id);
-        Swal.fire(
-          "Desactivado!",
-          "El producto ha sido desactivado.",
-          "success"
-        );
-      }
-    });
+    swalStateMessage(id, "detalle", deleteOneDetail);
   };
 
   useEffect(() => {
@@ -77,13 +61,17 @@ const AdminDetails = () => {
       {openModal.info && (
         <DetailInfo
           detalle={productActive! as IDetailsProduct}
-          onClose={() => handlerOpenModal(productActive! as IDetailsProduct, "info")}
+          onClose={() =>
+            handlerOpenModal(productActive! as IDetailsProduct, "info")
+          }
         />
       )}
       {openModal.edit && (
         <DetailForm
           detalle={productActive! as IDetailsProduct}
-          onClose={() => handlerOpenModal(productActive! as IDetailsProduct, "edit")}
+          onClose={() =>
+            handlerOpenModal(productActive! as IDetailsProduct, "edit")
+          }
         />
       )}
     </>

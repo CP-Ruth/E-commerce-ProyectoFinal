@@ -21,11 +21,14 @@ export const getProducts = async (token: string) => {
 
 export const getProductById = async (idProducto: number, token: string) => {
   try {
-    const response = await axios.get<IProduct>(`${URL}/productos/${idProducto}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get<IProduct>(
+      `${URL}/productos/${idProducto}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -33,7 +36,7 @@ export const getProductById = async (idProducto: number, token: string) => {
     }
     throw error;
   }
-}
+};
 
 export const createProduct = async (product: IProduct, token: string) => {
   try {
@@ -72,3 +75,4 @@ export const updateProduct = async (product: IProduct, token: string) => {
     throw error;
   }
 };
+

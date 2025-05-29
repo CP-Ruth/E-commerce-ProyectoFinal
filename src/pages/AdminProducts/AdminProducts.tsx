@@ -19,6 +19,12 @@ const AdminProducts = () => {
   return (
     <>
       <section>
+        <button
+          className={styles.button}
+          onClick={() => handlerOpenModal(null, "edit")}
+        >
+          Añadir Producto
+        </button>
         <table className={styles.tableUser}>
           <thead>
             <TableHeadProduct />
@@ -39,7 +45,10 @@ const AdminProducts = () => {
         </table>
       </section>
       {openModal.edit && (
-        <ProductForm producto={productActive! as IProduct} onClose={() => handlerOpenModal(productActive! as IProduct, "edit")} />
+        <ProductForm
+          producto={productActive! as IProduct}
+          onClose={() => handlerOpenModal(productActive! as IProduct, "edit")}
+        />
       )}
     </>
   );

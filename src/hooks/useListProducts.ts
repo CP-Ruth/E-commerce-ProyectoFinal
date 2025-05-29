@@ -9,8 +9,12 @@ import {
 } from "../services/productService";
 
 export const useListProducts = () => {
-  const { products, addProductsList, updateProductsList, setAllProducts } =
-    useStoreProduct(useShallow((state) => ({ ...state })));
+  const {
+    products,
+    addProductsList,
+    updateProductsList,
+    setAllProducts,
+  } = useStoreProduct(useShallow((state) => ({ ...state })));
 
   const token = useStoreUserActive((state) => state.token);
 

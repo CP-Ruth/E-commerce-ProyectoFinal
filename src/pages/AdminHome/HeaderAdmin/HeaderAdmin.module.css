@@ -19,10 +19,9 @@
 
 .home {
   align-self: start;
-  margin: 5px 15px;
-  padding: 10px 15px;
+  margin: 10px 15px;
+  padding: 8px 12px;
   border: 1px solid;
-  border-radius: 10px;
 }
 
 .containerHeader div {

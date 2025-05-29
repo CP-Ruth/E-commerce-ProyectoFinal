@@ -2,14 +2,14 @@ import { useState } from "react";
 import { IDetailsProduct, IProduct } from "../types/IDetailsProduct";
 
 const useModal = () => {
-  const [productActive, setProductActive] = useState<IDetailsProduct | IProduct>();
+  const [productActive, setProductActive] = useState<IDetailsProduct | IProduct | null>(null);
   const [openModal, setOpenModal] = useState({
     info: false,
     edit: false,
   });
 
   const handlerOpenModal = (
-    product: IDetailsProduct | IProduct,
+    product: IDetailsProduct | IProduct | null,
     option: "info" | "edit"
   ) => {
     setProductActive(product);
