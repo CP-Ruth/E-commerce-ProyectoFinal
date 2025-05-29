@@ -16,8 +16,8 @@ interface PropsProductForm {
 
 const initialForm: IProduct = {
   nombre: "",
-  sexo: "",
-  tipoProducto: "",
+  sexo: "HOMBRE",
+  tipoProducto: "CALZADO",
   categorias: [],
 };
 
@@ -60,14 +60,14 @@ const ProductForm: FC<PropsProductForm> = ({ producto, onClose }) => {
             name="sexo"
             value={form.sexo}
             onChange={handlerFormChange}
-            options={["Hombre", "Mujer"]}
+            options={["HOMBRE", "MUJER"]}
             text="Sexo"
           />
           <Select
             name="tipoProducto"
             value={form.tipoProducto}
             onChange={handlerFormChange}
-            options={["Calzado", "Ropa"]}
+            options={["CALZADO", "ROPA"]}
             text="Tipo Producto"
           />
           <RadioInput

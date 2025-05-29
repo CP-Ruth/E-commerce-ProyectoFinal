@@ -12,6 +12,8 @@ import { useFormDetails } from "../../../hooks/useFormDetails";
 import Swal from "sweetalert2";
 import { useListDetails } from "../../../hooks/useListDetails";
 import { getTalles } from "../../../services/tallesService";
+import { imageUploader } from "../../../utils/uploadImage";
+import { createImage } from "../../../services/imageService";
 
 interface PropsDetailForm {
   detalle: IDetailsProduct;
@@ -43,12 +45,30 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     handlerImageChange,
   } = useFormDetails(initialForm);
   const { updateOneDetail } = useListDetails();
-  const [talles, setTalles] = useState<ITalle[]>([])
+  const [talles, setTalles] = useState<ITalle[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const handlerSubmit = (e: FormEvent) => {
+  const handlerSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+
+    const imagenCloud = form.imagenes.map((imagen, index) =>
+      imagen.url !== detalle.imagenes[index].url
+        ? imageUploader(imagen.url as File)
+        : imagen
+    );
+
+    const imagenCloudArray: IImage[] = await Promise.all(imagenCloud);
+
+    const upload = imagenCloudArray.map((imagen) =>
+      typeof imagen === "string"
+        ? createImage(imagen as File, form.producto.nombre)
+        : imagen
+    );
+
+    const uploadArray = await Promise.all(upload);
+    form.imagenes = uploadArray;
     updateOneDetail(form);
-    console.log(form);
     Swal.fire({
       title: "Se ha actualizado correctamente",
       icon: "success",
@@ -70,12 +90,12 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
 
   useEffect(() => {
     const fetchTalles = async () => {
-      const talles = await getTalles();
+      const path = detalle?.producto.tipoProducto;
+      const talles = await getTalles(path);
       setTalles(talles);
-      console.log(talles);
     };
     fetchTalles();
-  }, []);
+  }, [detalle]);
 
   return (
     <div className={styles.container}>
@@ -107,7 +127,11 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
             <label htmlFor="talle">Talles: </label>
             {form.stocks.map((stock: IStock, index: number) => (
               <div key={index} className={styles.talles}>
-                <select name="talle">
+                <select
+                  name="talle"
+                  value={stock.talle.name}
+                  onChange={(e) => handlerTalleChange(e, index, talles)}
+                >
                   {talles.length > 0 &&
                     talles.map((talle: ITalle, index: number) => (
                       <option key={index} value={talle.name}>
@@ -128,8 +152,8 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
             <label htmlFor="">Imagenes: </label>
             <div>
               {form.imagenes.map((imagen: IImage, index: number) => (
-                <div className={styles.images}>
-                  <img key={index} src={imagen.url} alt="" />
+                <div className={styles.images} key={index}>
+                  <img key={index} src={imagen.url as string} alt="" />
                   <input
                     type="file"
                     accept="image/*"
@@ -140,10 +164,16 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
             </div>
           </div>
           <div className={styles.options}>
-            <button className={styles.button} onClick={onClose}>
-              Cancelar
-            </button>
-            <button className={styles.button}>Guardar</button>
+            {loading ? (
+              <p>Guardando...</p>
+            ) : (
+              <>
+                <button className={styles.button} onClick={onClose}>
+                  Cancelar
+                </button>
+                <button className={styles.button}>Guardar</button>
+              </>
+            )}
           </div>
         </div>
       </form>

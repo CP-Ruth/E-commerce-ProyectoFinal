@@ -15,7 +15,7 @@ export interface IDiscount {
 
 export interface IImage {
   id?: number;
-  url: string;
+  url: string | File;
 }
 
 export interface ITalle {

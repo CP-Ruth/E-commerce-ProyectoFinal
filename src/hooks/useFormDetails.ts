@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { IDetailsProduct } from "../types/IDetailsProduct";
+import { IDetailsProduct, ITalle } from "../types/IDetailsProduct";
 
 export const useFormDetails = (initialForm: IDetailsProduct) => {
   const [form, setForm] = useState<IDetailsProduct>(initialForm);
@@ -28,14 +28,17 @@ export const useFormDetails = (initialForm: IDetailsProduct) => {
   };
 
   const handlerTalleChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    index: number
+    e: ChangeEvent<HTMLSelectElement>,
+    index: number,
+    talles: ITalle[]
   ) => {
     const { value } = e.target;
+    const talleSelected = talles.find((talle) => talle.name === value);
+    
     setForm((prev) => ({
       ...prev,
       stocks: prev.stocks.map((stock, i) =>
-        i === index ? { ...stock, talle: { name: value } } : stock
+       i === index ? { ...stock, talle: talleSelected ? talleSelected : stock.talle} : stock
       ),
     }));
   };
