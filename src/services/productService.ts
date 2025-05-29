@@ -1,11 +1,15 @@
 import axios from "axios";
-import { IDetailsProduct } from "../types/IDetailsProduct";
+import { IProduct } from "../types/IDetailsProduct";
 
 const URL = "http://localhost:8080/api/v1";
 
-export const getProducts = async () => {
+export const getProducts = async (token: string) => {
   try {
-    const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos`);
+    const response = await axios.get<IProduct[]>(`${URL}/productos`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -15,9 +19,16 @@ export const getProducts = async () => {
   }
 };
 
-export const getProductById = async (idProducto: number) => {
+export const getProductById = async (idProducto: number, token: string) => {
   try {
-    const response = await axios.get<IDetailsProduct>(`${URL}/detalles_productos/${idProducto}`);
+    const response = await axios.get<IProduct>(
+      `${URL}/productos/${idProducto}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -25,24 +36,15 @@ export const getProductById = async (idProducto: number) => {
     }
     throw error;
   }
-}
+};
 
-export const getProductsByFilters = async (url: string) => {
+export const createProduct = async (product: IProduct, token: string) => {
   try {
-    const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos/catalogo?` + url);
-    return response.data;
-  } catch (error: any) {
-    if (error.response) {
-      throw new Error(`Error al obtener los productos: ${error.response.data}`);
-    }
-    throw error;
-  }
-
-}
-
-export const createProduct = async (product: IDetailsProduct) => {
-  try {
-    const response = await axios.post<IDetailsProduct>(`${URL}/detalles_productos`, product);
+    const response = await axios.post<IProduct>(`${URL}/productos`, product, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -52,11 +54,16 @@ export const createProduct = async (product: IDetailsProduct) => {
   }
 };
 
-export const updateProduct = async (product: IDetailsProduct) => {
+export const updateProduct = async (product: IProduct, token: string) => {
   try {
-    const response = await axios.put<IDetailsProduct>(
-      `${URL}/detalles_productos/${product.id}`,
-      product
+    const response = await axios.put<IProduct>(
+      `${URL}/productos/${product.id}`,
+      product,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error: any) {
@@ -69,18 +76,3 @@ export const updateProduct = async (product: IDetailsProduct) => {
   }
 };
 
-export const deleteProduct = async (id: number, token: string) => {
-  try {
-    const response = await axios.delete(`${URL}/detalles_productos/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (response.status === 200) return true;
-  } catch (error: any) {
-    if (error.response) {
-      throw new Error(`Error al eliminar el producto: ${error.response.data}`);
-    }
-    throw error;
-  }
-};

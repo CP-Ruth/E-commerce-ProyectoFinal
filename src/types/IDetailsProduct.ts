@@ -15,16 +15,18 @@ export interface IDiscount {
 
 export interface IImage {
   id?: number;
-  url: string;
+  url: string | File;
+}
+
+export interface ITalle {
+  id?: number;
+  name: string;
 }
 
 export interface IStock {
   id?: number;
   stock: number;
-  talle: {
-    id?: number;
-    name: string;
-  };
+  talle: ITalle;
 }
 
 export interface IProduct {
@@ -32,8 +34,6 @@ export interface IProduct {
   nombre: string;
   sexo: Sex;
   categorias: ICategory[];
-  precio_venta: number;
-  precio_compra: number;
   tipoProducto: TipoProducto;
 }
 
@@ -42,6 +42,8 @@ export interface IDetailsProduct {
   color: string;
   activo?: boolean;
   producto: IProduct;
+  precioVenta: number;
+  precioCompra: number;
   descuento?: IDiscount;
   imagenes: IImage[];
   stocks: IStock[];

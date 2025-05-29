@@ -14,15 +14,25 @@ export const TableHeadUser = () => {
   );
 };
 
+export const TableHeadDetail = () => {
+  return (
+    <tr className={styles.tableRow}>
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>Precio venta</th>
+      <th>Estado</th>
+      <th className={styles.options}>Opciones</th>
+    </tr>
+  );
+};
+ 
 export const TableHeadProduct = () => {
   return (
     <tr className={styles.tableRow}>
       <th>Nombre</th>
-      <th>Color</th>
       <th>Sexo</th>
-      <th>Cantidad</th>
-      <th>Precio venta</th>
-      <th>Estado</th>
+      <th>Tipo Producto</th>
+      <th>Categorias</th>
       <th className={styles.options}>Opciones</th>
     </tr>
   );

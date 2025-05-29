@@ -14,7 +14,6 @@ const Select: FC<PropsSelect> = ({ name, value, onChange, text, options }) => {
     <div className={styles.item}>
       <label htmlFor={name}>{text}: </label>
       <select name={name} id={name} value={value} onChange={onChange} required>
-        <option value="">Seleccionar {text.toLowerCase()}</option>
         {options.length &&
           options.map((option, key) => (
             <option key={key} value={option.toUpperCase()}>{option}</option>

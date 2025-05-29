@@ -7,7 +7,7 @@ import Photos from "./Photos/Photos";
 import styles from "./ProductDetail.module.css";
 import { useEffect, useState } from "react";
 import { IDetailsProduct } from "../../types/IDetailsProduct";
-import { getProductById } from "../../services/productService";
+import { getDetailById } from "../../services/detailsService";
 
 const ProductDetail = () => {
   const [activeProdcut, setActiveProdcut] = useState<IDetailsProduct>();
@@ -15,7 +15,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const product = await getProductById(Number(id));
+      const product = await getDetailById(Number(id));
       setActiveProdcut(product);
     };
     fetchProduct();

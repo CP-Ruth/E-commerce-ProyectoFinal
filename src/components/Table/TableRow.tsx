@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import styles from "./Table.module.css";
 import { IUser } from "../../types/IUser";
-import { IDetailsProduct } from "../../types/IDetailsProduct";
+import { IDetailsProduct, IProduct } from "../../types/IDetailsProduct";
 
 interface PropUser {
   usuario: IUser;
@@ -9,7 +9,12 @@ interface PropUser {
 }
 
 interface PropsProduct {
-  detalle: IDetailsProduct;
+  producto: IProduct;
+  children?: ReactNode;
+}
+
+interface PropsDetail {
+  detalle: IDetailsProduct
   children?: ReactNode;
 }
 
@@ -29,15 +34,25 @@ export const TableRowUser: FC<PropUser> = ({ usuario, children }) => {
   );
 };
 
-export const TableRowProduct: FC<PropsProduct> = ({ detalle, children }) => {
+export const TableRowDetail: FC<PropsDetail> = ({ detalle, children }) => {
   return (
     <tr className={styles.tableRow}>
-      <td>{detalle.producto.nombre}</td>
-      <td>{detalle.color}</td>
-      <td>{detalle.producto.sexo}</td>
+      <td>{detalle.producto.nombre}, {detalle.color}, para {detalle.producto.sexo}</td>
       <td>{detalle.stocks.reduce((itemPrev, item) => itemPrev + item.stock, 0)}</td>
-      <td>${detalle.producto.precio_venta}</td>
+      <td>${detalle.precioVenta}</td>
       <td>{detalle.activo ? "Activo" : "Inactivo"}</td>
+      <td>{children}</td>
+    </tr>
+  );
+};
+
+export const TableRowProduct: FC<PropsProduct> = ({ producto, children }) => {
+  return (
+    <tr className={styles.tableRow}>
+      <td>{producto.nombre}</td>
+      <td>{producto.sexo}</td>
+      <td>{producto.tipoProducto}</td>
+      <td>{producto.categorias.map((categoria) => categoria.nombre).join(", ")}</td>
       <td>{children}</td>
     </tr>
   );

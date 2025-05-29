@@ -5,9 +5,10 @@ import Catalog from "./pages/Catalog/Catalog";
 import Home from "./pages/Home/Home";
 import AdminHome from "./pages/AdminHome/AdminHome";
 import AdminOrders from "./pages/AdminOrders/AdminOrders";
-import AdminProducts from "./pages/AdminProducts/AdminProducts";
 import AdminUsers from "./pages/AdminUsers/AdminUsers";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import AdminDetails from "./pages/AdminDetails/AdminDetails";
+import AdminProducts from "./pages/AdminProducts/AdminProducts";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       {/**Quitar despues */}
       <Route path="/administrador" element={<AdminHome />}>
         <Route index path="usuarios" element={<AdminUsers />} />
+        <Route path="detalles" element={<AdminDetails />} />
         <Route path="productos" element={<AdminProducts />} />
         <Route path="pedidos" element={<AdminOrders />} />
       </Route>

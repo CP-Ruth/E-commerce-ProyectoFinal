@@ -1,0 +1,27 @@
+.tableUser {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.icon {
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.active {
+  color: rgb(214, 30, 30);
+}
+
+.deactive {
+  color: green;
+}
+
+.button {
+  position: relative;
+  left: 90%;
+  margin: 10px 0px;
+  padding: 8px 15px;
+  border: 1px solid;
+  cursor: pointer;
+}
