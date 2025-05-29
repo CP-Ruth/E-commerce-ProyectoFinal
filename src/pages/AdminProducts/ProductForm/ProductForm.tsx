@@ -8,22 +8,16 @@ import Select from "../../../components/Select/Select";
 import RadioInput from "../../../components/RadioInput/RadioInput";
 import Swal from "sweetalert2";
 import { useListProducts } from "../../../hooks/useListProducts";
+import { initialFormProduct } from "../../../utils/initialData";
 
 interface PropsProductForm {
   producto: IProduct;
   onClose: () => void;
 }
 
-const initialForm: IProduct = {
-  nombre: "",
-  sexo: "HOMBRE",
-  tipoProducto: "CALZADO",
-  categorias: [],
-};
-
 const ProductForm: FC<PropsProductForm> = ({ producto, onClose }) => {
   const { form, setForm, handlerFormChange, handlerCategoriasChange } =
-    useFormProduct(initialForm);
+    useFormProduct(initialFormProduct);
   const { updateOneProduct, createOneProduct } = useListProducts();
 
   const handlerSubmit = (e: FormEvent) => {
