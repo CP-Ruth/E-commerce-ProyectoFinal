@@ -1,32 +1,36 @@
 import styles from "./RadioInput.module.css";
 import Checkbox from "../Checkbox/Checkbox";
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { ICategory } from "../../types/IDetailsProduct";
+import { getCategorias } from "../../services/categoriaService";
 
 interface PropsRadioInput {
   name: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  items: string[];
+  onChange: (e: ChangeEvent<HTMLInputElement>, item: ICategory) => void;
   categorias: ICategory[];
 }
 
-const RadioInput: FC<PropsRadioInput> = ({
-  name,
-  categorias,
-  items,
-  onChange,
-}) => {
+const RadioInput: FC<PropsRadioInput> = ({ name, categorias, onChange }) => {
+  const [categoriaList, setCategoriaList] = useState<ICategory[]>([]);
   const nameLower = name.toLowerCase();
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const categories = await getCategorias();
+      setCategoriaList(categories);
+    };
+    getCategories();
+  }, []);
   return (
     <div className={styles.item}>
       <label htmlFor={nameLower}>{name}: </label>
       <div className={styles.radioContainer}>
-        {items.map((item, id) => (
+        {categoriaList && categoriaList.map((item, id) => (
           <Checkbox
             key={id}
             name={nameLower}
-            value={item}
-            onChange={onChange}
+            value={item.nombre}
+            onChange={(e) => onChange(e, item)}
             categorias={categorias}
           />
         ))}

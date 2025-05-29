@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { IDetailsProduct } from "../../../types/IDetailsProduct";
-import styles from "./ProductInfo.module.css";
+import styles from "./DetailInfo.module.css";
 import { IoMdClose } from "react-icons/io";
 
-interface PropsProductInfo {
+interface PropsDetailsInfo {
   detalle: IDetailsProduct;
   onClose: () => void;
 }
 
-const ProductInfo: FC<PropsProductInfo> = ({ detalle, onClose }) => {
+const DetailInfo: FC<PropsDetailsInfo> = ({ detalle, onClose }) => {
   return (
     <div className={styles.modal}>
       <article className={styles.modalInfo}>
@@ -25,7 +25,7 @@ const ProductInfo: FC<PropsProductInfo> = ({ detalle, onClose }) => {
             <span>Tipo Producto:</span> {detalle.producto.tipoProducto}
           </p>
           <p>
-            <span>Precio:</span> ${detalle.producto.precio_venta}
+            <span>Precio:</span> ${detalle.precioVenta}
           </p>
           <p>
             <span>Talle:</span>
@@ -47,4 +47,4 @@ const ProductInfo: FC<PropsProductInfo> = ({ detalle, onClose }) => {
   );
 };
 
-export default ProductInfo;
+export default DetailInfo;

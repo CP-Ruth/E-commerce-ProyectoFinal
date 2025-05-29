@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.close {
+.close{
   cursor: pointer;
 }
 
@@ -18,7 +18,7 @@
   border-radius: 10px;
 }
 
-.formContainer {
+.formContainer{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -35,26 +35,33 @@
   width: 45%;
 }
 
-.item label {
+.item label{
   display: block;
 }
 
-.item > input {
+.item input{
   margin-top: 8px;
   padding: 8px 10px;
   width: 100%;
   font-size: 1rem;
 }
 
-.item img {
+.item img{
   margin-top: 10px;
   margin-left: 10px;
   width: 70px;
   cursor: pointer;
 }
 
-.images input[type="file"] {
-  width: 135px;
+.item > input{
+  margin-top: 8px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+.images input[type="file"]{
+  width: 155px;
+  font-size: .9rem;
 }
 
 .item .images {
@@ -63,18 +70,17 @@
   gap: 10px;
 }
 
-.talles {
+.talles{
   display: flex;
   gap: 10px;
-  margin-top: 8px;
 }
 
-.talles input {
+.talles input{
   width: 50%;
   padding: 5px 10px;
 }
 
-.options {
+.options{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,9 +88,10 @@
   width: 45%;
 }
 
-.button {
+.button{
   padding: 8px 15px;
   border-radius: 5px;
   border: 1px solid;
   cursor: pointer;
 }
+

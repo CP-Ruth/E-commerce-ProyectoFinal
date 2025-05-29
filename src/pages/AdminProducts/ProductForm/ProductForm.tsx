@@ -1,141 +1,88 @@
 import { IoMdClose } from "react-icons/io";
 import styles from "./ProductForm.module.css";
-import { IDetailsProduct } from "../../../types/IDetailsProduct";
-import { FC, useEffect } from "react";
-import { useFormProduct } from "../../../hooks/useFormProduct";
+import { FC, FormEvent, useEffect } from "react";
 import Input from "../../../components/Input/Input";
+import { useFormProduct } from "../../../hooks/useFormProduct";
+import { IProduct } from "../../../types/IDetailsProduct";
 import Select from "../../../components/Select/Select";
 import RadioInput from "../../../components/RadioInput/RadioInput";
+import Swal from "sweetalert2";
+import { useListProducts } from "../../../hooks/useListProducts";
 
 interface PropsProductForm {
-  detalle: IDetailsProduct;
+  producto: IProduct;
   onClose: () => void;
 }
 
-const initialForm: IDetailsProduct = {
-  producto: {
-    nombre: "",
-    sexo: "",
-    precio_venta: 0,
-    precio_compra: 0,
-    tipoProducto: "",
-    categorias: [
-      {
-        nombre: "",
-      },
-    ],
-  },
-  color: "",
-  activo: true,
-  imagenes: [],
-  stocks: [],
+const initialForm: IProduct = {
+  nombre: "",
+  sexo: "HOMBRE",
+  tipoProducto: "CALZADO",
+  categorias: [],
 };
 
-const ProductForm: FC<PropsProductForm> = ({ detalle, onClose }) => {
-  const {
-    form,
-    setForm,
-    handlerDetailsChange,
-    handlerProductChange,
-    handleCheckboxChange,
-    handlerStockChange,
-    handlerTalleChange,
-  } = useFormProduct(initialForm);
+const ProductForm: FC<PropsProductForm> = ({ producto, onClose }) => {
+  const { form, setForm, handlerFormChange, handlerCategoriasChange } =
+    useFormProduct(initialForm);
+  const { updateOneProduct, createOneProduct } = useListProducts();
+
+  const handlerSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (form.id) {
+      updateOneProduct(form);
+    } else {
+      createOneProduct(form);
+      console.log(form);
+    }
+
+    Swal.fire({
+      title: `Se ha ${producto ? "actualizado" : "creado"} correctamente`,
+      icon: "success",
+    });
+
+    onClose();
+  };
 
   useEffect(() => {
-    if (detalle) {
-      if (detalle.stocks.length === 1) {
-        detalle.stocks.push({
-          talle: { name: "" },
-          stock: 0,
-        });
-      }
-      setForm(detalle);
+    if (producto) {
+      setForm(producto);
     }
-  }, [detalle]);
+  }, [producto]);
 
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handlerSubmit}>
         <IoMdClose className={styles.close} size={30} onClick={onClose} />
         <h2 className={styles.title}>
-          {detalle ? "Editar" : "Crear"} Producto
+          {producto ? "Editar" : "Crear"} Producto
         </h2>
         <div className={styles.formContainer}>
           <Input
             name="nombre"
-            value={form.producto.nombre}
-            onChange={handlerProductChange}
-            text="Producto"
-          />
-          <Input
-            name="color"
-            value={form.color}
-            onChange={handlerDetailsChange}
-            text="Color"
-          />
-          <Input
-            name="precio_compra"
-            value={form.producto.precio_compra}
-            onChange={handlerProductChange}
-            text="Precio Compra"
-          />
-          <Input
-            name="precio_venta"
-            value={form.producto.precio_venta}
-            onChange={handlerProductChange}
-            text="Precio Venta"
-          />
-          <Select
-            name="tipoProducto"
-            value={form.producto.tipoProducto}
-            onChange={handlerProductChange}
-            text="Tipo"
-            options={["Calzado", "Ropa"]}
+            value={form.nombre}
+            onChange={handlerFormChange}
+            text="Nombre"
           />
           <Select
             name="sexo"
-            value={form.producto.sexo}
-            onChange={handlerProductChange}
+            value={form.sexo}
+            onChange={handlerFormChange}
+            options={["HOMBRE", "MUJER"]}
             text="Sexo"
-            options={["Hombre", "Mujer"]}
+          />
+          <Select
+            name="tipoProducto"
+            value={form.tipoProducto}
+            onChange={handlerFormChange}
+            options={["CALZADO", "ROPA"]}
+            text="Tipo Producto"
           />
           <RadioInput
-            name="Categoria"
-            items={["Training", "Running", "Urbano", "Futbol"]}
-            onChange={handleCheckboxChange}
-            categorias={form.producto.categorias}
+            name="Categorias"
+            onChange={handlerCategoriasChange}
+            categorias={form.categorias}
           />
-          <div className={styles.item}>
-            <label htmlFor="talle">Talles: </label>
-            {form.stocks.map((stock, index) => (
-              <div key={index} className={styles.talles}>
-                <input
-                  type="text"
-                  placeholder="Talle"
-                  value={stock.talle.name}
-                  onChange={(e) => handlerTalleChange(e, index)}
-                />
-                <input
-                  type="number"
-                  placeholder="Cantidad"
-                  value={stock.stock}
-                  onChange={(e) => handlerStockChange(e, index)}
-                />
-              </div>
-            ))}
-          </div>
-          <div className={styles.item}>
-            <label htmlFor="">Imagenes: </label>
-            <div>
-              {form.imagenes.map((imagen, index) => (
-                <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
-                  <img key={index} src={imagen.url} alt="" />
-                  <input  name="" style={{width: "135px"}} type="file"  accept="image/*" />
-                </div>
-              ))}
-            </div>
-          </div>
           <div className={styles.options}>
             <button className={styles.button} onClick={onClose}>
               Cancelar
