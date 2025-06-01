@@ -37,7 +37,7 @@ export const useFilter = () => {
     const response = await getDetailsByFilters(query);
     setProductos(response);
   };
-
+  
   return {
     productos,
     getProducts,

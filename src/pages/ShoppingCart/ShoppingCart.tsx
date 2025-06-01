@@ -3,44 +3,33 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import BuyDetails from "./BuyDetails/BuyDetails";
 import styles from './ShoppingCart.module.css'
-import { IDetailsProduct } from "../../types/IDetailsProduct";
 import ProductsToBuy from "./ProductsToBuy/ProductsToBuy";
-import { useProductStore } from "../../store/useProductStore";
+import { IItem } from "../../types/IOrder";
 
-// interface ShoppingCart{
-//   productos : IDetailsProduct[]
-// }
-
-const ShoppingCart = () => {
-  
-  //recibir los productos en el componente
+const ShoppingCart: FC = () => {
+  const orderItems: IItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
 
   return (
 
-      <div className={styles.pageContainer}>
+    <div className={styles.pageContainer}>
       <Header />
       <main className={styles.mainContainer}>
         {/** Acá va el titulo y la cantidad de productos a comprar */}
         <h2>Carrito ()</h2>
         <section className={styles.containerSection}>
           <div className={styles.scrollBox}>
-            {/* eliminar los productstobuy de mas */}
-          {/*productos.map((product)=> ( <p>a</p>
-            //producto que recibe, producto que mapea
-            //<ProductsToBuy product={product}/>
-          ))*/}
+
+            {orderItems.map((item) => (
+              <ProductsToBuy key={item.idDetalleProducto} itemProducto={item} />
+            ))}
 
 
-           <ProductsToBuy/>
-          <ProductsToBuy/>
-          <ProductsToBuy/>
-          <ProductsToBuy/>
           </div>
           <BuyDetails />
         </section>
       </main>
       <Footer />
-      </div>
+    </div>
 
   );
 };

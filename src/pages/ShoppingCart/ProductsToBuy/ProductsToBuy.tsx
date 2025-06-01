@@ -1,39 +1,37 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
 import styles from "./ProductsToBuy.module.css"
+import { FC } from "react";
+import { IItem } from "../../../types/IOrder";
+
+interface ItemProducto {
+  itemProducto:IItem;
+}
+const ProductsToBuy: FC<ItemProducto> = ({itemProducto}) => {
 
 
-//hay que hacerlo un FC que reciba un producto solamente
-//este es solo la carta que va a recibir el producto, no lo mapeo acá. Es solo la carta
-const ProductsToBuy = () => {
   return (
     <div className={styles.containerPrincipal}>
-{/* className={styles.} */}
 
       <div className={styles.containerImg}>
-        <img src="src\assets\images\product.png" alt="imagenProducto" />
+        <img src={itemProducto.imagen} alt="imagenProducto" />
       </div>
 
-      
       <div className={styles.detailProduct}>
-        <h4>Zatillas urbanas</h4>
-        <h4>Modelo -- Para mujer</h4>
-        <p>Color: </p>
-        <p>Talle: </p>
-        <select>
-          <option value="1">1</option>
-        </select>
+        <h4>{itemProducto.nombre}</h4>
+        <p>Color: {itemProducto.color}</p>
+        <p>Talle: {itemProducto.talle}</p>
+        <p>Cantidad: {itemProducto.cantidad}</p>
       </div>
-      
+
       <div className={styles.priceAndDelete}>
         <div className={styles.price}>
-        <p>$30.000</p>
-        <p><s>$50.000</s></p> 
+          <p>${itemProducto.precio}</p>
         </div>
         <button><RiDeleteBin6Line /></button>
       </div>
-      
+
     </div>
-    
+
   )
 }
 

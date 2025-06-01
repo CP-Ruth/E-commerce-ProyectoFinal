@@ -47,7 +47,7 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter }) => {
     }));
   };
 
-  console.log(filters)
+  //console.log(filters)
   return (
     <section className={styles.containerSection}>
       <button className={styles.buttonFilter}>
