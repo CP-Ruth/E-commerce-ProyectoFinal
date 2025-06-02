@@ -1,27 +1,40 @@
-.pageContainer{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    
-}
 .mainContainer {
-    display:flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 1rem;
-    flex: 1;
-    margin: 1rem ;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+  flex: 1;
+  margin: 1rem;
 }
-.scrollBox{
-    max-height: 500px;
-    overflow-y: auto;
+.containerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.scrollBox {
+  max-height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 @media (min-width: 768px) {
-    .containerSection{
-        display: flex;
-        flex-direction: row;
-    }
-    .scrollBox{
-    width: 60vw;
-    }
+  .containerSection {
+    display: flex;
+  }
+  .scrollBox {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .containerSection {
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .scrollBox {
+    width: 45vw;
+  }
 }

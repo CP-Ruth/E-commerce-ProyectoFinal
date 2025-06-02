@@ -11,6 +11,8 @@
 
   /*Texto*/
   --fluid-6-16: clamp(6px, -5.4286px + 1.4881vw, 16px);
+  --fluid-16-18: clamp(1rem, 1.1546rem + -0.3221vw, 1.125rem);
+
 }
 * {
   padding: 0;

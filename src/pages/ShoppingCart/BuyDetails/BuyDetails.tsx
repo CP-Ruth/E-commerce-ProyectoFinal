@@ -10,8 +10,6 @@ const BuyDetails = () => {
                 < p > Metodos de pago: </p>
                 < p > Total estimado: </p>
             </div>
-
-
             < div className={styles.containerButton} >
                 <button>Proceder al pago </button>
             </div>
