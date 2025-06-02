@@ -11,41 +11,23 @@
   display: flex;
   flex-direction: column;
   font-size: 0.8rem;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .containerData span {
-  margin-top: 7px;
+  margin-top: 10px;
   display: inline-block;
   padding: 5px 15px;
   border: 2px solid black;
   cursor: pointer;
 }
 
-.talleContainer button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #d9d9d9;
-  color: #727272;
-  width: 2.5rem;
-  height: 2.5rem;
-  cursor: pointer;
-}
-
-.talleContainer {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
 .containerData select {
-  width: 3rem;
-  height: 1.4rem;
-  font-size: 0.8rem;
+  width: 100px;
 }
 
 .carritoButton {
+  width: 250px;
   background-color: black;
   color: white;
   display: flex;

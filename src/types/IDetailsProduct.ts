@@ -49,3 +49,8 @@ export interface IDetailsProduct {
   imagenes: IImage[];
   stocks: IStock[];
 }
+
+export interface IRequestColors {
+  idDetalle: number;
+  color: string;
+}
