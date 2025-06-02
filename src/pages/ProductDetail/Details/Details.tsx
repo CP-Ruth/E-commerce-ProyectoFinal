@@ -6,6 +6,7 @@ import {
 } from "../../../types/IDetailsProduct";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { getDetailsByProduct } from "../../../services/detailsService";
+import Swal from "sweetalert2";
 
 interface PropsDetails {
   product: IDetailsProduct;
@@ -21,7 +22,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   const [detailSelected, setDetailSelected] = useState<PropsDetailSelected>({
     cantidad: 1,
     talle: {
-      name: "",
+      name: product.stocks[0].talle.name,
     },
   });
 
@@ -57,6 +58,13 @@ export const Details: FC<PropsDetails> = ({ product }) => {
 
     currentCart.push(item); // Agregar el nuevo item
     localStorage.setItem("cart", JSON.stringify(currentCart)); // Guardar el nuevo carrito en el localStorage
+
+    Swal.fire({
+      icon: "success",
+      title: "Producto agregado al carrito",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   useEffect(() => {
@@ -85,6 +93,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
             name="talle"
             defaultValue={detailSelected.talle.name}
             onChange={handlerTalle}
+            required
           >
             {product.stocks.map((stock) => (
               <option key={stock.talle.name} value={stock.talle.name}>
