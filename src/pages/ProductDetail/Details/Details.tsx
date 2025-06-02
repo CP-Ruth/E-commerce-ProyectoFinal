@@ -25,7 +25,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       precio: product.precioVenta,
       color: product.color,
       talleId: selectedTalleId.id,
-      talle:selectedTalleId.name,
+      talle: selectedTalleId.name,
       cantidad: cantidad,
       imagen: product.imagenes[0]?.url || "",
     };
@@ -41,33 +41,32 @@ export const Details: FC<PropsDetails> = ({ product }) => {
     <div className={styles.containerPrincipal}>
       <h2>{product.producto.nombre}</h2>
       <h3>${product.precioVenta}</h3>
-      <div className={styles.containerData}>
-        <div>
-          <p>Color:</p>
-          <span>{product.color}</span>
-        </div>
-        <p>Talle:</p>
-        <div className={styles.talleContainer}>
-          {product.stocks.map((stock) => (
-            <button
-              key={stock.id}
-              className={selectedTalleId === stock.talle.id ? styles.selected : ""}
-              onClick={() => setSelectedTalleId(stock.talle)}
-            >
-              {stock.talle.name}
-            </button>
-          ))}
-        </div>
-        <p>Cantidad:</p>
-        <select value={cantidad} onChange={(e) => setCantidad(Number(e.target.value))}>
-          {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-            <option key={n} value={n}>{n}</option>
-          ))}
-        </select>
+
+      <p>Color: <b>{product.color}</b></p>
+
+      <p>Talle:</p>
+      <div className={styles.talleContainer}>
+        {product.stocks.map((stock) => (
+          <button
+            key={stock.id}
+            className={selectedTalleId === stock.talle.id ? styles.selected : ""}
+            onClick={() => setSelectedTalleId(stock.talle)}
+          >
+            {stock.talle.name}
+          </button>
+        ))}
       </div>
-      <div className={styles.carritoButton}>
-        <button onClick={handleAddToCart}>AGREGAR AL CARRITO</button>
-      </div>
+
+      <p>Cantidad:</p>
+      <select className={styles.cantidadContainer} value={cantidad} onChange={(e) => setCantidad(Number(e.target.value))}>
+        {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+          <option key={n} value={n}>{n}</option>
+        ))}
+      </select>
+
+
+      <button onClick={handleAddToCart} className={styles.carritoButton}>AGREGAR AL CARRITO</button>
+
     </div>
   );
 };

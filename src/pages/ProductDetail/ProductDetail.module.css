@@ -1,17 +1,24 @@
+/*movile first*/
 .mainContainer {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin: 0 auto;
-  gap: 2rem;
-  padding: 1rem;
-  flex: 1;
+  margin: 0;
+  padding: 20px;
 }
 
 @media (min-width: 768px) {
   .mainContainer {
-    grid-template-columns: 2fr 1fr;
-    width: 80%;
-    margin: 50px auto;
+    width: 100vw;
     min-height: 50vh;
+     padding: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mainContainer {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin: 40px 0;
+    padding: 0;
   }
 }
