@@ -17,7 +17,11 @@ const Photos: FC<PropsPhotos> = ({ photos }) => {
           spaceBetween={10}
           navigation
           loop={false}
-          grabCursor={true}>
+          grabCursor={true}
+          breakpoints={{
+            500: { slidesPerView: 2 },
+            1000: { slidesPerView: 1 }
+          }}>
           {photos && photos.map((photo) => (
             <SwiperSlide key={photo.id}>
               <img src={photo.url} alt="Imagen del producto" />

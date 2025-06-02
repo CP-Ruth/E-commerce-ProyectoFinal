@@ -54,14 +54,14 @@
 
 @media (min-width: 768px) {
   .containerPrincipal {
-    font-size: 1.2rem;
+    font-size: 1rem;
     gap: 1.3rem;
   }
   .containerPrincipal h2 {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
   }
   .containerPrincipal h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .carritoButton {
@@ -72,7 +72,7 @@
 @media (min-width: 1024px) {
 
   .carritoButton {
-    margin-top: 94px;
+    margin-top: 64px;
     width: 500px;
     
   }

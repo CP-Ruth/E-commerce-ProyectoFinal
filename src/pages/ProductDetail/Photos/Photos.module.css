@@ -6,7 +6,13 @@
   width: 100%;
 }
 
+@media (min-width: 768px) {
+  .swiper{
+    width:380px
+  }
+}
 @media (min-width: 1024px) {
+  
   .containerPrincipal {
     margin: 0;
     padding: 0;
@@ -15,7 +21,6 @@
   }
 
   .swiper {
-    width: 500px;
-    height: 500px;
+    width: 450px;
   }
 }
