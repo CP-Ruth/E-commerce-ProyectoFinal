@@ -1,0 +1,42 @@
+.containerPrincipal {
+  width: 100%;
+  display: flex;
+}
+
+.containerPrincipal img {
+  width: 40%;
+  max-width: 200px;
+}
+
+.detailProduct {
+  border: 1px solid rgb(129, 129, 129);
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.priceAndDelete {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@media (min-width: 768px) {
+  .containerPrincipal {
+    font-size: var(--fluid-16-18);
+     width: 100%;
+  }
+  .containerPrincipal img {
+    width: 30%;
+    max-width: 300px;
+  }
+
+}

@@ -1,6 +1,8 @@
 import { FC } from "react";
 import styles from "./Photos.module.css";
 import { IImage } from "../../../types/IDetailsProduct";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 
 interface PropsPhotos {
   photos: IImage[];
@@ -9,8 +11,27 @@ interface PropsPhotos {
 const Photos: FC<PropsPhotos> = ({ photos }) => {
   return (
     <div className={styles.containerPrincipal}>
-      <img src={photos[0].url} alt="Imagen del producto" />
-      <img src={photos[1].url} alt="Imagen del producto" />
+      <div className={styles.swiper}>
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={10}
+          navigation
+          loop={false}
+          grabCursor={true}
+          breakpoints={{
+            500: { slidesPerView: 2 },
+            1000: { slidesPerView: 1 }
+          }}>
+          {photos && photos.map((photo) => (
+            <SwiperSlide key={photo.id}>
+              <img src={photo.url} alt="Imagen del producto" />
+            </SwiperSlide>
+          ))
+          }
+        </Swiper>
+      </div>
+      {/* <img src={photos[0].url} alt="Imagen del producto" />
+      <img src={photos[1].url} alt="Imagen del producto" /> */}
     </div>
   );
 };

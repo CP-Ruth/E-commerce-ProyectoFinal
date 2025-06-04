@@ -14,7 +14,7 @@ const Catalog = () => {
   const handleFilter = (type: string) => {
     setFilter(type);
   };
-
+  
   useEffect(() => {
     setFilter("");
   }, [sexo])

@@ -3,6 +3,7 @@ import styles from "./DetailForm.module.css";
 import {
   IDetailsProduct,
   IImage,
+  IProduct,
   IStock,
   ITalle,
 } from "../../../types/IDetailsProduct";
@@ -14,26 +15,15 @@ import { useListDetails } from "../../../hooks/useListDetails";
 import { getTalles } from "../../../services/tallesService";
 import { imageUploader } from "../../../utils/uploadImage";
 import { createImage } from "../../../services/imageService";
+import { initialFormDetail } from "../../../utils/initialData";
+import noImage from "../../../assets/images/no-photography.webp";
+import { useListProducts } from "../../../hooks/useListProducts";
+import Select from "../../../components/Select/Select";
 
 interface PropsDetailForm {
   detalle: IDetailsProduct;
   onClose: () => void;
 }
-
-const initialForm: IDetailsProduct = {
-  producto: {
-    nombre: "",
-    sexo: "",
-    tipoProducto: "",
-    categorias: [],
-  },
-  precioVenta: 0,
-  precioCompra: 0,
-  color: "",
-  activo: true,
-  imagenes: [],
-  stocks: [],
-};
 
 const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
   const {
@@ -43,8 +33,11 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     handlerStockChange,
     handlerTalleChange,
     handlerImageChange,
-  } = useFormDetails(initialForm);
-  const { updateOneDetail } = useListDetails();
+    handlerProductChange,
+  } = useFormDetails(initialFormDetail);
+  const { updateOneDetail, createOneDetail } = useListDetails();
+  const { products, getAllProducts } = useListProducts();
+
   const [talles, setTalles] = useState<ITalle[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -52,11 +45,15 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     e.preventDefault();
     setLoading(true);
 
-    const imagenCloud = form.imagenes.map((imagen, index) =>
-      imagen.url !== detalle.imagenes[index].url
-        ? imageUploader(imagen.url as File)
-        : imagen
-    );
+    const imagenCloud = form.imagenes.map((imagen, index) => {
+      if (detalle) {
+        return imagen.url !== detalle.imagenes[index].url
+          ? imageUploader(imagen.url as File)
+          : imagen;
+      } else {
+        return imagen.url ? imageUploader(imagen.url as File) : imagen;
+      }
+    });
 
     const imagenCloudArray: IImage[] = await Promise.all(imagenCloud);
 
@@ -67,12 +64,21 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     );
 
     const uploadArray = await Promise.all(upload);
+    console.log(uploadArray);
     form.imagenes = uploadArray;
-    updateOneDetail(form);
+
+    if (form.id) {
+      updateOneDetail(form);
+    } else {
+      console.log(form);
+      createOneDetail(form);
+    }
+
     Swal.fire({
       title: "Se ha actualizado correctamente",
       icon: "success",
     });
+
     onClose();
   };
 
@@ -90,12 +96,16 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
 
   useEffect(() => {
     const fetchTalles = async () => {
-      const path = detalle?.producto.tipoProducto;
+      const path = form.producto.tipoProducto;
       const talles = await getTalles(path);
       setTalles(talles);
     };
     fetchTalles();
   }, [detalle]);
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -123,6 +133,15 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
             onChange={handlerDetailsChange}
             text="Precio Venta"
           />
+          {!detalle && products && products.length > 0 && (
+            <Select
+              name="producto"
+              value={form.producto.nombre}
+              onChange={(e) => handlerProductChange(e, products)}
+              text="Producto"
+              options={products.map((producto: IProduct) => producto.nombre)}
+            />
+          )}
           <div className={styles.item}>
             <label htmlFor="talle">Talles: </label>
             {form.stocks.map((stock: IStock, index: number) => (
@@ -131,6 +150,7 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
                   name="talle"
                   value={stock.talle.name}
                   onChange={(e) => handlerTalleChange(e, index, talles)}
+                  required
                 >
                   {talles.length > 0 &&
                     talles.map((talle: ITalle, index: number) => (
@@ -144,6 +164,7 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
                   placeholder="Cantidad"
                   value={stock.stock}
                   onChange={(e) => handlerStockChange(e, index)}
+                  required
                 />
               </div>
             ))}
@@ -153,11 +174,16 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
             <div>
               {form.imagenes.map((imagen: IImage, index: number) => (
                 <div className={styles.images} key={index}>
-                  <img key={index} src={imagen.url as string} alt="" />
+                  <img
+                    key={index}
+                    src={(imagen.url as string) || noImage}
+                    alt=""
+                  />
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => handlerImageChange(e, index)}
+                    required={detalle ? false : true}
                   />
                 </div>
               ))}

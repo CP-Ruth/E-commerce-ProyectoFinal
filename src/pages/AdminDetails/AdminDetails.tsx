@@ -26,6 +26,12 @@ const AdminDetails = () => {
   return (
     <>
       <section>
+        <button
+          className={styles.button}
+          onClick={() => handlerOpenModal(null, "edit")}
+        >
+          Añadir Detalle
+        </button>
         <table className={styles.tableUser}>
           <thead>
             <TableHeadDetail />

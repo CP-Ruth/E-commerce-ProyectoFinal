@@ -5,7 +5,7 @@ import { ProductFilters } from "../types/typesFilter";
 import {
   getDetallesProductos,
   getDetalleProductoPorIdProducto,
-} from "../services/productsService";
+} from "../services/dProductFilterService";
 import { IDetailsProduct } from "../types/IDetailsProduct";
 
 interface ProductState {
