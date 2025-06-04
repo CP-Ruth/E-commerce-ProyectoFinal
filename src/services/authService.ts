@@ -23,7 +23,7 @@ export const register = async (user: IRegister) => {
     );
     return token.data;
   } catch (error) {
-    console.log("No se ha podido registrar");
+    Swal.fire("No se ha podido registrar", "", "error");
   }
 };
 

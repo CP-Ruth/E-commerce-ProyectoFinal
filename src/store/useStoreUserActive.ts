@@ -4,7 +4,7 @@ import { IUser } from "../types/IUser";
 interface IUserActive {
   userActive: IUser | null;
   token: string;
-  setUserActive: (user: IUser) => void;
+  setUserActive: (user: IUser | null) => void;
   setToken: (token: string) => void;
 }
 

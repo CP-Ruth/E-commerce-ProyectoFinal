@@ -61,6 +61,7 @@ export const useAuth = () => {
 
   return {
     userActive,
+    setUserActive,
     token,
     loginUser,
     registerUser,
