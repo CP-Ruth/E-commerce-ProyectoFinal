@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { IDetailsProduct, IProduct } from "../types/IDetailsProduct";
+import {
+  ICategory,
+  IDetailsProduct,
+  IDiscount,
+  IProduct,
+} from "../types/IDetailsProduct";
 
 const useModal = () => {
-  const [productActive, setProductActive] = useState<IDetailsProduct | IProduct | null>(null);
+  const [productActive, setProductActive] = useState<
+    IDetailsProduct | IProduct | ICategory | IDiscount | null
+  >(null);
   const [openModal, setOpenModal] = useState({
     info: false,
     edit: false,
@@ -23,8 +30,8 @@ const useModal = () => {
   return {
     productActive,
     openModal,
-    handlerOpenModal
-  }
+    handlerOpenModal,
+  };
 };
 
 export default useModal;

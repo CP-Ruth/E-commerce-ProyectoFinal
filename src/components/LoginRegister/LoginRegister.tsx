@@ -12,7 +12,7 @@ type ModalProps = {
 const initial = {
   nombre: "",
   apellido: "",
-  dni: "",
+  dni: 0,
   email: "",
   password: "",
   direccion: "",
@@ -57,7 +57,7 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
     try {
       if (registerData.nombre !== "") {
         await schemaRegister.validate(registerData, { abortEarly: false });
-        registerUser(registerData);
+        registerUser(registerData, true);
       } else {
         await schemaLogin.validate(loginData, { abortEarly: false });
         loginUser(loginData);
