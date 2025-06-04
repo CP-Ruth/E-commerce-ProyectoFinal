@@ -1,6 +1,7 @@
 import { ILogin, IRegister, IToken } from "../types/IAuth";
 import axios, { AxiosResponse } from "axios";
 import { IUser } from "../types/IUser";
+import Swal from "sweetalert2";
 
 const url = "http://localhost:8080/api/v1/auth";
 const urlUser = "http://localhost:8080/api/v1";
@@ -10,7 +11,7 @@ export const login = async (user: ILogin) => {
     const token: AxiosResponse<IToken> = await axios.post(`${url}/login`, user);
     return token.data;
   } catch (error) {
-    console.log("No se ha podido iniciar sesión");
+    Swal.fire("El usuario o contraseña son incorrectos", "", "error");
   }
 };
 

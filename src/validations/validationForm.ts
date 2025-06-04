@@ -7,6 +7,7 @@ export const schemaRegister = Yup.object({
   dni: Yup.number().required("El dni es obligatorio"),
   direccion: Yup.string().required("Proporcione una dirección"),
   localidad: Yup.string().required("Proporcione una localidad"),
+  codigoPostal: Yup.number().required("Proporcione un codigo postal"),
   provincia: Yup.string().required("Proporcione una provincia"),
   email: Yup.string()
     .email("Invalid email")
