@@ -16,7 +16,7 @@ const useModal = () => {
   });
 
   const handlerOpenModal = (
-    product: IDetailsProduct | IProduct | null,
+    product: IDetailsProduct | IProduct | ICategory | IDiscount | null,
     option: "info" | "edit"
   ) => {
     setProductActive(product);

@@ -13,6 +13,10 @@
   border-bottom: 1px solid #868686;
 }
 
+.tableRow td:last-child{
+  width: 200px;
+}
+
 .tableRow td:not(.username){
   text-transform: capitalize;
 }
