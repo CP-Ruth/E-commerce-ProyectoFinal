@@ -6,15 +6,16 @@ interface PropsInput {
   name: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   text: string;
+  type?: string
 }
 
-const Input: FC<PropsInput> = ({ name, value, onChange, text }) => {
+const Input: FC<PropsInput> = ({ name, value, onChange, text, type }) => {
   return (
     <div className={styles.item}>
       <label htmlFor="color">{text}: </label>
       <input
         id={name}
-        type="text"
+        type={type || "text"}
         name={name}
         placeholder={text}
         value={value}

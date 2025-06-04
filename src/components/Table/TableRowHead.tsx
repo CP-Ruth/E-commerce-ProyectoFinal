@@ -50,3 +50,13 @@ export const TableHeadOrder = () => {
     </tr>
   );
 };
+
+export const TableHeadCategory = () => {
+  return (
+    <tr className={styles.tableRow}>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th className={styles.options}>Opciones</th>
+    </tr>
+  );
+};

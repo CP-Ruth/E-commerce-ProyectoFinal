@@ -12,12 +12,14 @@ type ModalProps = {
 const initial = {
   nombre: "",
   apellido: "",
-  dni: "",
+  dni: 0,
   email: "",
   password: "",
   direccion: "",
   localidad: "",
+  codigoPostal: "",
   provincia: "",
+  rol: "USUARIO"
 };
 
 const loginInitial = {
@@ -53,12 +55,12 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      if (registerData) {
+      if (registerData.nombre !== "") {
+        await schemaRegister.validate(registerData, { abortEarly: false });
+        registerUser(registerData, true);
+      } else {
         await schemaLogin.validate(loginData, { abortEarly: false });
         loginUser(loginData);
-      } else {
-        await schemaRegister.validate(registerData, { abortEarly: false });
-        registerUser(registerData);
       }
       onClose();
     } catch (err) {
@@ -80,14 +82,20 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
           <button
             type="button"
             className={isRegisterMode ? styles.active : ""}
-            onClick={() => setIsRegisterMode(true)}
+            onClick={() => {
+              setIsRegisterMode(true);
+              setRegisterData(initial);
+            }}
           >
             Ingresar
           </button>
           <button
             type="button"
             className={isRegisterMode ? "" : styles.active}
-            onClick={() => setIsRegisterMode(false)}
+            onClick={() => {
+              setIsRegisterMode(false);
+              setLoginData(loginInitial);
+            }}
           >
             Registro
           </button>
@@ -146,6 +154,28 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
               />
               {errors.dni && <span className={styles.error}>{errors.dni}</span>}
               <input
+                type="email"
+                name="email"
+                value={registerData.email}
+                placeholder="Correo"
+                onChange={handleChange}
+                required
+              />
+              {errors.username && (
+                <span className={styles.error}>{errors.username}</span>
+              )}
+              <input
+                type="password"
+                name="password"
+                value={registerData.password}
+                placeholder="Contraseña"
+                onChange={handleChange}
+                required
+              />
+              {errors.password && (
+                <span className={styles.error}>{errors.password}</span>
+              )}
+              <input
                 type="text"
                 name="direccion"
                 value={registerData.direccion}
@@ -168,6 +198,17 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
                 <span className={styles.error}>{errors.localidad}</span>
               )}
               <input
+                type="number"
+                name="codigoPostal"
+                value={registerData.codigoPostal}
+                placeholder="Codigo Postal"
+                onChange={handleChange}
+                required
+              />
+              {errors.codigoPostal && (
+                <span className={styles.error}>{errors.codigoPostal}</span>
+              )}
+              <input
                 type="text"
                 name="provincia"
                 value={registerData.provincia}
@@ -177,28 +218,6 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
               />
               {errors.provincia && (
                 <span className={styles.error}>{errors.provincia}</span>
-              )}
-              <input
-                type="email"
-                name="email"
-                value={registerData.email}
-                placeholder="Correo"
-                onChange={handleChange}
-                required
-              />
-              {errors.username && (
-                <span className={styles.error}>{errors.username}</span>
-              )}
-              <input
-                type="password"
-                name="password"
-                value={registerData.password}
-                placeholder="Contraseña"
-                onChange={handleChange}
-                required
-              />
-              {errors.password && (
-                <span className={styles.error}>{errors.password}</span>
               )}
             </div>
           )}

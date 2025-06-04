@@ -16,6 +16,7 @@ export interface IDiscount {
 export interface IImage {
   id?: number;
   url: string | File;
+  alt: string;
 }
 
 export interface ITalle {
@@ -47,4 +48,9 @@ export interface IDetailsProduct {
   descuento?: IDiscount;
   imagenes: IImage[];
   stocks: IStock[];
+}
+
+export interface IRequestColors {
+  idDetalle: number;
+  color: string;
 }

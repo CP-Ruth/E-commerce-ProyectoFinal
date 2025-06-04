@@ -1,0 +1,48 @@
+.container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  cursor: pointer;
+}
+
+.form {
+  width: 40%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.formContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0px;
+}
+
+.title {
+  text-align: center;
+  padding: 10px 0px;
+}
+
+.options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  width: 45%;
+  margin: 20px auto;
+}
+
+.button{
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 1px solid;
+  cursor: pointer;
+}

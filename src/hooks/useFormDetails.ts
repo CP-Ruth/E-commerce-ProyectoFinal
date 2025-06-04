@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { IDetailsProduct, ITalle } from "../types/IDetailsProduct";
+import { IDetailsProduct, IProduct, ITalle } from "../types/IDetailsProduct";
 
 export const useFormDetails = (initialForm: IDetailsProduct) => {
   const [form, setForm] = useState<IDetailsProduct>(initialForm);
@@ -27,6 +27,24 @@ export const useFormDetails = (initialForm: IDetailsProduct) => {
     }));
   };
 
+  const handlerProductChange = (
+    e: ChangeEvent<HTMLSelectElement>,
+    products: IProduct[]
+  ) => {
+    const { value } = e.target;
+
+    const productSelected = products.find(
+      (product) => product.nombre === value
+    );
+
+    if (productSelected) {
+      setForm((prev) => ({
+        ...prev,
+        producto: productSelected,
+      }));
+    }
+  };
+
   const handlerTalleChange = (
     e: ChangeEvent<HTMLSelectElement>,
     index: number,
@@ -34,11 +52,13 @@ export const useFormDetails = (initialForm: IDetailsProduct) => {
   ) => {
     const { value } = e.target;
     const talleSelected = talles.find((talle) => talle.name === value);
-    
+
     setForm((prev) => ({
       ...prev,
       stocks: prev.stocks.map((stock, i) =>
-       i === index ? { ...stock, talle: talleSelected ? talleSelected : stock.talle} : stock
+        i === index
+          ? { ...stock, talle: talleSelected ? talleSelected : stock.talle }
+          : stock
       ),
     }));
   };
@@ -73,5 +93,6 @@ export const useFormDetails = (initialForm: IDetailsProduct) => {
     handlerStockChange,
     handlerTalleChange,
     handlerImageChange,
+    handlerProductChange,
   };
 };

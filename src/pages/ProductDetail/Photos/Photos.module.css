@@ -1,11 +1,21 @@
 .containerPrincipal {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  max-width: 700px;
   margin: 0 auto;
+  padding: 20px;
 }
 .containerPrincipal img {
   width: 100%;
-  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .containerPrincipal {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .swiper {
+    width: 500px;
+    height: 500px;
+  }
 }

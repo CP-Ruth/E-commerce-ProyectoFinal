@@ -7,11 +7,29 @@ import { FaRegUser, FaUserCheck } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import logo from "../../assets/images/myb.png";
 import { useAuth } from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Header = () => {
   const [openFormUser, setOpenFormUser] = useState(false); // Estado para abrir el modal
   const [menuOpen, setMenuOpen] = useState(false); // Estado para la vista de la hamburgesa
-  const { userActive, getUserByTokenUser } = useAuth();
+  const { userActive, getUserByTokenUser, setUserActive } = useAuth();
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "¿Estas seguro de cerrar sesión?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Cerrar sesión",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token");
+        setUserActive(null);
+        Swal.fire("Cerrado!", "Has cerrado sesión.", "success");
+      }
+    });
+  };
 
   useEffect(() => {
     getUserByTokenUser();
@@ -38,7 +56,7 @@ const Header = () => {
             <img src={carrito} alt="Carrito de compras" />
           </Link>
           {userActive ? (
-            <button>
+            <button onClick={handleLogout}>
               <FaUserCheck size={30} />
             </button>
           ) : (

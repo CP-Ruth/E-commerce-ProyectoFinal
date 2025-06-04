@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
-import ShoppingCart from "./pages/ShoppingCart/Shopping";
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import Catalog from "./pages/Catalog/Catalog";
 import Home from "./pages/Home/Home";
 import AdminHome from "./pages/AdminHome/AdminHome";
@@ -9,6 +9,7 @@ import AdminUsers from "./pages/AdminUsers/AdminUsers";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import AdminDetails from "./pages/AdminDetails/AdminDetails";
 import AdminProducts from "./pages/AdminProducts/AdminProducts";
+import AdminCategory from "./pages/AdminCategory/AdminCategory";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="detalles" element={<AdminDetails />} />
         <Route path="productos" element={<AdminProducts />} />
         <Route path="pedidos" element={<AdminOrders />} />
+        <Route path="categorias" element={<AdminCategory />} />
       </Route>
     </Routes>
   );

@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import styles from "./Table.module.css";
 import { IUser } from "../../types/IUser";
-import { IDetailsProduct, IProduct } from "../../types/IDetailsProduct";
+import { ICategory, IDetailsProduct, IProduct } from "../../types/IDetailsProduct";
 
 interface PropUser {
   usuario: IUser;
@@ -15,6 +15,11 @@ interface PropsProduct {
 
 interface PropsDetail {
   detalle: IDetailsProduct
+  children?: ReactNode;
+}
+
+interface PropsCategory {
+  categoria: ICategory
   children?: ReactNode;
 }
 
@@ -53,6 +58,16 @@ export const TableRowProduct: FC<PropsProduct> = ({ producto, children }) => {
       <td>{producto.sexo}</td>
       <td>{producto.tipoProducto}</td>
       <td>{producto.categorias.map((categoria) => categoria.nombre).join(", ")}</td>
+      <td>{children}</td>
+    </tr>
+  );
+};
+
+export const TableRowCategory: FC<PropsCategory> = ({ categoria, children }) => {
+  return (
+    <tr className={styles.tableRow}>
+      <td>{categoria.id}</td>
+      <td>{categoria.nombre}</td>
       <td>{children}</td>
     </tr>
   );

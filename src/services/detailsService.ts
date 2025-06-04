@@ -1,11 +1,13 @@
 import axios from "axios";
-import { IDetailsProduct } from "../types/IDetailsProduct";
+import { IDetailsProduct, IRequestColors } from "../types/IDetailsProduct";
 
 const URL = "http://localhost:8080/api/v1";
 
 export const getDetails = async () => {
   try {
-    const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos`);
+    const response = await axios.get<IDetailsProduct[]>(
+      `${URL}/detalles_productos`
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -17,7 +19,9 @@ export const getDetails = async () => {
 
 export const getDetailById = async (idProducto: number) => {
   try {
-    const response = await axios.get<IDetailsProduct>(`${URL}/detalles_productos/${idProducto}`);
+    const response = await axios.get<IDetailsProduct>(
+      `${URL}/detalles_productos/${idProducto}`
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -25,11 +29,13 @@ export const getDetailById = async (idProducto: number) => {
     }
     throw error;
   }
-}
+};
 
 export const getDetailsByFilters = async (url: string) => {
   try {
-    const response = await axios.get<IDetailsProduct[]>(`${URL}/detalles_productos/catalogo?` + url);
+    const response = await axios.get<IDetailsProduct[]>(
+      `${URL}/detalles_productos/catalogo?` + url
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -37,11 +43,28 @@ export const getDetailsByFilters = async (url: string) => {
     }
     throw error;
   }
-}
+};
+
+export const getDetailsByProduct = async (idProducto: number) => {
+  try {
+    const response = await axios.get<IRequestColors[]>(
+      `${URL}/detalles_productos/colores/producto/${idProducto}`
+    );
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(`Error al obtener los productos: ${error.response.data}`);
+    }
+    throw error;
+  }
+};
 
 export const createDetail = async (product: IDetailsProduct) => {
   try {
-    const response = await axios.post<IDetailsProduct>(`${URL}/detalles_productos`, product);
+    const response = await axios.post<IDetailsProduct>(
+      `${URL}/detalles_productos`,
+      product
+    );
     return response.data;
   } catch (error: any) {
     if (error.response) {
