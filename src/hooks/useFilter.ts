@@ -14,7 +14,7 @@ export const buildFilterQuery = (filters: Record<string, any>) => {
 
 export const useFilter = () => {
   const [productos, setProductos] = useState<IDetailsProduct[]>([]);
-
+  
   // const getProducts = async (sexo: String, filter: String) => {
   //   const response = await getDetailsByFilters(
   //     `sexo=${sexo}${filter && "&tipoProducto=" + filter}`
@@ -35,6 +35,8 @@ export const useFilter = () => {
     const response = await getDetailsByFilters(query);
     setProductos(response);
   };
+
+
 
   return {
     productos,
