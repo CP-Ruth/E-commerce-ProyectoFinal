@@ -19,6 +19,7 @@ const initial = {
   localidad: "",
   codigoPostal: "",
   provincia: "",
+  rol: "USUARIO"
 };
 
 const loginInitial = {

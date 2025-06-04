@@ -31,10 +31,10 @@ export const useAuth = () => {
     }
   };
 
-  const registerUser = async (usuario: IRegister) => {
+  const registerUser = async (usuario: IRegister, save: boolean) => {
     const data = await register(usuario);
 
-    if (data) {
+    if (data && save) {
       localStorage.setItem("token", data.token);
       const user = await getUserByEmail(usuario.email, data.token);
 
@@ -43,6 +43,8 @@ export const useAuth = () => {
         setToken(data.token);
         Swal.fire("Te has registrado correctamente", "", "success");
       }
+    }else{
+      return data
     }
   };
 

@@ -1,16 +1,17 @@
 export interface Country {
-   id: number
+   id?: number
    nombre: string
 }
 
 export interface Province {
-   id: number
+   id?: number
    nombre: string
-   pais: Country
+   pais?: Country
 }
 
 export interface Locality {
-   id: number
+   id?: number
    nombre: string
+   codigoPostal: number
    provincia: Province
 }

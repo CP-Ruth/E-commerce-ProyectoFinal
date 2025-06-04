@@ -123,12 +123,14 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
           />
           <Input
             name="precioCompra"
+            type="number"
             value={form.precioCompra}
             onChange={handlerDetailsChange}
             text="Precio Compra"
           />
           <Input
             name="precioVenta"
+            type="number"
             value={form.precioVenta}
             onChange={handlerDetailsChange}
             text="Precio Venta"
