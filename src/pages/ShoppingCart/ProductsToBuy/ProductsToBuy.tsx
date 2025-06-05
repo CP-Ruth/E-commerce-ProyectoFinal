@@ -26,7 +26,6 @@ const ProductsToBuy: FC<ItemProducto> = ({ itemProducto, onRemove }) => {
                 <p>
                   <s>${itemProducto.precioV}</s>
                 </p>
-
                 <p>
                   <b>${itemProducto.precioDesc}</b>
                 </p>
@@ -38,6 +37,7 @@ const ProductsToBuy: FC<ItemProducto> = ({ itemProducto, onRemove }) => {
           <button
             className={styles.buttonEliminarProducto}
             onClick={() => onRemove(itemProducto)}
+
           >
             <RiDeleteBin6Line size={30} />
           </button>
