@@ -24,7 +24,7 @@ export const useListDetails = () => {
   };
 
   const createOneDetail = async (detail: IDetailsProduct) => {
-    const nuevoDetail = await createDetail(detail);
+    const nuevoDetail = await createDetail(detail, token);
 
     if (nuevoDetail) {
       addDetailsList(nuevoDetail);

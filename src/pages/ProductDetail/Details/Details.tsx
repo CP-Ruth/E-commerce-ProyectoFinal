@@ -31,6 +31,13 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   const descuento = product.descuento ? product.descuento.porcentaje : 0;
   const precioProductoConDescuento = product.precioVenta - (product.precioVenta * descuento);
 
+  const [stockDisponible, setStockDisponible] = useState<number>(0);
+
+  //corroboramos el desceunto
+  const descuento = product.descuento ? product.descuento.porcentaje : 0;
+  const precioProductoConDescuento =
+    product.precioVenta - product.precioVenta * descuento;
+
   const handlerCount = (e: ChangeEvent<HTMLSelectElement>) => {
     setDetailSelected({
       ...detailSelected,
@@ -39,12 +46,6 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   };
 
   const handlerTalle = (e: ChangeEvent<HTMLSelectElement>) => {
-    // setDetailSelected({
-    //   ...detailSelected,
-    //   talle: product.stocks.find(
-    //     (stock) => stock.talle.name === e.target.value
-    //   )!.talle,
-    // });
     const talleSeleccionado = product.stocks.find(
       (stock) => stock.talle.name === e.target.value
     )!;
@@ -53,13 +54,18 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       ...detailSelected,
       talle: talleSeleccionado.talle,
     });
-    setStockDisponible(talleSeleccionado.stock); // cantidad disponible para ese talle
+
+    setStockDisponible(talleSeleccionado.stock);
   };
   useEffect(() => {
     setStockDisponible(product.stocks[0].stock); // stock del talle por defecto
   }, [product]);
 
   console.log("stock Disponible: ", stockDisponible);
+
+  useEffect(() => {
+    setStockDisponible(product.stocks[0].stock); // stock del talle por defecto
+  }, [product]);
 
   const handleAddToCart = () => {
     const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -76,19 +82,17 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       imagen: product.imagenes[0]?.url || "",
     };
 
-    //Buscamos duplicados antes de agregar al carrito
+    //Buscamos duplicados antes de agregar al carritoAdd commentMore actions
     const existeDuplicado = currentCart.findIndex(
       (p: any) =>
-        p.idDetalleProducto === item.idDetalleProducto && p.talleId === item.talleId
-    )
+        p.idDetalleProducto === item.idDetalleProducto &&
+        p.talleId === item.talleId
+    );
 
-    //
     if (existeDuplicado !== -1) {
-      // Ya existe → sumamos cantidades
       currentCart[existeDuplicado].cantidad += item.cantidad;
     } else {
-      // No existe → lo agregamos
-      currentCart.push(item);     // Agregar el nuevo item
+      currentCart.push(item);
     }
 
     localStorage.setItem("cart", JSON.stringify(currentCart)); // Guardar el nuevo carrito en el localStorage
@@ -115,13 +119,15 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       {descuento ? (
         <>
           <p>Este producto tiene {product.descuento?.nombre} de descuento</p>
-          <h4><s>${product.precioVenta}</s></h4>
+          <h4>
+            <s>${product.precioVenta}</s>
+          </h4>
           <h3>${precioProductoConDescuento}</h3>
         </>
       ) : (
         <h3>${product.precioVenta}</h3>
       )}
-
+      
       <div className={styles.containerData}>
         <div>
           <p>Color:</p>
@@ -155,12 +161,10 @@ export const Details: FC<PropsDetails> = ({ product }) => {
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
+          </select>
           </select> */}
           {stockDisponible > 0 ? (
-            <select
-              value={detailSelected.cantidad}
-              onChange={handlerCount}
-            >
+            <select value={detailSelected.cantidad} onChange={handlerCount}>
               {Array.from({ length: Math.min(stockDisponible, 4) }, (_, i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
@@ -170,7 +174,6 @@ export const Details: FC<PropsDetails> = ({ product }) => {
           ) : (
             <p style={{ color: "red" }}>Sin stock disponible por el momento</p>
           )}
-
         </div>
       </div>
       <div className={styles.carritoButton}>
@@ -178,7 +181,9 @@ export const Details: FC<PropsDetails> = ({ product }) => {
           onClick={handleAddToCart}
           disabled={stockDisponible === 0}
           className={stockDisponible === 0 ? styles.botonDeshabilitado : ""}
-        >AGREGAR AL CARRITO</button>
+        >
+          AGREGAR AL CARRITO
+        </button>
       </div>
     </div>
   );
