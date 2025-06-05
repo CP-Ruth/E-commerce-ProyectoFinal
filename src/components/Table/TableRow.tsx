@@ -82,7 +82,7 @@ export const TableRowDiscount: FC<PropsDiscount> = ({ descuento, children }) => 
   return (
     <tr className={styles.tableRow}>
       <td>{descuento.nombre}</td>
-      <td>{descuento.porcentaje * 100}%</td>
+      <td>{descuento.porcentaje}%</td>
       <td>{descuento.fechaInicio}</td>
       <td>{descuento.fechaFin}</td>
       <td>{descuento.activo ? "Activo" : "Inactivo"}</td>

@@ -5,9 +5,13 @@ import styles from "./AdminDiscount.module.css";
 import { TableRowDiscount } from "../../components/Table/TableRow";
 import { FaPowerOff } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
+import useModal from "../../hooks/useModal";
+import DiscountForm from "./DiscountForm/DiscountForm";
+import { IDiscount } from "../../types/IDetailsProduct";
 
 const AdminDiscount = () => {
   const { descuentos, getAllDiscounts } = useListDiscount();
+  const { openModal, handlerOpenModal, active } = useModal();
 
   useEffect(() => {
     getAllDiscounts();
@@ -16,7 +20,12 @@ const AdminDiscount = () => {
   return (
     <>
       <section>
-        <button className={styles.button}>Añadir Descuento</button>
+        <button
+          className={styles.button}
+          onClick={() => handlerOpenModal(null, "edit")}
+        >
+          Añadir Descuento
+        </button>
         <table className={styles.tableUser}>
           <thead>
             <TableHeadDiscount />
@@ -24,7 +33,11 @@ const AdminDiscount = () => {
           <tbody>
             {descuentos?.map((descuento) => (
               <TableRowDiscount key={descuento.id} descuento={descuento}>
-                <MdEdit size={30} className={styles.icon} />
+                <MdEdit
+                  size={30}
+                  className={styles.icon}
+                  onClick={() => handlerOpenModal(descuento, "edit")}
+                />
                 <FaPowerOff
                   className={`${styles.icon} ${
                     descuento.activo ? styles.active : styles.deactive
@@ -35,6 +48,12 @@ const AdminDiscount = () => {
             ))}
           </tbody>
         </table>
+        {openModal.edit && (
+          <DiscountForm
+            discount={active as IDiscount}
+            onClose={() => handlerOpenModal(null, "edit")}
+          />
+        )}
       </section>
     </>
   );
