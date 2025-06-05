@@ -62,7 +62,7 @@ export const deleteDiscount = async (id: number, token: string) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    return response.data;
+    if (response.status === 200) return true;
   } catch (error: any) {
     if (error.response) {
       throw new Error(`Error al eliminar el descuento: ${error.response.data}`);

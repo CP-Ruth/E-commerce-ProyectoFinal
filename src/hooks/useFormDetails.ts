@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { IDetailsProduct, IProduct, ITalle } from "../types/IDetailsProduct";
+import { IDetailsProduct, IDiscount, IProduct, ITalle } from "../types/IDetailsProduct";
 
 export const useFormDetails = (initialForm: IDetailsProduct) => {
   const [form, setForm] = useState<IDetailsProduct>(initialForm);
@@ -86,6 +86,23 @@ export const useFormDetails = (initialForm: IDetailsProduct) => {
     }
   };
 
+  const handlerDiscountChange = (
+    e: ChangeEvent<HTMLSelectElement>,
+    descuentos: IDiscount[]
+  ) => {
+    const { value } = e.target;
+    const descuentoSelected = descuentos.find(
+      (descuento) => descuento.nombre === value
+    );
+
+    if (descuentoSelected) {
+      setForm((prev) => ({
+        ...prev,
+        descuento: descuentoSelected,
+      }));
+    }
+  };
+
   return {
     form,
     setForm,
@@ -94,5 +111,6 @@ export const useFormDetails = (initialForm: IDetailsProduct) => {
     handlerTalleChange,
     handlerImageChange,
     handlerProductChange,
+    handlerDiscountChange,
   };
 };

@@ -2,6 +2,7 @@ import { IoMdClose } from "react-icons/io";
 import styles from "./DetailForm.module.css";
 import {
   IDetailsProduct,
+  IDiscount,
   IImage,
   IProduct,
   IStock,
@@ -19,6 +20,7 @@ import { initialFormDetail } from "../../../utils/initialData";
 import noImage from "../../../assets/images/no-photography.webp";
 import { useListProducts } from "../../../hooks/useListProducts";
 import Select from "../../../components/Select/Select";
+import { getDescuentos } from "../../../services/descuentoService";
 
 interface PropsDetailForm {
   detalle: IDetailsProduct;
@@ -34,11 +36,13 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     handlerTalleChange,
     handlerImageChange,
     handlerProductChange,
+    handlerDiscountChange,
   } = useFormDetails(initialFormDetail);
   const { updateOneDetail, createOneDetail } = useListDetails();
-  const { products, getAllProducts } = useListProducts();
+  const { products } = useListProducts();
 
   const [talles, setTalles] = useState<ITalle[]>([]);
+  const [descuentos, setDescuentos] = useState<IDiscount[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handlerSubmit = async (e: FormEvent) => {
@@ -64,7 +68,6 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     );
 
     const uploadArray = await Promise.all(upload);
-    console.log(uploadArray);
     form.imagenes = uploadArray;
 
     if (form.id) {
@@ -96,15 +99,20 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
 
   useEffect(() => {
     const fetchTalles = async () => {
-      const path = form.producto.tipoProducto;
+      const path =
+        (detalle && detalle.producto.tipoProducto) ||
+        form.producto.tipoProducto;
       const talles = await getTalles(path);
       setTalles(talles);
     };
-    fetchTalles();
-  }, [detalle]);
 
-  useEffect(() => {
-    getAllProducts();
+    const fetchDiscount = async () => {
+      const descuentos = await getDescuentos();
+      setDescuentos(descuentos);
+    };
+
+    fetchTalles();
+    fetchDiscount();
   }, []);
 
   return (
@@ -144,6 +152,13 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
               options={products.map((producto: IProduct) => producto.nombre)}
             />
           )}
+          <Select
+            name="descuento"
+            value={form.descuento?.nombre || ""}
+            onChange={(e) => handlerDiscountChange(e, descuentos)}
+            text="Descuento"
+            options={descuentos.map((descuento: IDiscount) => descuento.nombre)}
+          />
           <div className={styles.item}>
             <label htmlFor="talle">Talles: </label>
             {form.stocks.map((stock: IStock, index: number) => (
