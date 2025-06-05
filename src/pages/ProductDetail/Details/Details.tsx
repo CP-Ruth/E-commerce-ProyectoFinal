@@ -25,6 +25,11 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       name: product.stocks[0].talle.name,
     },
   });
+  const [stockDisponible, setStockDisponible] = useState<number>(0);
+
+  //corroboramos el desceunto
+  const descuento = product.descuento ? product.descuento.porcentaje : 0;
+  const precioProductoConDescuento = product.precioVenta - (product.precioVenta * descuento);
 
   const [stockDisponible, setStockDisponible] = useState<number>(0);
 
@@ -52,6 +57,11 @@ export const Details: FC<PropsDetails> = ({ product }) => {
 
     setStockDisponible(talleSeleccionado.stock);
   };
+  useEffect(() => {
+    setStockDisponible(product.stocks[0].stock); // stock del talle por defecto
+  }, [product]);
+
+  console.log("stock Disponible: ", stockDisponible);
 
   useEffect(() => {
     setStockDisponible(product.stocks[0].stock); // stock del talle por defecto
@@ -117,6 +127,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       ) : (
         <h3>${product.precioVenta}</h3>
       )}
+      
       <div className={styles.containerData}>
         <div>
           <p>Color:</p>
