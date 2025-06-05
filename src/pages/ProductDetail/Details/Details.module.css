@@ -36,6 +36,12 @@
   height: 2.5rem;
 }
 
+.botonDeshabilitado {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
 @media (min-width: 768px) {
   .containerPrincipal {
     gap: 2rem;
