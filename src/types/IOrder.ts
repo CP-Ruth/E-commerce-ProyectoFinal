@@ -15,7 +15,8 @@ export interface IOrderItem {
 export interface IItem {
   idDetalleProducto: number;
   nombre: string;
-  precio: number;
+  precioV: number;
+  precioDesc?: number;
   color: string;
   talleId: number;
   talle: string;
