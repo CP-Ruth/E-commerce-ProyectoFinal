@@ -4,14 +4,10 @@ import Header from "../../components/Header/Header";
 import { IItem } from "../../types/IOrder";
 import BuyDetails from "./BuyDetails/BuyDetails";
 import ProductsToBuy from "./ProductsToBuy/ProductsToBuy";
-import styles from './ShoppingCart.module.css'
+import styles from "./ShoppingCart.module.css";
 import Swal from "sweetalert2";
 
 const ShoppingCart = () => {
-  // const orderItems: IItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
-  // const cantProd = orderItems.length;
-
-
   const [cart, setCart] = useState<IItem[]>([]);
 
   useEffect(() => {
@@ -22,7 +18,10 @@ const ShoppingCart = () => {
   const handleRemoveItem = (item: IItem) => {
     const updatedCart = cart.filter(
       (p: IItem) =>
-        !(p.idDetalleProducto === item.idDetalleProducto && p.talleId === item.talleId)
+        !(
+          p.idDetalleProducto === item.idDetalleProducto &&
+          p.talleId === item.talleId
+        )
     );
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
@@ -59,7 +58,7 @@ const ShoppingCart = () => {
       </main>
       <Footer />
     </>
-  )
+  );
 };
 
 export default ShoppingCart;

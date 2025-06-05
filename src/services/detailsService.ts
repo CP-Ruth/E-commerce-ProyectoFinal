@@ -59,11 +59,16 @@ export const getDetailsByProduct = async (idProducto: number) => {
   }
 };
 
-export const createDetail = async (product: IDetailsProduct) => {
+export const createDetail = async (product: IDetailsProduct, token: string) => {
   try {
     const response = await axios.post<IDetailsProduct>(
       `${URL}/detalles_productos`,
-      product
+      product,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error: any) {

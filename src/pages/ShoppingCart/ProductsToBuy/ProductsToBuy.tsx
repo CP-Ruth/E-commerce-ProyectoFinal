@@ -23,19 +23,23 @@ const ProductsToBuy: FC<ItemProducto> = ({ itemProducto, onRemove }) => {
           <div className={styles.price}>
             {itemProducto.precioDesc ? (
               <>
-                <p><s>${itemProducto.precioV}</s></p>
-
+                <p>
+                  <s>${itemProducto.precioV}</s>
+                </p>
                 <p>
                   <b>${itemProducto.precioDesc}</b>
                 </p>
               </>
-            ) : (<p>${itemProducto.precioV}</p>)}
-
+            ) : (
+              <p>${itemProducto.precioV}</p>
+            )}
           </div>
           <button
             className={styles.buttonEliminarProducto}
             onClick={() => onRemove(itemProducto)}
-          ><RiDeleteBin6Line size={30} />
+
+          >
+            <RiDeleteBin6Line size={30} />
           </button>
         </div>
       </div>

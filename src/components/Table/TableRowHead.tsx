@@ -60,3 +60,16 @@ export const TableHeadCategory = () => {
     </tr>
   );
 };
+
+export const TableHeadDiscount = () => {
+  return (
+    <tr className={styles.tableRow}>
+      <th>Nombre</th>
+      <th>Porcentaje</th>
+      <th>Fecha inicio</th>
+      <th>Fecha fin</th>
+      <th>Activo</th>
+      <th className={styles.options}>Opciones</th>
+    </tr>
+  );
+};

@@ -11,18 +11,20 @@ const AdminUsers = () => {
   const { users, getAllUsers, deleteOneUser } = useListUsers();
   const [openModal, setOpenModal] = useState(false);
 
-  const deleteProduct = (id: number) => {
+  const deleteProduct = (id: number, activo: boolean) => {
+    const title = activo ? "desactivar" : "activar";
     Swal.fire({
-      title: "¿Estas seguro de desactivar este usuario?",
+      title: `¿Estas seguro de ${title} este usuario?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#b2bec3",
-      confirmButtonText: "Desactivar",
+      confirmButtonText: title.charAt(0).toUpperCase() + title.slice(1),
     }).then((result) => {
       if (result.isConfirmed) {
+        const message = activo ? "Desactivado" : "Activado";
         deleteOneUser(id);
-        Swal.fire("Desactivado!", "El usuario ha sido desactivado.", "success");
+        Swal.fire(message, `El usuario ha sido ${message}.`, "success");
       }
     });
   };
@@ -50,7 +52,7 @@ const AdminUsers = () => {
                     usuario.activo ? styles.active : styles.deactive
                   }`}
                   size={30}
-                  onClick={() => deleteProduct(usuario.id!)}
+                  onClick={() => deleteProduct(usuario.id!, usuario.activo)}
                 />
               </TableRowUser>
             ))}
