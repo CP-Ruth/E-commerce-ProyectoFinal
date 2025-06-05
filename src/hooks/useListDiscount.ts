@@ -3,7 +3,6 @@ import { useStoreDiscount } from "../store/useStoreDiscount";
 import { useStoreUserActive } from "../store/useStoreUserActive";
 import {
   createDiscount,
-  deleteDiscount,
   getDescuentos,
   updateDiscount,
 } from "../services/descuentoService";
@@ -15,7 +14,6 @@ export const useListDiscount = () => {
     setAllDescuentos,
     addDescuento,
     updateDescuento,
-    deleteDescuento,
   } = useStoreDiscount(
     useShallow((state) => ({
       ...state,
@@ -47,19 +45,10 @@ export const useListDiscount = () => {
     }
   };
 
-  const deleteOneDiscount = async (id: number) => {
-    const descuentoEliminado = await deleteDiscount(id, token);
-
-    if (descuentoEliminado) {
-      deleteDescuento(id);
-    }
-  };
-
   return {
     descuentos,
     getAllDiscounts,
     createOneDiscount,
     updateOneDiscount,
-    deleteOneDiscount,
   };
 };

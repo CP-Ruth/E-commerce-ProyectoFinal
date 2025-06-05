@@ -1,7 +1,12 @@
 import { FC, ReactNode } from "react";
 import styles from "./Table.module.css";
 import { IUser } from "../../types/IUser";
-import { ICategory, IDetailsProduct, IDiscount, IProduct } from "../../types/IDetailsProduct";
+import {
+  ICategory,
+  IDetailsProduct,
+  IDiscount,
+  IProduct,
+} from "../../types/IDetailsProduct";
 
 interface PropUser {
   usuario: IUser;
@@ -14,17 +19,17 @@ interface PropsProduct {
 }
 
 interface PropsDetail {
-  detalle: IDetailsProduct
+  detalle: IDetailsProduct;
   children?: ReactNode;
 }
 
 interface PropsCategory {
-  categoria: ICategory
+  categoria: ICategory;
   children?: ReactNode;
 }
 
 interface PropsDiscount {
-  descuento: IDiscount
+  descuento: IDiscount;
   children?: ReactNode;
 }
 
@@ -47,8 +52,12 @@ export const TableRowUser: FC<PropUser> = ({ usuario, children }) => {
 export const TableRowDetail: FC<PropsDetail> = ({ detalle, children }) => {
   return (
     <tr className={styles.tableRow}>
-      <td>{detalle.producto.nombre}, {detalle.color}, para {detalle.producto.sexo}</td>
-      <td>{detalle.stocks.reduce((itemPrev, item) => itemPrev + item.stock, 0)}</td>
+      <td>
+        {detalle.producto.nombre}, {detalle.color}, para {detalle.producto.sexo}
+      </td>
+      <td>
+        {detalle.stocks.reduce((itemPrev, item) => itemPrev + item.stock, 0)}
+      </td>
       <td>${detalle.precioVenta}</td>
       <td>{detalle.activo ? "Activo" : "Inactivo"}</td>
       <td>{children}</td>
@@ -62,13 +71,18 @@ export const TableRowProduct: FC<PropsProduct> = ({ producto, children }) => {
       <td>{producto.nombre}</td>
       <td>{producto.sexo}</td>
       <td>{producto.tipoProducto}</td>
-      <td>{producto.categorias.map((categoria) => categoria.nombre).join(", ")}</td>
+      <td>
+        {producto.categorias.map((categoria) => categoria.nombre).join(", ")}
+      </td>
       <td>{children}</td>
     </tr>
   );
 };
 
-export const TableRowCategory: FC<PropsCategory> = ({ categoria, children }) => {
+export const TableRowCategory: FC<PropsCategory> = ({
+  categoria,
+  children,
+}) => {
   return (
     <tr className={styles.tableRow}>
       <td>{categoria.id}</td>
@@ -78,14 +92,22 @@ export const TableRowCategory: FC<PropsCategory> = ({ categoria, children }) => 
   );
 };
 
-export const TableRowDiscount: FC<PropsDiscount> = ({ descuento, children }) => {
+export const TableRowDiscount: FC<PropsDiscount> = ({
+  descuento,
+  children,
+}) => {
+  const dateNow = new Date();
+  const isActive =
+    dateNow >= new Date(descuento.fechaInicio) &&
+    dateNow <= new Date(descuento.fechaFin);
+
   return (
     <tr className={styles.tableRow}>
       <td>{descuento.nombre}</td>
       <td>{descuento.porcentaje}%</td>
       <td>{descuento.fechaInicio}</td>
       <td>{descuento.fechaFin}</td>
-      <td>{descuento.activo ? "Activo" : "Inactivo"}</td>
+      <td>{isActive ? "Activa" : "Inactiva"}</td>
       <td>{children}</td>
     </tr>
   );
