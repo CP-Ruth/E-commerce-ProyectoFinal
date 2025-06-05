@@ -68,6 +68,7 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     );
 
     const uploadArray = await Promise.all(upload);
+    console.log(uploadArray);
     form.imagenes = uploadArray;
 
     if (form.id) {
@@ -169,6 +170,7 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
                   onChange={(e) => handlerTalleChange(e, index, talles)}
                   required
                 >
+                  <option value="">Seleccionar talle</option>
                   {talles.length > 0 &&
                     talles.map((talle: ITalle, index: number) => (
                       <option key={index} value={talle.name}>
