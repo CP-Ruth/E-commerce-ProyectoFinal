@@ -61,6 +61,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
 
   console.log("stock Disponible: ", stockDisponible);
 
+  console.log(product.descuento)
   const handleAddToCart = () => {
     const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
 

@@ -1,6 +1,10 @@
 import styles from "./BuyDetails.module.css";
 
 const BuyDetails = () => {
+  //Recibimos el local storage
+  //const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+
   return (
     <div className={styles.containerPrincipal}>
       <div className={styles.details}>
