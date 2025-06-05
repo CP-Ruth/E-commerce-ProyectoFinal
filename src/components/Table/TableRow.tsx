@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import styles from "./Table.module.css";
 import { IUser } from "../../types/IUser";
-import { ICategory, IDetailsProduct, IProduct } from "../../types/IDetailsProduct";
+import { ICategory, IDetailsProduct, IDiscount, IProduct } from "../../types/IDetailsProduct";
 
 interface PropUser {
   usuario: IUser;
@@ -20,6 +20,11 @@ interface PropsDetail {
 
 interface PropsCategory {
   categoria: ICategory
+  children?: ReactNode;
+}
+
+interface PropsDiscount {
+  descuento: IDiscount
   children?: ReactNode;
 }
 
@@ -68,6 +73,19 @@ export const TableRowCategory: FC<PropsCategory> = ({ categoria, children }) => 
     <tr className={styles.tableRow}>
       <td>{categoria.id}</td>
       <td>{categoria.nombre}</td>
+      <td>{children}</td>
+    </tr>
+  );
+};
+
+export const TableRowDiscount: FC<PropsDiscount> = ({ descuento, children }) => {
+  return (
+    <tr className={styles.tableRow}>
+      <td>{descuento.nombre}</td>
+      <td>{descuento.porcentaje * 100}%</td>
+      <td>{descuento.fechaInicio}</td>
+      <td>{descuento.fechaFin}</td>
+      <td>{descuento.activo ? "Activo" : "Inactivo"}</td>
       <td>{children}</td>
     </tr>
   );

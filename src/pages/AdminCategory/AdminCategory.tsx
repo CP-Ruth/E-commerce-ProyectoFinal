@@ -10,7 +10,7 @@ import CategoryForm from "./CategoryForm/CategoryForm";
 
 const AdminCategory = () => {
   const { categorias, getAllCategories } = useListCategory();
-  const { openModal, handlerOpenModal, productActive } = useModal();
+  const { openModal, handlerOpenModal, active } = useModal();
 
   useEffect(() => {
     getAllCategories();
@@ -43,7 +43,7 @@ const AdminCategory = () => {
         </table>
         {openModal.edit && (
           <CategoryForm
-            category={productActive as ICategory}
+            category={active as ICategory}
             onClose={() => handlerOpenModal(null, "edit")}
           />
         )}

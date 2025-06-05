@@ -13,7 +13,7 @@ import { swalStateMessage } from "../../utils/swalStateMessage";
 
 const AdminDetails = () => {
   const { details, getAllDetails, deleteOneDetail } = useListDetails();
-  const { openModal, productActive, handlerOpenModal } = useModal();
+  const { openModal, active, handlerOpenModal } = useModal();
 
   const deleteProduct = (id: number) => {
     swalStateMessage(id, "detalle", deleteOneDetail);
@@ -66,17 +66,17 @@ const AdminDetails = () => {
       </section>
       {openModal.info && (
         <DetailInfo
-          detalle={productActive! as IDetailsProduct}
+          detalle={active! as IDetailsProduct}
           onClose={() =>
-            handlerOpenModal(productActive! as IDetailsProduct, "info")
+            handlerOpenModal(active! as IDetailsProduct, "info")
           }
         />
       )}
       {openModal.edit && (
         <DetailForm
-          detalle={productActive! as IDetailsProduct}
+          detalle={active! as IDetailsProduct}
           onClose={() =>
-            handlerOpenModal(productActive! as IDetailsProduct, "edit")
+            handlerOpenModal(active! as IDetailsProduct, "edit")
           }
         />
       )}

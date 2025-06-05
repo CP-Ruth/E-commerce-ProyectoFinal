@@ -10,6 +10,8 @@ export interface IDiscount {
   id?: number;
   nombre: string;
   porcentaje: number;
+  fechaInicio: string;
+  fechaFin: string;
   activo: boolean;
 }
 

@@ -10,7 +10,7 @@ import { IProduct } from "../../types/IDetailsProduct";
 
 const AdminProducts = () => {
   const { products, getAllProducts } = useListProducts();
-  const { openModal, handlerOpenModal, productActive } = useModal();
+  const { openModal, handlerOpenModal, active } = useModal();
 
   useEffect(() => {
     getAllProducts();
@@ -46,8 +46,8 @@ const AdminProducts = () => {
       </section>
       {openModal.edit && (
         <ProductForm
-          producto={productActive! as IProduct}
-          onClose={() => handlerOpenModal(productActive! as IProduct, "edit")}
+          producto={active! as IProduct}
+          onClose={() => handlerOpenModal(active! as IProduct, "edit")}
         />
       )}
     </>

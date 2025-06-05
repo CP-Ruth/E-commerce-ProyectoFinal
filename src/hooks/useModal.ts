@@ -7,7 +7,7 @@ import {
 } from "../types/IDetailsProduct";
 
 const useModal = () => {
-  const [productActive, setProductActive] = useState<
+  const [active, setActive] = useState<
     IDetailsProduct | IProduct | ICategory | IDiscount | null
   >(null);
   const [openModal, setOpenModal] = useState({
@@ -19,7 +19,7 @@ const useModal = () => {
     product: IDetailsProduct | IProduct | ICategory | IDiscount | null,
     option: "info" | "edit"
   ) => {
-    setProductActive(product);
+    setActive(product);
     if (option === "info") {
       setOpenModal((state) => ({ ...openModal, info: !state.info }));
     } else {
@@ -28,7 +28,7 @@ const useModal = () => {
   };
 
   return {
-    productActive,
+    active,
     openModal,
     handlerOpenModal,
   };
