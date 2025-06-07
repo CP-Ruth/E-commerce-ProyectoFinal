@@ -12,6 +12,8 @@ import AdminProducts from "./pages/AdminProducts/AdminProducts";
 import AdminCategory from "./pages/AdminCategory/AdminCategory";
 import AdminDiscount from "./pages/AdminDiscount/AdminDiscount";
 import { initMercadoPago } from "@mercadopago/sdk-react";
+import PaymentSuccess from "./pages/PaymentSuccess/PaymentSuccess";
+import PaymentFailure from "./pages/PaymentFailure/PaymentFailure";
 
 function App() {
   const public_key = import.meta.env.VITE_PUBLIC_KEY;
@@ -32,6 +34,8 @@ function App() {
         <Route path="categorias" element={<AdminCategory />} />
         <Route path="descuentos" element={<AdminDiscount />} />
       </Route>
+      <Route path="pagoExitoso" element={<PaymentSuccess />} />
+      <Route path="pagoFracaso" element={<PaymentFailure />} />
     </Routes>
   );
 }
