@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import { IItem } from "../../types/IOrder";
+import { IItem, IOrder } from "../../types/IOrder";
 import BuyDetails from "./BuyDetails/BuyDetails";
 import ProductsToBuy from "./ProductsToBuy/ProductsToBuy";
 import styles from "./ShoppingCart.module.css";
 import Swal from "sweetalert2";
+import { useAuth } from "../../hooks/useAuth";
 
 const ShoppingCart = () => {
   const [cart, setCart] = useState<IItem[]>([]);
-
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCart(storedCart);
-  }, []);
+  const {userActive} = useAuth();
+  const cantProd = cart.length;
 
   const handleRemoveItem = (item: IItem) => {
     const updatedCart = cart.filter(
@@ -35,13 +33,34 @@ const ShoppingCart = () => {
     });
   };
 
-  const cantProd = cart.length;
+  const handlerSubmit = async (totalCost: number) => {
+    const orders: IOrder = {
+      idUsuario: userActive?.id!,
+      productos: cart.map((item) => ({
+        id: item.idDetalleProducto,
+        cantidad: item.cantidad,
+        idTalle: item.talleId,
+      })),
+      total: totalCost
+    };
+    
+    try {
+      // const response = await createPayment(orders);
+      console.log(orders);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCart(storedCart);
+  }, []);
 
   return (
     <>
       <Header />
       <main className={styles.mainContainer}>
-        {/** Acá va el titulo y la cantidad de productos a comprar */}
         <h2>Carrito ({cantProd})</h2>
         <section className={styles.containerSection}>
           <div className={styles.scrollBox}>
@@ -53,7 +72,7 @@ const ShoppingCart = () => {
               />
             ))}
           </div>
-          <BuyDetails />
+          <BuyDetails products={cart} onSubmit={handlerSubmit} />
         </section>
       </main>
       <Footer />

@@ -3,8 +3,8 @@ import axios, { AxiosResponse } from "axios";
 import { IUser } from "../types/IUser";
 import Swal from "sweetalert2";
 
-const url = "http://localhost:8080/api/v1/auth";
-const urlUser = "http://localhost:8080/api/v1";
+const urlUser = import.meta.env.VITE_API_URL;
+const url = urlUser + "/auth";
 
 export const login = async (user: ILogin) => {
   try {

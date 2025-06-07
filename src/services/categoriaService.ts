@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ICategory } from "../types/IDetailsProduct";
 
-const URL = "http://localhost:8080/api/v1";
+const URL = import.meta.env.VITE_API_URL;
 
 export const getCategorias = async () => {
   try {

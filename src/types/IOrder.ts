@@ -1,15 +1,13 @@
 export interface IOrder {
-  id: number;
-  idUsuario?: number;
+  idUsuario: number;
+  productos: IOrderItem[];
   total: number;
-  fechaCompra: Date;
 };
 
 export interface IOrderItem {
   id: number;
   cantidad: number;
-  idDetalleProducto: number;
-  idOrder: number
+  idTalle: number;
 };
 
 export interface IItem {

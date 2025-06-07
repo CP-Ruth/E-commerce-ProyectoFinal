@@ -9,6 +9,7 @@ interface ItemProducto {
 }
 
 const ProductsToBuy: FC<ItemProducto> = ({ itemProducto, onRemove }) => {
+  console.log(itemProducto);
   return (
     <div className={styles.containerPrincipal}>
       <img src={itemProducto.imagen} alt="imagenProducto" />
@@ -31,13 +32,14 @@ const ProductsToBuy: FC<ItemProducto> = ({ itemProducto, onRemove }) => {
                 </p>
               </>
             ) : (
-              <p>${itemProducto.precioV}</p>
+              <p>
+                <b>${itemProducto.precioV}</b>
+              </p>
             )}
           </div>
           <button
             className={styles.buttonEliminarProducto}
             onClick={() => onRemove(itemProducto)}
-
           >
             <RiDeleteBin6Line size={30} />
           </button>

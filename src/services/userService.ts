@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IUser } from "../types/IUser";
 
-const URL = "http://localhost:8080/api/v1";
+const URL = import.meta.env.VITE_API_URL;
 
 export const getUsers = async (token: string) => {
   try {

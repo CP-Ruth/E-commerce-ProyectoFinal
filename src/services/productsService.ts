@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IDetailsProduct } from "../types/IDetailsProduct";
 
-const URL = "http://localhost:8080/api/v1";
+const URL = import.meta.env.VITE_API_URL;
 
 //Obtenemos todos los detalles
 export const getDetallesProductos = async (): Promise<IDetailsProduct[]> => {
