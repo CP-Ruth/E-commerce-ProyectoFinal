@@ -7,6 +7,7 @@ import {
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { getDetailsByProduct } from "../../../services/detailsService";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 interface PropsDetails {
   product: IDetailsProduct;
@@ -28,8 +29,11 @@ export const Details: FC<PropsDetails> = ({ product }) => {
     },
   });
 
+  const navigate = useNavigate();
   //corroboramos el desceunto
-  const descuento = product.descuento?.activo ? product.descuento.porcentaje : 0;
+  const descuento = product.descuento?.activo
+    ? product.descuento.porcentaje
+    : 0;
   const precioProductoConDescuento =
     product.precioVenta - product.precioVenta * descuento;
 
@@ -104,46 +108,50 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   }, [product]);
 
   return (
-    <div className={styles.containerPrincipal}>
-      <h2>{product.producto.nombre}</h2>
-      {descuento > 0 ? (
-        <>
-          <p>Este producto tiene {product.descuento?.nombre} de descuento</p>
-          <h4>
-            <s>${product.precioVenta}</s>
-          </h4>
-          <h3>${precioProductoConDescuento}</h3>
-        </>
-      ) : (
-        <h3>${product.precioVenta}</h3>
-      )}
+    <>
+      <button className={styles.comeBack} onClick={() => navigate(-1)}>
+        Volver al catalogo
+      </button>
+      <div className={styles.containerPrincipal}>
+        <h2>{product.producto.nombre}</h2>
+        {descuento > 0 ? (
+          <>
+            <p>Este producto tiene {product.descuento?.nombre} de descuento</p>
+            <h4>
+              <s>${product.precioVenta}</s>
+            </h4>
+            <h3>${precioProductoConDescuento}</h3>
+          </>
+        ) : (
+          <h3>${product.precioVenta}</h3>
+        )}
 
-      <div className={styles.containerData}>
-        <div>
-          <p>Color:</p>
-          {variantes &&
-            variantes?.map((variante, i) => (
-              <span key={i}>{variante.color}</span>
-            ))}
-        </div>
-        <div className={styles.talleContainer}>
-          <p>Talle:</p>
-          <select
-            name="talle"
-            defaultValue={detailSelected.talle.name}
-            onChange={handlerTalle}
-            required
-          >
-            {product.stocks.map((stock) => (
-              <option key={stock.talle.name} value={stock.talle.name}>
-                {stock.talle.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <p>Cantidad:</p>
-          {/* <select
+        <div className={styles.containerData}>
+          <div>
+            <p>Color:</p>
+            {variantes &&
+              variantes?.map((variante, i) => (
+                <span key={i}>{variante.color}</span>
+              ))}
+          </div>
+          <div className={styles.talleContainer}>
+            <p>Talle:</p>
+            <select
+              name="talle"
+              defaultValue={detailSelected.talle.name}
+              onChange={handlerTalle}
+              required
+            >
+              {product.stocks.map((stock) => (
+                <option key={stock.talle.name} value={stock.talle.name}>
+                  {stock.talle.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <p>Cantidad:</p>
+            {/* <select
             defaultValue={detailSelected.cantidad}
             onChange={handlerCount}
           >
@@ -153,29 +161,35 @@ export const Details: FC<PropsDetails> = ({ product }) => {
             <option value="4">4</option>
           </select>
           </select> */}
-          {stockDisponible > 0 ? (
-            <select value={detailSelected.cantidad} onChange={handlerCount}>
-              {Array.from({ length: Math.min(stockDisponible, 4) }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <p style={{ color: "red" }}>Sin stock disponible por el momento</p>
-          )}
+            {stockDisponible > 0 ? (
+              <select value={detailSelected.cantidad} onChange={handlerCount}>
+                {Array.from(
+                  { length: Math.min(stockDisponible, 4) },
+                  (_, i) => (
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  )
+                )}
+              </select>
+            ) : (
+              <p style={{ color: "red" }}>
+                Sin stock disponible por el momento
+              </p>
+            )}
+          </div>
+        </div>
+        <div className={styles.carritoButton}>
+          <button
+            onClick={handleAddToCart}
+            disabled={stockDisponible === 0}
+            className={stockDisponible === 0 ? styles.botonDeshabilitado : ""}
+          >
+            AGREGAR AL CARRITO
+          </button>
         </div>
       </div>
-      <div className={styles.carritoButton}>
-        <button
-          onClick={handleAddToCart}
-          disabled={stockDisponible === 0}
-          className={stockDisponible === 0 ? styles.botonDeshabilitado : ""}
-        >
-          AGREGAR AL CARRITO
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -34,6 +34,11 @@ const ShoppingCart = () => {
   };
 
   const handlerSubmit = async (totalCost: number) => {
+    if (!userActive) {
+      Swal.fire("Debe iniciar sesión para realizar la compra", "", "error");
+      return;
+    }
+
     const orders: IOrder = {
       idUsuario: userActive?.id!,
       productos: cart.map((item) => ({
