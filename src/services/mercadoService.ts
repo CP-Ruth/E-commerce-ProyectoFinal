@@ -5,7 +5,7 @@ const URL = import.meta.env.VITE_API_URL;
 
 export const createPayment = async (order: IOrder) => {
   try {
-    const response = await axios.post(`${URL}/payments`, order, {
+    const response = await axios.post(`${URL}/payments/mp`, order, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

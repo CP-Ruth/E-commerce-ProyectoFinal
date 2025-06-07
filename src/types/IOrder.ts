@@ -21,3 +21,8 @@ export interface IItem {
   cantidad: number;
   imagen?: string;
 }
+
+export interface IState {
+  preferenceId: string | null;
+  open: boolean;
+}

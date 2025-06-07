@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import { IItem, IOrder } from "../../types/IOrder";
+import { IItem, IOrder, IState } from "../../types/IOrder";
 import BuyDetails from "./BuyDetails/BuyDetails";
 import ProductsToBuy from "./ProductsToBuy/ProductsToBuy";
 import styles from "./ShoppingCart.module.css";
 import Swal from "sweetalert2";
 import { useAuth } from "../../hooks/useAuth";
+import { createPayment } from "../../services/mercadoService";
+import { Wallet } from "@mercadopago/sdk-react";
 
 const ShoppingCart = () => {
   const [cart, setCart] = useState<IItem[]>([]);
-  const {userActive} = useAuth();
+  const { userActive } = useAuth();
+  const [stateConfirm, setStateConfirm] = useState<IState>({
+    preferenceId: null,
+    open: false,
+  });
+
   const cantProd = cart.length;
 
   const handleRemoveItem = (item: IItem) => {
@@ -21,6 +28,7 @@ const ShoppingCart = () => {
           p.talleId === item.talleId
         )
     );
+
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
 
@@ -46,17 +54,22 @@ const ShoppingCart = () => {
         cantidad: item.cantidad,
         idTalle: item.talleId,
       })),
-      total: totalCost
+      total: totalCost,
     };
-    
+
     try {
-      // const response = await createPayment(orders);
-      console.log(orders);
+      const response: { preferenceId: string } = await createPayment(orders);
+      if (response) {
+        setStateConfirm({
+          preferenceId: response.preferenceId,
+          open: true,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
-  }
-  
+  };
+
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(storedCart);
@@ -77,7 +90,22 @@ const ShoppingCart = () => {
               />
             ))}
           </div>
-          <BuyDetails products={cart} onSubmit={handlerSubmit} />
+          <BuyDetails
+            products={cart}
+            render={(totalCost) => (
+              <>
+                {stateConfirm.open && stateConfirm.preferenceId ? (
+                  <Wallet
+                    initialization={{ preferenceId: stateConfirm.preferenceId }}
+                  />
+                ) : (
+                  <button onClick={() => handlerSubmit(totalCost)}>
+                    Proceder al pago
+                  </button>
+                )}
+              </>
+            )}
+          />
         </section>
       </main>
       <Footer />

@@ -9,7 +9,6 @@ interface ItemProducto {
 }
 
 const ProductsToBuy: FC<ItemProducto> = ({ itemProducto, onRemove }) => {
-  console.log(itemProducto);
   return (
     <div className={styles.containerPrincipal}>
       <img src={itemProducto.imagen} alt="imagenProducto" />

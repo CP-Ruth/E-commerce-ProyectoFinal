@@ -1,13 +1,16 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./BuyDetails.module.css";
 import { IItem } from "../../../types/IOrder";
 
 interface PropsBuyDetails {
   products: IItem[];
-  onSubmit: (totalCost: number) => void;
+  render: (totalCost: number) => ReactNode;
 }
 
-const BuyDetails: FC<PropsBuyDetails> = ({ products, onSubmit }) => {
+const BuyDetails: FC<PropsBuyDetails> = ({
+  products,
+  render,
+}) => {
   const subtotal = products.reduce(
     (acc, item) => acc + (item.precioDesc || item.precioV) * item.cantidad,
     0
@@ -24,7 +27,7 @@ const BuyDetails: FC<PropsBuyDetails> = ({ products, onSubmit }) => {
         <p>Total estimado: ${total}</p>
       </div>
       <div className={styles.containerButton}>
-        <button onClick={() => onSubmit(total)}>Proceder al pago </button>
+        {render(total)}
       </div>
     </div>
   );

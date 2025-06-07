@@ -11,8 +11,12 @@ import AdminDetails from "./pages/AdminDetails/AdminDetails";
 import AdminProducts from "./pages/AdminProducts/AdminProducts";
 import AdminCategory from "./pages/AdminCategory/AdminCategory";
 import AdminDiscount from "./pages/AdminDiscount/AdminDiscount";
+import { initMercadoPago } from "@mercadopago/sdk-react";
 
 function App() {
+  const public_key = import.meta.env.VITE_PUBLIC_KEY;
+  initMercadoPago(public_key);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
