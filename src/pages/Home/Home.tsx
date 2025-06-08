@@ -17,7 +17,6 @@ const Home = () => {
     <>
       <Header />
       <main>
-        <Loader />
         <HeroImage title="Wildest dream" image={ImageHero}>
           Estamos para equiparte con lo que necesites sin importar cómo sea tu
           camino. Así que salí ahí fuera, corré libre y descubrí la grandeza en

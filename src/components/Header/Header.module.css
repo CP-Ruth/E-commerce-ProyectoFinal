@@ -1,10 +1,13 @@
 .containerHeader {
+  position: sticky;
+  top: 0;
   background-color: rgba(25, 25, 25, 1);
   width: 100%;
   color: #fff;
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+  z-index: 10000;
 }
 
 .headerOptions {
