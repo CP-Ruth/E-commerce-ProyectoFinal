@@ -6,6 +6,7 @@ import Product from "../../../components/Product/Product";
 import { useFilter } from "../../../hooks/useFilter";
 import { useNavigate } from "react-router";
 import { Filtros } from "../../../types/IFiltros";
+import wrong from "../../../assets/images/wrong.svg";
 
 interface PropsProductCatalog {
   sexo: String | undefined;
@@ -54,14 +55,18 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter, ref }) => {
         <FiltersProducts handleFilter={handleFilter} />
         <section className={styles.gridContainer}>
           {productos &&
-            productos.length > 0 &&
+            productos.length > 0 ?
             productos.map((producto) => (
               <Product
                 key={producto.id}
                 detProducto={producto}
                 onClick={() => handleProductClick(producto.id!)}
               />
-            ))}
+            )) : (
+              <div className={styles.noProducts}>
+                <img src={wrong} alt="" />
+                No hay productos del filtro/s seleccionado/s</div>
+            )}
         </section>
       </div>
     </section>
