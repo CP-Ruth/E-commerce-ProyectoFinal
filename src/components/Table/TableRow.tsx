@@ -7,6 +7,7 @@ import {
   IDiscount,
   IProduct,
 } from "../../types/IDetailsProduct";
+import { IOrderPay } from "../../types/IOrder";
 
 interface PropUser {
   usuario: IUser;
@@ -30,6 +31,11 @@ interface PropsCategory {
 
 interface PropsDiscount {
   descuento: IDiscount;
+  children?: ReactNode;
+}
+
+interface PropsOrder {
+  pedido: IOrderPay;
   children?: ReactNode;
 }
 
@@ -113,29 +119,16 @@ export const TableRowDiscount: FC<PropsDiscount> = ({
   );
 };
 
-interface Pedido {
-  id: string;
-  fechaHora: string;
-  formaPago: string;
-  pagado: string;
-  estado: string;
-}
-
-export const TableRowOrder: FC<Pedido> = ({
-  id,
-  fechaHora,
-  formaPago,
-  pagado,
-  estado,
-}) => {
+export const TableRowOrder: FC<PropsOrder> = ({ pedido, children }) => {
   return (
     <tr className={styles.tableRow}>
-      <td>{id}</td>
-      <td>{fechaHora}</td>
-      <td>{formaPago}</td>
-      <td>{pagado}</td>
-      <td>{estado}</td>
-      <td>{/** opciones  */}</td>
+      <td>{pedido.id}</td>
+      <td>{pedido.fechaCompra}</td>
+      <td className={styles.username}>{pedido.usuario.username}</td>
+      <td>Tarjeta de Debito</td>
+      <td>${pedido.total}</td>
+      <td>Confirmado</td>
+      <td>{children}</td>
     </tr>
   );
 };

@@ -42,11 +42,12 @@ export const TableHeadOrder = () => {
   return (
     <tr className={styles.tableRow}>
       <th>Nro Pedido</th>
-      <th>Fecha y hora</th>
-      <th>Forma de pago</th>
-      <th>Pagado</th>
+      <th>Fecha</th>
+      <th>Usuario</th>
+      <th>Forma de Pago</th>
+      <th>Total</th>
       <th>Estado</th>
-      <th className={styles.options}></th>
+      <th className={styles.options}>Opciones</th>
     </tr>
   );
 };

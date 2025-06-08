@@ -38,7 +38,7 @@ const DetailInfo: FC<PropsDetailsInfo> = ({ detalle, onClose }) => {
           <p>
             <span className={styles.img}>Imagenes:</span>
             {detalle.imagenes.map((imagen) => (
-              <img src={imagen.url} />
+              <img src={imagen.url as string} />
             ))}
           </p>
         </div>

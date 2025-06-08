@@ -1,5 +1,10 @@
-.tableUser{
-    border-collapse: collapse;
-    width: 90%;
-    margin: 0 auto;
+.tableUser {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.icon {
+  cursor: pointer;
+  margin-right: 15px;
 }

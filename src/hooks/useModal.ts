@@ -5,10 +5,11 @@ import {
   IDiscount,
   IProduct,
 } from "../types/IDetailsProduct";
+import { IOrderPay } from "../types/IOrder";
 
 const useModal = () => {
   const [active, setActive] = useState<
-    IDetailsProduct | IProduct | ICategory | IDiscount | null
+    IDetailsProduct | IProduct | ICategory | IDiscount | IOrderPay | null
   >(null);
   const [openModal, setOpenModal] = useState({
     info: false,
@@ -16,7 +17,13 @@ const useModal = () => {
   });
 
   const handlerOpenModal = (
-    product: IDetailsProduct | IProduct | ICategory | IDiscount | null,
+    product:
+      | IDetailsProduct
+      | IProduct
+      | ICategory
+      | IDiscount
+      | IOrderPay
+      | null,
     option: "info" | "edit"
   ) => {
     setActive(product);

@@ -1,113 +1,51 @@
-import { TableRowOrder } from "../../components/Table/TableRow"
-import { TableHeadOrder } from "../../components/Table/TableRowHead"
-import styles from "./Admin.Orders.module.css"
+import { useEffect } from "react";
+import { TableRowOrder } from "../../components/Table/TableRow";
+import { TableHeadOrder } from "../../components/Table/TableRowHead";
+import styles from "./Admin.Orders.module.css";
+import { useOrders } from "../../hooks/useOrders";
+import { MdEdit } from "react-icons/md";
+import { FaRegEye } from "react-icons/fa";
+import useModal from "../../hooks/useModal";
+import OrderInfo from "./OrderInfo/OrderInfo";
+import { IOrderPay } from "../../types/IOrder";
 
 const AdminOrders = () => {
-  interface Pedido {
-    id: string;
-    fechaHora: string;
-    formaPago: string;
-    pagado: string;
-    estado: string;
-  }
+  const { orders, getAllOrders } = useOrders();
+  const { openModal, handlerOpenModal, active } = useModal();
 
-  const pedidos: Pedido[] = [
-    {
-      id: "001",
-      fechaHora: "2025-05-08 10:15",
-      formaPago: "Efectivo",
-      pagado: "Sí",
-      estado: "Entregado",
-    },
-    {
-      id: "002",
-      fechaHora: "2025-05-08 11:30",
-      formaPago: "Tarjeta",
-      pagado: "No",
-      estado: "Pendiente",
-    },
-    {
-      id: "003",
-      fechaHora: "2025-05-07 18:45",
-      formaPago: "Transferencia",
-      pagado: "Sí",
-      estado: "En camino",
-    },
-    {
-      id: "004",
-      fechaHora: "2025-05-07 14:20",
-      formaPago: "MercadoPago",
-      pagado: "Sí",
-      estado: "Entregado",
-    },
-    {
-      id: "005",
-      fechaHora: "2025-05-06 09:05",
-      formaPago: "Efectivo",
-      pagado: "No",
-      estado: "Cancelado",
-    },
-    {
-      id: "006",
-      fechaHora: "2025-05-05 16:40",
-      formaPago: "Tarjeta",
-      pagado: "Sí",
-      estado: "Entregado",
-    },
-    {
-      id: "007",
-      fechaHora: "2025-05-05 17:25",
-      formaPago: "Transferencia",
-      pagado: "Sí",
-      estado: "En camino",
-    },
-    {
-      id: "008",
-      fechaHora: "2025-05-04 13:55",
-      formaPago: "MercadoPago",
-      pagado: "No",
-      estado: "Pendiente",
-    },
-    {
-      id: "009",
-      fechaHora: "2025-05-03 12:10",
-      formaPago: "Efectivo",
-      pagado: "Sí",
-      estado: "Entregado",
-    },
-    {
-      id: "010",
-      fechaHora: "2025-05-02 19:30",
-      formaPago: "Tarjeta",
-      pagado: "No",
-      estado: "Cancelado",
-    }
-  ];
+  useEffect(() => {
+    getAllOrders();
+  }, []);
 
   return (
     <section>
-      <div></div>
-
-      <table className={styles.tableUser} >
+      <table className={styles.tableUser}>
         <thead>
           <TableHeadOrder />
         </thead>
         <tbody>
-          {pedidos.length > 0 ? (
-            pedidos.map((pedido) => (
-              <TableRowOrder
-                id={pedido.id}
-                fechaHora={pedido.fechaHora}
-                formaPago={pedido.formaPago}
-                pagado={pedido.pagado}
-                estado={pedido.estado}
-              />
-            ))
-          ) : ("No hay usuarios")}
+          {orders?.length > 0
+            ? orders.map((pedido) => (
+                <TableRowOrder pedido={pedido}>
+                  <FaRegEye
+                    size={30}
+                    className={styles.icon}
+                    onClick={() => handlerOpenModal(pedido, "info")}
+                  />
+                  <MdEdit size={30} className={styles.icon} />
+                </TableRowOrder>
+              ))
+            : "No hay usuarios"}
         </tbody>
       </table>
+      {openModal.info && (
+        <OrderInfo
+          pedido={active as IOrderPay}
+          onClose={() => handlerOpenModal(null, "info")}
+        />
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default AdminOrders
+export default AdminOrders;
