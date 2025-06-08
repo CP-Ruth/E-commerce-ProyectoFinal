@@ -3,13 +3,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useProductos } from "../../../hooks/useProducts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Product from "../../../components/Product/Product";
 import { useNavigate } from "react-router";
+import { getDetailsByFilters } from "../../../services/detailsService";
+import { IDetailsProduct } from "../../../types/IDetailsProduct";
 
 const SliderProducts = () => {
-  const { detallesProductos, fetchDetallesProductos } = useProductos();
+  const [productosCalzado, setProductosCalzado] = useState<IDetailsProduct[]>();
   const navigate = useNavigate();
 
   const handleProductClick = (id: number) => {
@@ -17,12 +18,13 @@ const SliderProducts = () => {
   };
 
   useEffect(() => {
-    fetchDetallesProductos();
+    const getProducts = async () => {
+      const response = await getDetailsByFilters("tipoProducto=CALZADO");
+      setProductosCalzado(response);
+    };
+    getProducts();
   }, []);
 
-  const detProdCalzados = detallesProductos.filter(
-    (detPro) => detPro.producto.tipoProducto === "CALZADO"
-  );
   return (
     <section className={styles.container}>
       <div>
@@ -39,12 +41,12 @@ const SliderProducts = () => {
             1224: { slidesPerView: 4 },
           }}
         >
-          {detProdCalzados &&
-            detProdCalzados.map((dProducto) => (
+          {productosCalzado &&
+            productosCalzado.map((dProducto) => (
               <SwiperSlide key={dProducto.id}>
                 <Product
                   detProducto={dProducto}
-                  onClick={() => handleProductClick(dProducto.id)}
+                  onClick={() => handleProductClick(dProducto.id!)}
                 />
               </SwiperSlide>
             ))}
