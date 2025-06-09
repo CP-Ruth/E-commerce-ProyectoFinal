@@ -51,7 +51,7 @@ export const useAuth = () => {
   const getUserByTokenUser = async () => {
     const token = localStorage.getItem("token");
 
-    if (token) {
+    if (token && userActive === null) {
       const data = await getUserByToken(token);
 
       if (data) {

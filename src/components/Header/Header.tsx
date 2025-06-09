@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 const Header = () => {
   const [openFormUser, setOpenFormUser] = useState(false); // Estado para abrir el modal
   const [menuOpen, setMenuOpen] = useState(false); // Estado para la vista de la hamburgesa
-  const { userActive, getUserByTokenUser, setUserActive } = useAuth();
+  const { userActive, setUserActive } = useAuth();
 
   const handleLogout = () => {
     Swal.fire({
@@ -30,10 +30,6 @@ const Header = () => {
       }
     });
   };
-
-  useEffect(() => {
-    getUserByTokenUser();
-  }, []);
 
   return (
     <header className={styles.containerHeader}>

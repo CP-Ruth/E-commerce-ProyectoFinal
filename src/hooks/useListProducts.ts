@@ -1,6 +1,5 @@
 import { useShallow } from "zustand/shallow";
 import { IProduct } from "../types/IDetailsProduct";
-import { useStoreUserActive } from "../store/useStoreUserActive";
 import { useStoreProduct } from "../store/useStoreProduct";
 import {
   createProduct,
@@ -16,10 +15,9 @@ export const useListProducts = () => {
     setAllProducts,
   } = useStoreProduct(useShallow((state) => ({ ...state })));
 
-  const token = useStoreUserActive((state) => state.token);
-
   const getAllProducts = async () => {
-    const products = await getProducts(token);
+    const token = localStorage.getItem("token");
+    const products = await getProducts(token!);
 
     if (products) {
       setAllProducts(products);
@@ -27,7 +25,8 @@ export const useListProducts = () => {
   };
 
   const createOneProduct = async (product: IProduct) => {
-    const nuevoProducto = await createProduct(product, token);
+    const token = localStorage.getItem("token");
+    const nuevoProducto = await createProduct(product, token!);
 
     if (nuevoProducto) {
       addProductsList(nuevoProducto);
@@ -35,7 +34,8 @@ export const useListProducts = () => {
   };
 
   const updateOneProduct = async (product: IProduct) => {
-    const productoActualizado = await updateProduct(product, token);
+    const token = localStorage.getItem("token");
+    const productoActualizado = await updateProduct(product, token!);
 
     if (productoActualizado) {
       updateProductsList(productoActualizado);

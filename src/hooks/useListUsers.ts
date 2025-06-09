@@ -1,22 +1,17 @@
 import { useShallow } from "zustand/shallow";
 import { useStoreUsers } from "../store/useStoreUsers";
-import {
-  getUsers,
-  deleteUser,
-} from "../services/userService";
-import { useStoreUserActive } from "../store/useStoreUserActive";
+import { getUsers, deleteUser } from "../services/userService";
 
 export const useListUsers = () => {
-  const { users, setAllUsers, deleteUserList } =
-    useStoreUsers(
-      useShallow((state) => ({
-        ...state,
-      }))
-    );
-    const token = useStoreUserActive((state) => state.token);
+  const { users, setAllUsers, deleteUserList } = useStoreUsers(
+    useShallow((state) => ({
+      ...state,
+    }))
+  );
 
   const getAllUsers = async () => {
-    const usuarios = await getUsers(token);
+    const token = localStorage.getItem("token");
+    const usuarios = await getUsers(token!);
 
     if (usuarios) {
       setAllUsers(usuarios);
@@ -24,7 +19,8 @@ export const useListUsers = () => {
   };
 
   const deleteOneUser = async (id: number) => {
-    const usuarioEliminado = await deleteUser(id, token);
+    const token = localStorage.getItem("token");
+    const usuarioEliminado = await deleteUser(id, token!);
 
     if (usuarioEliminado) {
       deleteUserList(id);

@@ -14,10 +14,17 @@ import AdminDiscount from "./pages/AdminDiscount/AdminDiscount";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import PaymentSuccess from "./pages/PaymentSuccess/PaymentSuccess";
 import PaymentFailure from "./pages/PaymentFailure/PaymentFailure";
+import { useEffect } from "react";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
+  const {getUserByTokenUser} = useAuth()
   const public_key = import.meta.env.VITE_PUBLIC_KEY;
   initMercadoPago(public_key);
+
+  useEffect(() => {
+    getUserByTokenUser();
+  }, []);
 
   return (
     <Routes>
