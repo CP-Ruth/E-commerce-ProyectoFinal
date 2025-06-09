@@ -172,11 +172,25 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
                 >
                   <option value="">Seleccionar talle</option>
                   {talles.length > 0 &&
-                    talles.map((talle: ITalle, index: number) => (
-                      <option key={index} value={talle.name}>
-                        {talle.name}
-                      </option>
-                    ))}
+                    talles.map((talle: ITalle, index: number) => {
+                      if (form.producto.tipoProducto === "CALZADO") {
+                        if (talle.name.match(/^[0-9]/)) {
+                          return (
+                            <option key={index} value={talle.name}>
+                              {talle.name}
+                            </option>
+                          );
+                        }
+                      } else {
+                        if (talle.name.match(/^[A-Z]/)) {
+                          return (
+                            <option key={index} value={talle.name}>
+                              {talle.name}
+                            </option>
+                          );
+                        }
+                      }
+                    })}
                 </select>
                 <input
                   type="text"
