@@ -9,9 +9,13 @@ import { getTalles } from "../../../services/tallesService";
 
 interface PropsFiltersProducts {
   handleFilter: (key: keyof Filtros, value: any) => void;
+  filter: string | null
 }
 
-const FiltersProducts: FC<PropsFiltersProducts> = ({ handleFilter }) => {
+const FiltersProducts: FC<PropsFiltersProducts> = ({
+  handleFilter,
+  filter,
+}) => {
   const [descuentos, setDescuentos] = useState<IDiscount[]>([]);
   const [categorias, setCategorias] = useState<ICategory[]>([]);
   const [talles, setTalles] = useState<ITalle[]>([]);
@@ -116,16 +120,48 @@ const FiltersProducts: FC<PropsFiltersProducts> = ({ handleFilter }) => {
       </div>
       <div className={styles.filterContainer}>
         <h4 className={styles.subtitle}>Talle</h4>
-        {talles.map((talle) => (
-          <label key={talle.id}>
-            <input
-              type="checkbox"
-              checked={selectedFilters.talle === talle.id}
-              onChange={() => toggleFilter("talle", talle.id)}
-            />
-            {talle.name}
-          </label>
-        ))}
+        {talles.map((talle) => {
+          if (filter) {
+            if (filter === "ropa") {
+              if (talle.name.match(/[A-Z]/)) {
+                return (
+                  <label key={talle.id}>
+                    <input
+                      type="checkbox"
+                      checked={selectedFilters.talle === talle.id}
+                      onChange={() => toggleFilter("talle", talle.id)}
+                    />
+                    {talle.name}
+                  </label>
+                );
+              }
+            } else {
+              if (talle.name.match(/[0-9]{2}/)) {
+                return (
+                  <label key={talle.id}>
+                    <input
+                      type="checkbox"
+                      checked={selectedFilters.talle === talle.id}
+                      onChange={() => toggleFilter("talle", talle.id)}
+                    />
+                    {talle.name}
+                  </label>
+                );
+              }
+            }
+          } else {
+            return (
+              <label key={talle.id}>
+                <input
+                  type="checkbox"
+                  checked={selectedFilters.talle === talle.id}
+                  onChange={() => toggleFilter("talle", talle.id)}
+                />
+                {talle.name}
+              </label>
+            );
+          }
+        })}
       </div>
       <div className={styles.filterContainer}>
         <h4 className={styles.subtitle}>Categoria</h4>

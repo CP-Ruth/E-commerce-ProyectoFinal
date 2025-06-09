@@ -40,7 +40,6 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter, ref }) => {
     });
   }, [sexo, filter]);
 
-  //Cada vez que cambia el filtro, se hace una nueva búsqueda.
   useEffect(() => {
     getProducts(filters);
   }, [filters]);
@@ -52,21 +51,25 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter, ref }) => {
         Filtros
       </button>
       <div className={styles.containerProducts}>
-        <FiltersProducts handleFilter={handleFilter} />
+        <FiltersProducts
+          handleFilter={handleFilter}
+          filter={(filters.tipoProducto as string) || null}
+        />
         <section className={styles.gridContainer}>
-          {productos &&
-            productos.length > 0 ?
+          {productos && productos.length > 0 ? (
             productos.map((producto) => (
               <Product
                 key={producto.id}
                 detProducto={producto}
                 onClick={() => handleProductClick(producto.id!)}
               />
-            )) : (
-              <div className={styles.noProducts}>
-                <img src={wrong} alt="" />
-                No hay productos del filtro/s seleccionado/s</div>
-            )}
+            ))
+          ) : (
+            <div className={styles.noProducts}>
+              <img src={wrong} alt="" />
+              No hay productos del filtro/s seleccionado/s
+            </div>
+          )}
         </section>
       </div>
     </section>
