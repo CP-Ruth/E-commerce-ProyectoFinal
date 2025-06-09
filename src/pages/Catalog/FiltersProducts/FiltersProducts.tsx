@@ -100,6 +100,8 @@ const FiltersProducts: FC<PropsFiltersProducts> = ({
           { label: "Hasta 100 mil", range: "0-100000" },
           { label: "100 - 150 mil", range: "100000-150000" },
           { label: "150 - 200 mil", range: "150000-200000" },
+          { label: "200 - 250 mil", range: "200000-250000" },
+          { label: "250 - 300 mil", range: "250000-300000" },
         ].map(({ label, range }) => {
           const [min, max] = range.split("-").map(Number);
           const isChecked =
