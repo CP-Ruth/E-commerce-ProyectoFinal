@@ -7,7 +7,6 @@ import {
   updateProduct,
 } from "../services/productService";
 import { changeActiveDetailByProduct } from "../services/detailsService";
-import { useListDetails } from "./useListDetails";
 
 export const useListProducts = () => {
   const {
@@ -16,7 +15,6 @@ export const useListProducts = () => {
     updateProductsList,
     setAllProducts,
   } = useStoreProduct(useShallow((state) => ({ ...state })));
-  const {getAllDetails} = useListDetails()
 
   const getAllProducts = async () => {
     const token = localStorage.getItem("token");
@@ -50,7 +48,6 @@ export const useListProducts = () => {
 
     if (productoActualizado) {
       updateProductsList(productoActualizado);
-      getAllDetails()
     }
   };
 

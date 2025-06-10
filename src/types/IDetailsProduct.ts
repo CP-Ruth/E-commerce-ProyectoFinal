@@ -9,7 +9,7 @@ export interface ICategory {
 export interface IDiscount {
   id?: number;
   nombre: string;
-  porcentaje: number | string;
+  porcentaje: number;
   fechaInicio: string;
   fechaFin: string;
   activo: boolean;
@@ -28,7 +28,7 @@ export interface ITalle {
 
 export interface IStock {
   id?: number;
-  stock: number | string;
+  stock: number;
   talle: ITalle;
 }
 
@@ -46,8 +46,8 @@ export interface IDetailsProduct {
   color: string;
   activo?: boolean;
   producto: IProduct;
-  precioVenta: number | string;
-  precioCompra: number | string;
+  precioVenta: number;
+  precioCompra: number;
   descuento?: IDiscount;
   imagenes: IImage[];
   stocks: IStock[];

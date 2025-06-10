@@ -7,8 +7,8 @@ export const initialFormDetail: IDetailsProduct = {
     tipoProducto: "",
     categorias: [],
   },
-  precioVenta: "",
-  precioCompra: "",
+  precioVenta: 0,
+  precioCompra: 0,
   color: "",
   activo: true,
   imagenes: [
@@ -23,13 +23,13 @@ export const initialFormDetail: IDetailsProduct = {
   ],
   stocks: [
     {
-      stock: "",
+      stock: 0,
       talle: {
         name: "",
       },
     },
     {
-      stock: "",
+      stock: 0,
       talle: {
         name: "",
       },

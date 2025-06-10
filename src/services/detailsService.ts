@@ -17,6 +17,20 @@ export const getDetails = async () => {
   }
 };
 
+export const getAllDetailsActive = async () => {
+  try {
+    const response = await axios.get<IDetailsProduct[]>(
+      `${URL}/detalles_productos/activo`
+    );
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(`Error al obtener los productos: ${error.response.data}`);
+    }
+    throw error;
+  }
+};
+
 export const getDetailById = async (idProducto: number) => {
   try {
     const response = await axios.get<IDetailsProduct>(
