@@ -4,10 +4,12 @@ import { useAuth } from "../../hooks/useAuth";
 import { updateUser } from "../../services/userService";
 import Swal from "sweetalert2";
 import { IUser } from "../../types/IUser";
+import { useNavigate } from "react-router";
 
 const UserProfile = () => {
   const { userActive, setUserActive } = useAuth();
   const [editMode, setEditMode] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<IUser>({
     id: userActive?.id,
@@ -82,7 +84,21 @@ const UserProfile = () => {
     }
   };
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    Swal.fire({
+      title: "¿Estas seguro de cerrar tu sesion",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Si, Quiero",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token");
+        setUserActive(null);
+        navigate("/");
+        Swal.fire("Sesion cerrada correctamente", "", "success");
+      }
+    });
+  };
 
   return (
     <div className={styles.userProfileContainer}>
