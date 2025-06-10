@@ -229,6 +229,7 @@ const UserProfile = () => {
             {userActive?.direccion.localidad.provincia.nombre}
           </p>
           <div className={styles.userActions}>
+            <button className={styles.inicio} onClick={() => navigate("/")}>Volver al inicio</button>
             <button
               onClick={() => setEditMode(true)}
               className={styles.editButton}

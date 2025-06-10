@@ -27,31 +27,29 @@ const SliderProducts = () => {
 
   return (
     <section className={styles.container}>
-      <div>
-        <Swiper
-          modules={[Navigation]}
-          spaceBetween={10}
-          navigation
-          loop={false}
-          grabCursor={true}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            500: { slidesPerView: 2 },
-            1000: { slidesPerView: 3 },
-            1224: { slidesPerView: 4 },
-          }}
-        >
-          {productosCalzado &&
-            productosCalzado.map((dProducto) => (
-              <SwiperSlide key={dProducto.id}>
-                <Product
-                  detProducto={dProducto}
-                  onClick={() => handleProductClick(dProducto.id!)}
-                />
-              </SwiperSlide>
-            ))}
-        </Swiper>
-      </div>
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={10}
+        navigation
+        loop={false}
+        grabCursor={true}
+        breakpoints={{
+          400: { slidesPerView: 1 },
+          600: { slidesPerView: 2 },
+          1000: { slidesPerView: 3 },
+          1224: { slidesPerView: 4 },
+        }}
+      >
+        {productosCalzado &&
+          productosCalzado.map((dProducto) => (
+            <SwiperSlide key={dProducto.id}>
+              <Product
+                detProducto={dProducto}
+                onClick={() => handleProductClick(dProducto.id!)}
+              />
+            </SwiperSlide>
+          ))}
+      </Swiper>
     </section>
   );
 };

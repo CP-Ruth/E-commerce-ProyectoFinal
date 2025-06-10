@@ -8,6 +8,7 @@ import {
   register,
 } from "../services/authService";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 export const useAuth = () => {
   const { userActive, setUserActive, token, setToken } = useStoreUserActive(
@@ -15,6 +16,7 @@ export const useAuth = () => {
       ...state,
     }))
   );
+  const navigate = useNavigate();
 
   const loginUser = async (usuario: ILogin) => {
     const data = await login(usuario);
@@ -61,6 +63,12 @@ export const useAuth = () => {
     }
   };
 
+  const protectRoute = () => {
+    if (userActive === null || userActive?.rol !== "ADMIN") {
+      navigate("/");
+    }
+  };
+
   return {
     userActive,
     setUserActive,
@@ -68,5 +76,6 @@ export const useAuth = () => {
     loginUser,
     registerUser,
     getUserByTokenUser,
+    protectRoute,
   };
 };

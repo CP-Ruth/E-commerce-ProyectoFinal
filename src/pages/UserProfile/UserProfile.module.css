@@ -46,6 +46,7 @@ h2 {
   margin-top: 30px;
 }
 
+.inicio,
 .editButton,
 .logoutButton,
 .saveButton,
@@ -62,6 +63,16 @@ h2 {
 .editButton {
   background-color: #3498db;
   color: white;
+}
+
+.inicio {
+  background-color: #13a028;
+  color: white;
+}
+
+.inicio:hover {
+  background-color: #26c841;
+  transform: translateY(-2px);
 }
 
 .editButton:hover {
