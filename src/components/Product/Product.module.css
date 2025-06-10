@@ -1,6 +1,5 @@
 .product {
-    border: 1px solid red;
-  width: 300px;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -17,6 +16,6 @@
   padding: 10px 0px;
 }
 
-.product h5{
+.product h5 {
   color: rgb(193, 31, 31);
 }

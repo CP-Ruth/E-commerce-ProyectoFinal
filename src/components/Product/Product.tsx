@@ -30,7 +30,7 @@ const Product: FC<PropsProduct> = ({ detProducto, onClick }) => {
             $
             {detProducto.precioVenta -
               (detProducto.precioVenta * detProducto.descuento.porcentaje) /
-                100}
+              100}
           </h4>
         </>
       ) : (
