@@ -27,7 +27,7 @@ const SliderProducts = () => {
 
   return (
     <section className={styles.container}>
-      <div>
+
         <Swiper
           modules={[Navigation]}
           spaceBetween={10}
@@ -35,8 +35,8 @@ const SliderProducts = () => {
           loop={false}
           grabCursor={true}
           breakpoints={{
-            320: { slidesPerView: 1 },
-            500: { slidesPerView: 2 },
+            400: { slidesPerView: 1 },
+            600: { slidesPerView: 2 },
             1000: { slidesPerView: 3 },
             1224: { slidesPerView: 4 },
           }}
@@ -51,7 +51,7 @@ const SliderProducts = () => {
               </SwiperSlide>
             ))}
         </Swiper>
-      </div>
+
     </section>
   );
 };

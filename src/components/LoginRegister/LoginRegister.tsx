@@ -12,7 +12,7 @@ type ModalProps = {
 const initial = {
   nombre: "",
   apellido: "",
-  dni: 0,
+  dni: "",
   email: "",
   password: "",
   direccion: "",

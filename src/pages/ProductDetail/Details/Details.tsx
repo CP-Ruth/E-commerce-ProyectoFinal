@@ -9,18 +9,24 @@ import { getColoresByProduct } from "../../../services/detailsService";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
+// Props que espera el componente
 interface PropsDetails {
   product: IDetailsProduct;
 }
-
+// Estado local del talle y cantidad seleccionados
 interface PropsDetailSelected {
   cantidad: number;
   talle: ITalle;
 }
 
 export const Details: FC<PropsDetails> = ({ product }) => {
+  // Estado para variantes de color
   const [variantes, setVariantes] = useState<IRequestColors[]>();
+  // Stock disponible para el talle actual (cambia solo cuando cambia el talle)
   const [stockDisponible, setStockDisponible] = useState<number>(0);
+  // Stock real después de restar lo que ya está en el carrito
+  const [stockEfectivo, setStockEfectivo] = useState<number>(0);
+  // Estado inicial con el primer talle disponible
   const [detailSelected, setDetailSelected] = useState<PropsDetailSelected>({
     cantidad: 1,
     talle: {
@@ -30,20 +36,18 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   });
 
   const navigate = useNavigate();
-  //corroboramos el desceunto
-  const descuento = product.descuento?.activo
-    ? product.descuento.porcentaje
-    : 0;
-  const precioProductoConDescuento =
-    product.precioVenta - product.precioVenta * descuento;
 
+  // Calculamos de descuento si está activo
+  const descuento = product.descuento?.activo ? product.descuento.porcentaje : 0;
+  const precioProductoConDescuento = product.precioVenta - product.precioVenta * descuento;
+  // Manejo de cambio en la cantidad seleccionada
   const handlerCount = (e: ChangeEvent<HTMLSelectElement>) => {
     setDetailSelected({
       ...detailSelected,
       cantidad: Number(e.target.value),
     });
   };
-
+  // Cambio de talle: se actualiza el estado y el stock correspondiente
   const handlerTalle = (e: ChangeEvent<HTMLSelectElement>) => {
     const talleSeleccionado = product.stocks.find(
       (stock) => stock.talle.name === e.target.value
@@ -57,9 +61,11 @@ export const Details: FC<PropsDetails> = ({ product }) => {
     setStockDisponible(talleSeleccionado.stock);
   };
 
-  const handleAddToCart = () => {
-    const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+  //Tomamos el carrito del localstorage
+  const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
+  // Agregar producto al carrito y hacemos validaciones validaciones
+  const handleAddToCart = () => {
     const item = {
       idDetalleProducto: product.id,
       nombre: product.producto.nombre,
@@ -72,7 +78,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       imagen: product.imagenes[0]?.url || "",
     };
 
-    //Buscamos duplicados antes de agregar al carritoAdd commentMore actions
+    //Buscamos duplicados con el mismo talle antes de agregar al carrito
     const existeDuplicado = currentCart.findIndex(
       (p: any) =>
         p.idDetalleProducto === item.idDetalleProducto &&
@@ -80,21 +86,40 @@ export const Details: FC<PropsDetails> = ({ product }) => {
     );
 
     if (existeDuplicado !== -1) {
-      currentCart[existeDuplicado].cantidad += item.cantidad;
+      const cantidadActual = currentCart[existeDuplicado].cantidad;
+      const nuevaCantidad = cantidadActual + item.cantidad;
+
+      if (nuevaCantidad > stockDisponible) {
+        return Swal.fire({
+          icon: "error",
+          title: "No hay suficiente stock disponible",
+          text: `Ya tienes ${cantidadActual} en el carrito y solo hay ${stockDisponible} en stock.`,
+        });
+      }
+
+      currentCart[existeDuplicado].cantidad = nuevaCantidad;
     } else {
+      if (item.cantidad > stockDisponible) {
+        return Swal.fire({
+          icon: "error",
+          title: "No hay suficiente stock disponible",
+          text: `Solo hay ${stockDisponible} unidades disponibles.`,
+        });
+      }
+
       currentCart.push(item);
     }
-
-    localStorage.setItem("cart", JSON.stringify(currentCart)); // Guardar el nuevo carrito en el localStorage
+    // Guardar el nuevo carrito en el localStorage
+    localStorage.setItem("cart", JSON.stringify(currentCart));
 
     Swal.fire({
       icon: "success",
       title: "Producto agregado al carrito",
       showConfirmButton: false,
-      timer: 1500,
+      timer: 800,
     });
   };
-
+  // Obtener variantes del producto
   useEffect(() => {
     const getAllVariants = async () => {
       const variantes = await getColoresByProduct(product.id!);
@@ -106,6 +131,18 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   useEffect(() => {
     setStockDisponible(product.stocks[0].stock); // stock del talle por defecto
   }, [product]);
+
+  useEffect(() => {
+    const productoEnCarrito = currentCart.find(
+      (p: any) =>
+        p.idDetalleProducto === product.id &&
+        p.talleId === detailSelected.talle.id
+    );
+
+    const cantidadEnCarrito = productoEnCarrito ? productoEnCarrito.cantidad : 0;
+
+    setStockEfectivo(stockDisponible - cantidadEnCarrito);
+  }, [stockDisponible, detailSelected.talle, product.id]);
 
   return (
     <>
@@ -151,31 +188,16 @@ export const Details: FC<PropsDetails> = ({ product }) => {
           </div>
           <div>
             <p>Cantidad:</p>
-            {/* <select
-            defaultValue={detailSelected.cantidad}
-            onChange={handlerCount}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-          </select> */}
-            {stockDisponible > 0 ? (
+            {stockEfectivo > 0 ? (
               <select value={detailSelected.cantidad} onChange={handlerCount}>
-                {Array.from(
-                  { length: Math.min(stockDisponible, 4) },
-                  (_, i) => (
-                    <option key={i + 1} value={i + 1}>
-                      {i + 1}
-                    </option>
-                  )
-                )}
+                {Array.from({ length: Math.min(stockEfectivo, 4) }, (_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
               </select>
             ) : (
-              <p style={{ color: "red" }}>
-                Sin stock disponible por el momento
-              </p>
+              <p style={{ color: "red" }}>Sin stock disponible por el momento</p>
             )}
           </div>
         </div>
