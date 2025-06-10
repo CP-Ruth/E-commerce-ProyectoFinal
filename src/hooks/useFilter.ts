@@ -36,8 +36,6 @@ export const useFilter = () => {
     setProductos(response);
   };
 
-
-
   return {
     productos,
     getProducts,
