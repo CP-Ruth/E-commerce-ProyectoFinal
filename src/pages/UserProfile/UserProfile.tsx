@@ -73,7 +73,6 @@ const UserProfile = () => {
         formData,
         localStorage.getItem("token")!
       );
-      console.log(updateUserActive);
       if (updateUserActive) {
         setUserActive(updateUserActive);
         Swal.fire("Usuario actualizado correctamente", "", "success");
@@ -144,7 +143,7 @@ const UserProfile = () => {
               type="password"
               id="password"
               name="password"
-              value={formData?.username}
+              value={formData?.password}
               onChange={handleInputChange}
               required
             />
@@ -176,7 +175,7 @@ const UserProfile = () => {
             <input
               type="text"
               id="localidad"
-              name="localidad"
+              name="nombre"
               value={formData?.direccion.localidad.nombre}
               onChange={handleLocalidadChange}
               required
@@ -187,7 +186,7 @@ const UserProfile = () => {
             <input
               type="text"
               id="provincia"
-              name="provincia"
+              name="nombre"
               value={formData?.direccion.localidad.provincia.nombre}
               onChange={handleProvinciaChange}
               required

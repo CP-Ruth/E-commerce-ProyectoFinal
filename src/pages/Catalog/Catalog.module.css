@@ -1,3 +1,10 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .containerMain {
   display: flex;
   flex-direction: column;
@@ -5,7 +12,7 @@
   margin: 40px auto;
 }
 
-.title{
+.title {
   font-size: var(--fluid-20-40);
   text-transform: uppercase;
 }
@@ -18,7 +25,7 @@
 }
 
 @media (min-width: 768px) {
-  .containerOptions{
+  .containerOptions {
     gap: 20px;
   }
 }

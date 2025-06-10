@@ -4,31 +4,6 @@
   position: relative;
 }
 
-.btn {
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: black; /* Cambiá el color */
-  top: 45%; /* Centradas verticalmente */
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-}
-
-.swiper-button-prev {
-  left: -30px; /* 👈 Mueve la flecha izquierda fuera del slide */
-}
-
-.swiper-button-next {
-  right: -30px; /* 👉 Mueve la flecha derecha fuera del slide */
+Swiper {
+  padding: 50px;
 }

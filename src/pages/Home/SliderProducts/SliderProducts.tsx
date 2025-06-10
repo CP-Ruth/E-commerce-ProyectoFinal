@@ -26,18 +26,18 @@ const SliderProducts = () => {
   }, []);
 
   return (
-    <section className={styles.container}>
+    <section className={styles.swiper}>
       <Swiper
         modules={[Navigation]}
         spaceBetween={10}
         navigation
-        loop={false}
+        loop={true}
         grabCursor={true}
         breakpoints={{
           400: { slidesPerView: 1 },
           600: { slidesPerView: 2 },
           1000: { slidesPerView: 3 },
-          1224: { slidesPerView: 4 },
+          1024: { slidesPerView: 4 },
         }}
       >
         {productosCalzado &&

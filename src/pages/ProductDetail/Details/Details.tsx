@@ -151,7 +151,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
         Volver al catalogo
       </button>
       <div className={styles.containerPrincipal}>
-        <h2>{product.producto.nombre}</h2>
+        <h2 style={{textAlign: "start"}}>{product.producto.nombre}</h2>
         {descuento > 0 ? (
           <>
             <p>Este producto tiene {product.descuento?.nombre} de descuento</p>

@@ -9,7 +9,7 @@ import { getTalles } from "../../../services/tallesService";
 
 interface PropsFiltersProducts {
   handleFilter: (key: keyof Filtros, value: any) => void;
-  filter: string | null
+  filter: string | null;
 }
 
 const FiltersProducts: FC<PropsFiltersProducts> = ({
@@ -82,16 +82,18 @@ const FiltersProducts: FC<PropsFiltersProducts> = ({
         <h4 className={styles.subtitle}>Descuentos</h4>
         {descuentos &&
           descuentos.map((descuento) => {
-            return (
-              <label key={descuento.id}>
-                <input
-                  type="checkbox"
-                  checked={selectedFilters.descuento === descuento.id}
-                  onChange={() => toggleFilter("descuento", descuento.id)}
-                />
-                {" " + descuento.porcentaje * 100 + "%"}
-              </label>
-            );
+            if (descuento.activo) {
+              return (
+                <label key={descuento.id}>
+                  <input
+                    type="checkbox"
+                    checked={selectedFilters.descuento === descuento.id}
+                    onChange={() => toggleFilter("descuento", descuento.id)}
+                  />
+                  {" " + descuento.porcentaje * 100 + "%"}
+                </label>
+              );
+            }
           })}
       </div>
       <div className={styles.filterContainer}>
