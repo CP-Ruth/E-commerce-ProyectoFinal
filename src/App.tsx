@@ -16,6 +16,7 @@ import PaymentSuccess from "./pages/PaymentSuccess/PaymentSuccess";
 import PaymentFailure from "./pages/PaymentFailure/PaymentFailure";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 function App() {
   const {getUserByTokenUser} = useAuth()
@@ -32,6 +33,7 @@ function App() {
       <Route path="/catalogo/:sexo" element={<Catalog />} />
       <Route path="/producto/:id" element={<ProductDetail />} />
       <Route path="/carrito" element={<ShoppingCart />} />
+      <Route path="/perfil" element={<UserProfile />} />
       {/**Quitar despues */}
       <Route path="/administrador" element={<AdminHome />}>
         <Route index path="usuarios" element={<AdminUsers />} />

@@ -1,35 +1,36 @@
 import styles from "./Header.module.css";
 import LoginRegister from "../LoginRegister/LoginRegister";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import carrito from "../../assets/svg/shop.svg";
 import { FaRegUser, FaUserCheck } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import logo from "../../assets/images/myb.png";
 import { useAuth } from "../../hooks/useAuth";
-import Swal from "sweetalert2";
 
 const Header = () => {
   const [openFormUser, setOpenFormUser] = useState(false); // Estado para abrir el modal
   const [menuOpen, setMenuOpen] = useState(false); // Estado para la vista de la hamburgesa
   const { userActive, setUserActive } = useAuth();
 
-  const handleLogout = () => {
-    Swal.fire({
-      title: "¿Estas seguro de cerrar sesión?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Cerrar sesión",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.removeItem("token");
-        setUserActive(null);
-        Swal.fire("Cerrado!", "Has cerrado sesión.", "success");
-      }
-    });
-  };
+  const navigate = useNavigate();
+
+  // const handleLogout = () => {
+  //   Swal.fire({
+  //     title: "¿Estas seguro de cerrar sesión?",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Cerrar sesión",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       localStorage.removeItem("token");
+  //       setUserActive(null);
+  //       Swal.fire("Cerrado!", "Has cerrado sesión.", "success");
+  //     }
+  //   });
+  // };
 
   return (
     <header className={styles.containerHeader}>
@@ -52,8 +53,12 @@ const Header = () => {
             <img src={carrito} alt="Carrito de compras" />
           </Link>
           {userActive ? (
-            <button onClick={handleLogout}>
+            <button
+              className={styles.headerUser}
+              onClick={() => navigate("/perfil")}
+            >
               <FaUserCheck size={30} />
+              {userActive.nombre} {userActive.apellido}
             </button>
           ) : (
             <button onClick={() => setOpenFormUser(true)}>

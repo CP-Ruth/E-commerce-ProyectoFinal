@@ -21,7 +21,6 @@ const initial = {
   password: "",
   rol: "",
   direccion: "",
-  codigoPostal: 0,
   localidad: "",
   provincia: "",
 };
@@ -108,13 +107,6 @@ const UserForm: FC<PropsUserForm> = ({ onClose }) => {
             value={userForm.direccion}
             onChange={handlerDetailsChange}
             text="Direccion"
-          />
-          <Input
-            name="codigoPostal"
-            type="number"
-            value={userForm.codigoPostal}
-            onChange={handlerDetailsChange}
-            text="Codigo Postal"
           />
           <Input
             name="localidad"

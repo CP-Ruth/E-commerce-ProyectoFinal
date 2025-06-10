@@ -17,7 +17,6 @@ const initial = {
   password: "",
   direccion: "",
   localidad: "",
-  codigoPostal: "",
   provincia: "",
   rol: "USUARIO"
 };
@@ -196,17 +195,6 @@ const LoginRegister: FC<ModalProps> = ({ onClose }) => {
               />
               {errors.localidad && (
                 <span className={styles.error}>{errors.localidad}</span>
-              )}
-              <input
-                type="number"
-                name="codigoPostal"
-                value={registerData.codigoPostal}
-                placeholder="Codigo Postal"
-                onChange={handleChange}
-                required
-              />
-              {errors.codigoPostal && (
-                <span className={styles.error}>{errors.codigoPostal}</span>
               )}
               <input
                 type="text"
