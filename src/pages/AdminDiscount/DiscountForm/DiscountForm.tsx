@@ -13,7 +13,7 @@ interface PropsDiscountForm {
 
 const initialFormDiscount: IDiscount = {
   nombre: "",
-  porcentaje: 0,
+  porcentaje: "",
   fechaInicio: "",
   fechaFin: "",
   activo: true,

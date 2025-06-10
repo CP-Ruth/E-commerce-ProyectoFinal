@@ -6,7 +6,7 @@ export interface ILogin {
 export interface IRegister {
   nombre: string;
   apellido: string;
-  dni: number;
+  dni: number | string;
   email: string;
   password: string;
   direccion: string;

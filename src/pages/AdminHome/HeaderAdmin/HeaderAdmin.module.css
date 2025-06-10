@@ -49,15 +49,15 @@
   padding: 20px 0;
   display: flex;
   flex-wrap: wrap;
+  gap: 30px;
 }
 
 .link {
   color: rgb(134, 134, 134);
   font-weight: bold;
-  width: 250px;
   height: 40px;
   text-align: center;
-  font-size: var(--font-x);
+  font-size: 22px;
 }
 
 .links {

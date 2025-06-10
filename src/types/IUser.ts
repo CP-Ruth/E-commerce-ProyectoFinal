@@ -12,7 +12,7 @@ export interface IUser {
   id?: number;
   nombre: string;
   apellido: string;
-  dni: number;
+  dni: number | string;
   username: string;
   password: string;
   rol: Rol;

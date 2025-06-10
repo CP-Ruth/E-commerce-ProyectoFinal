@@ -16,7 +16,7 @@ interface PropsUserForm {
 const initial = {
   nombre: "",
   apellido: "",
-  dni: 0,
+  dni: "",
   email: "",
   password: "",
   rol: "",

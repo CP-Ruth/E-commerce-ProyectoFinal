@@ -33,7 +33,7 @@ const HeaderAdmin = () => {
           }
           to="/administrador/detalles"
         >
-          DETALLES
+          VARIANTES PRODUCTOS
         </NavLink>
         <NavLink
           className={({ isActive }) =>

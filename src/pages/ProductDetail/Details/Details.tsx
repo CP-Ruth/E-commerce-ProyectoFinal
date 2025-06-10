@@ -5,7 +5,7 @@ import {
   ITalle,
 } from "../../../types/IDetailsProduct";
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import { getDetailsByProduct } from "../../../services/detailsService";
+import { getColoresByProduct } from "../../../services/detailsService";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
@@ -97,7 +97,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
 
   useEffect(() => {
     const getAllVariants = async () => {
-      const variantes = await getDetailsByProduct(product.id!);
+      const variantes = await getColoresByProduct(product.id!);
       setVariantes(variantes);
     };
     getAllVariants();
