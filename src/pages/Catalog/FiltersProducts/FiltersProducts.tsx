@@ -100,10 +100,8 @@ const FiltersProducts: FC<PropsFiltersProducts> = ({
         <h4 className={styles.subtitle}>Precio</h4>
         {[
           { label: "Hasta 100 mil", range: "0-100000" },
-          { label: "100 - 150 mil", range: "100000-150000" },
-          { label: "150 - 200 mil", range: "150000-200000" },
-          { label: "200 - 250 mil", range: "200000-250000" },
-          { label: "250 - 300 mil", range: "250000-300000" },
+          { label: "100 - 200 mil", range: "100000-200000" },
+          { label: "200 - 300 mil", range: "200000-300000" },
         ].map(({ label, range }) => {
           const [min, max] = range.split("-").map(Number);
           const isChecked =
@@ -123,49 +121,80 @@ const FiltersProducts: FC<PropsFiltersProducts> = ({
         })}
       </div>
       <div className={styles.filterContainer}>
-        <h4 className={styles.subtitle}>Talle</h4>
-        {talles.map((talle) => {
-          if (filter) {
-            if (filter === "ropa") {
-              if (talle.name.match(/[A-Z]/)) {
-                return (
-                  <label key={talle.id}>
-                    <input
-                      type="checkbox"
-                      checked={selectedFilters.talle === talle.id}
-                      onChange={() => toggleFilter("talle", talle.id)}
-                    />
-                    {talle.name}
-                  </label>
-                );
-              }
-            } else {
-              if (talle.name.match(/[0-9]{2}/)) {
-                return (
-                  <label key={talle.id}>
-                    <input
-                      type="checkbox"
-                      checked={selectedFilters.talle === talle.id}
-                      onChange={() => toggleFilter("talle", talle.id)}
-                    />
-                    {talle.name}
-                  </label>
-                );
-              }
+        <h4 className={styles.subtitle}>Talles</h4>
+        {filter ? (
+          // Si hay filtro (ropa o calzado), mostramos solo los talles correspondientesAdd commentMore actions
+          talles.map((talle) => {
+            if (filter === "ropa" && talle.name.match(/^[A-Z]+$/)) {
+              return (
+                <label key={talle.id}>
+                  <input
+                    type="checkbox"
+                    checked={selectedFilters.talle === talle.id}
+                    onChange={() => toggleFilter("talle", talle.id)}
+                  />
+                  {talle.name}
+                </label>
+              );
+            } else if (filter !== "ropa" && talle.name.match(/^[0-9]{2}$/)) {
+              return (
+                <label key={talle.id}>
+                  <input
+                    type="checkbox"
+                    checked={selectedFilters.talle === talle.id}
+                    onChange={() => toggleFilter("talle", talle.id)}
+                  />
+                  {talle.name}
+                </label>
+              );
             }
-          } else {
-            return (
-              <label key={talle.id}>
-                <input
-                  type="checkbox"
-                  checked={selectedFilters.talle === talle.id}
-                  onChange={() => toggleFilter("talle", talle.id)}
-                />
-                {talle.name}
-              </label>
-            );
-          }
-        })}
+            return null;
+          })
+        ) : (
+          // Si NO hay filtro, mostramos talles agrupados por tipo
+          <div className={styles.containerTalles}>
+            <div>
+              <h5
+                style={{ fontSize: "16px", marginBottom: "5px" }}
+                className={styles.subsubtitle}
+              >
+                Calzados
+              </h5>
+              {talles
+                .filter((t) => t.name.match(/^[0-9]{2}$/))
+                .map((talle) => (
+                  <label key={talle.id}>
+                    <input
+                      type="checkbox"
+                      checked={selectedFilters.talle === talle.id}
+                      onChange={() => toggleFilter("talle", talle.id)}
+                    />
+                    {talle.name}
+                  </label>
+                ))}
+            </div>
+            <div>
+              <h5
+                style={{ fontSize: "16px", marginBottom: "5px" }}
+                className={styles.subsubtitle}
+              >
+                Ropa
+              </h5>
+              {talles
+                .filter((t) => t.name.match(/^[A-Z]+$/))
+                .map((talle) => (
+                  <label key={talle.id}>
+                    <input
+                      type="checkbox"
+                      checked={selectedFilters.talle === talle.id}
+                      onChange={() => toggleFilter("talle", talle.id)}
+                    />
+                    {talle.name}
+                  </label>
+                ))}
+            </div>
+          </div>
+        )}
       </div>
       <div className={styles.filterContainer}>
         <h4 className={styles.subtitle}>Categoria</h4>

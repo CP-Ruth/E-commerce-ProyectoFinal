@@ -23,7 +23,7 @@ const Product: FC<PropsProduct> = ({ detProducto, onClick }) => {
       <h4 className={styles.title}>{detProducto.producto.nombre}</h4>
       {detProducto.descuento?.activo ? (
         <>
-          <h5 style={{ textDecoration: "line-through" }}>
+          <h5 style={{ textDecoration: "line-through", marginTop: "9px" }}>
             ${detProducto.precioVenta}
           </h5>
           <h4>
