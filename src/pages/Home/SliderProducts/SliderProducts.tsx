@@ -26,7 +26,7 @@ const SliderProducts = () => {
   }, []);
 
   return (
-    <section className={styles.swiper}>
+    <section className={styles.container}>
       <Swiper
         modules={[Navigation]}
         spaceBetween={10}

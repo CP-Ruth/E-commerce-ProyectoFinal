@@ -10,7 +10,6 @@ import RunMan from "../../assets/images/runner-man.png";
 import RunWoman from "../../assets/images/runner-woman.png";
 import RunningWoman from "../../assets/images/running_woman.jpg";
 import RunningMan from "../../assets/images/running_man.jpg";
-import Loader from "../../components/Loader/Loader";
 
 const Home = () => {
   return (
