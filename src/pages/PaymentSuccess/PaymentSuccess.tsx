@@ -1,9 +1,14 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import styles from "./PaymentSuccess.module.css";
 import { GiConfirmed } from "react-icons/gi";
+import { useEffect } from "react";
+import { editOrdenCompra } from "../../services/ordenCompraService";
+import { useAuth } from "../../hooks/useAuth";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+  const {userActive, getUserByTokenUser} = useAuth()
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleGoHome = () => {
     navigate("/");
@@ -17,6 +22,13 @@ const PaymentSuccess = () => {
     month: "long",
     day: "numeric",
   });
+
+  useEffect(() => {
+    getUserByTokenUser()
+    if (userActive) {
+      editOrdenCompra(userActive?.id!);
+    }
+  }, [userActive]);
 
   return (
     <div className={styles.container}>
@@ -33,10 +45,6 @@ const PaymentSuccess = () => {
         </div>
         {/* Detalles del pedido */}
         <div className={styles.orderDetails}>
-          <div className={styles.orderHeader}>
-            <span className={styles.orderLabel}>Número de pedido</span>
-          </div>
-          <p className={styles.orderNumber}>#</p>
           <div className={styles.deliverySection}>
             <p className={styles.deliveryLabel}>Entrega estimada:</p>
             <p className={styles.deliveryDate}>{estimatedDelivery}</p>

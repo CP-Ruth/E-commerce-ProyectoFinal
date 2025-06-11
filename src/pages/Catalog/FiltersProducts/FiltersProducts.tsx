@@ -96,30 +96,7 @@ const FiltersProducts: FC<PropsFiltersProducts> = ({
             }
           })}
       </div>
-      <div className={styles.filterContainer}>
-        <h4 className={styles.subtitle}>Precio</h4>
-        {[
-          { label: "Hasta 100 mil", range: "0-100000" },
-          { label: "100 - 200 mil", range: "100000-200000" },
-          { label: "200 - 300 mil", range: "200000-300000" },
-        ].map(({ label, range }) => {
-          const [min, max] = range.split("-").map(Number);
-          const isChecked =
-            selectedFilters.precioMin === min &&
-            selectedFilters.precioMax === max;
 
-          return (
-            <label key={range}>
-              <input
-                type="checkbox"
-                checked={isChecked}
-                onChange={() => togglePriceRange(range)}
-              />
-              {label}
-            </label>
-          );
-        })}
-      </div>
       <div className={styles.filterContainer}>
         <h4 className={styles.subtitle}>Talles</h4>
         {filter ? (
