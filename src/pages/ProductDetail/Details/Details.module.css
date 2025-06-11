@@ -4,7 +4,7 @@
   width: 100%;
   height: 100%;
   padding: 0.5rem;
-  gap: 0.9rem;
+  gap: 0.5rem;
 }
 
 .containerData {
@@ -24,6 +24,11 @@
 
 .containerData select {
   width: 100px;
+}
+
+.selected {
+  background-color: black;
+  color: white;
 }
 
 .carritoButton {
@@ -52,7 +57,7 @@
 
 @media (min-width: 768px) {
   .containerPrincipal {
-    gap: 2rem;
+    gap: 1.3rem;
   }
   .containerPrincipal h2 {
     font-size: 1.9rem;

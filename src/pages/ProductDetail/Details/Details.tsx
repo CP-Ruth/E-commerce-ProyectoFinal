@@ -40,7 +40,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
     ? product.descuento.porcentaje
     : 0;
   const precioProductoConDescuento =
-    Math.abs(product.precioVenta - product.precioVenta * descuento);
+    product.precioVenta - product.precioVenta * (descuento / 100);
 
   const handlerCount = (e: ChangeEvent<HTMLSelectElement>) => {
     setDetailSelected({
@@ -147,11 +147,16 @@ export const Details: FC<PropsDetails> = ({ product }) => {
 
   return (
     <>
-      <button className={styles.comeBack} onClick={() => navigate(-1)}>
+      <button
+        className={styles.comeBack}
+        onClick={() =>
+          navigate(`/catalogo/${product.producto.sexo.toLowerCase()}`)
+        }
+      >
         Volver atras
       </button>
       <div className={styles.containerPrincipal}>
-        <h2 style={{textAlign: "start"}}>{product.producto.nombre}</h2>
+        <h2 style={{ textAlign: "start" }}>{product.producto.nombre}</h2>
         {descuento > 0 ? (
           <>
             <p>Este producto tiene {product.descuento?.nombre} de descuento</p>
@@ -163,13 +168,23 @@ export const Details: FC<PropsDetails> = ({ product }) => {
         ) : (
           <h3>${product.precioVenta}</h3>
         )}
-
         <div className={styles.containerData}>
           <div>
             <p>Color:</p>
             {variantes &&
               variantes?.map((variante, i) => (
-                <span key={i}>{variante.color}</span>
+                <span
+                  style={{ marginRight: "10px" }}
+                  className={
+                    product.id === variante.idDetalle ? styles.selected : ""
+                  }
+                  key={i}
+                  onClick={() => {
+                    navigate(`/producto/${variante.idDetalle}`);
+                  }}
+                >
+                  {variante.color}
+                </span>
               ))}
           </div>
           <div className={styles.talleContainer}>
