@@ -90,7 +90,7 @@ const FiltersProducts: FC<PropsFiltersProducts> = ({
                     checked={selectedFilters.descuento === descuento.id}
                     onChange={() => toggleFilter("descuento", descuento.id)}
                   />
-                  {" " + descuento.porcentaje * 100 + "%"}
+                  {" " + descuento.porcentaje + "%"}
                 </label>
               );
             }

@@ -1,9 +1,16 @@
 .container {
-  width: 74%;
+  width: 80%;
   margin: 60px auto;
   position: relative;
 }
 
-Swiper {
-  padding: 50px;
+@media (min-width: 768px) {
+  .container {
+    width: 76%;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    width: 74%;
+  }
 }

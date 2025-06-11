@@ -25,22 +25,24 @@ const AdminDiscount = () => {
         >
           Añadir Descuento
         </button>
-        <table className={styles.tableUser}>
-          <thead>
-            <TableHeadDiscount />
-          </thead>
-          <tbody>
-            {descuentos?.map((descuento) => (
-              <TableRowDiscount key={descuento.id} descuento={descuento}>
-                <MdEdit
-                  size={30}
-                  className={styles.icon}
-                  onClick={() => handlerOpenModal(descuento, "edit")}
-                />
-              </TableRowDiscount>
-            ))}
-          </tbody>
-        </table>
+        <div className={styles.containerTable}>
+          <table className={styles.tableUser}>
+            <thead>
+              <TableHeadDiscount />
+            </thead>
+            <tbody>
+              {descuentos?.map((descuento) => (
+                <TableRowDiscount key={descuento.id} descuento={descuento}>
+                  <MdEdit
+                    size={30}
+                    className={styles.icon}
+                    onClick={() => handlerOpenModal(descuento, "edit")}
+                  />
+                </TableRowDiscount>
+              ))}
+            </tbody>
+          </table>
+        </div>
         {openModal.edit && (
           <DiscountForm
             discount={active as IDiscount}

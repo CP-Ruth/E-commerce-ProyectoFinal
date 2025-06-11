@@ -38,26 +38,28 @@ const AdminUsers = () => {
       <button className={styles.button} onClick={() => setOpenModal(true)}>
         Añadir usuario
       </button>
-      <table className={styles.tableUser}>
-        <thead>
-          <TableHeadUser />
-        </thead>
-        <tbody>
-          {users &&
-            users.length > 0 &&
-            users.map((usuario) => (
-              <TableRowUser key={usuario.id} usuario={usuario}>
-                <FaPowerOff
-                  className={`${styles.icon} ${
-                    usuario.activo ? styles.active : styles.deactive
-                  }`}
-                  size={30}
-                  onClick={() => deleteProduct(usuario.id!, usuario.activo)}
-                />
-              </TableRowUser>
-            ))}
-        </tbody>
-      </table>
+      <div className={styles.containerTable}>
+        <table className={styles.tableUser}>
+          <thead>
+            <TableHeadUser />
+          </thead>
+          <tbody>
+            {users &&
+              users.length > 0 &&
+              users.map((usuario) => (
+                <TableRowUser key={usuario.id} usuario={usuario}>
+                  <FaPowerOff
+                    className={`${styles.icon} ${
+                      usuario.activo ? styles.active : styles.deactive
+                    }`}
+                    size={30}
+                    onClick={() => deleteProduct(usuario.id!, usuario.activo)}
+                  />
+                </TableRowUser>
+              ))}
+          </tbody>
+        </table>
+      </div>
       {openModal && <UserForm onClose={() => setOpenModal(false)} />}
     </section>
   );

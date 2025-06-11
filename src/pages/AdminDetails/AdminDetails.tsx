@@ -32,52 +32,50 @@ const AdminDetails = () => {
         >
           Añadir Detalle
         </button>
-        <table className={styles.tableUser}>
-          <thead>
-            <TableHeadDetail />
-          </thead>
-          <tbody>
-            {details &&
-              details.length > 0 &&
-              details.map((detalle) => (
-                <TableRowDetail key={detalle.id} detalle={detalle}>
-                  <FaRegEye
-                    size={30}
-                    className={styles.icon}
-                    onClick={() => handlerOpenModal(detalle, "info")}
-                  />
-                  <MdEdit
-                    size={30}
-                    className={styles.icon}
-                    onClick={() => handlerOpenModal(detalle, "edit")}
-                  />
+        <div className={styles.containerTable}>
+          <table className={styles.tableUser}>
+            <thead>
+              <TableHeadDetail />
+            </thead>
+            <tbody>
+              {details &&
+                details.length > 0 &&
+                details.map((detalle) => (
+                  <TableRowDetail key={detalle.id} detalle={detalle}>
+                    <FaRegEye
+                      size={30}
+                      className={styles.icon}
+                      onClick={() => handlerOpenModal(detalle, "info")}
+                    />
+                    <MdEdit
+                      size={30}
+                      className={styles.icon}
+                      onClick={() => handlerOpenModal(detalle, "edit")}
+                    />
 
-                  <FaPowerOff
-                    className={`${styles.icon} ${
-                      detalle.activo ? styles.active : styles.deactive
-                    }`}
-                    size={30}
-                    onClick={() => deleteProduct(detalle.id!)}
-                  />
-                </TableRowDetail>
-              ))}
-          </tbody>
-        </table>
+                    <FaPowerOff
+                      className={`${styles.icon} ${
+                        detalle.activo ? styles.active : styles.deactive
+                      }`}
+                      size={30}
+                      onClick={() => deleteProduct(detalle.id!)}
+                    />
+                  </TableRowDetail>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </section>
       {openModal.info && (
         <DetailInfo
           detalle={active! as IDetailsProduct}
-          onClose={() =>
-            handlerOpenModal(active! as IDetailsProduct, "info")
-          }
+          onClose={() => handlerOpenModal(active! as IDetailsProduct, "info")}
         />
       )}
       {openModal.edit && (
         <DetailForm
           detalle={active! as IDetailsProduct}
-          onClose={() =>
-            handlerOpenModal(active! as IDetailsProduct, "edit")
-          }
+          onClose={() => handlerOpenModal(active! as IDetailsProduct, "edit")}
         />
       )}
     </>

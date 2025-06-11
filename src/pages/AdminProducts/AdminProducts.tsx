@@ -28,7 +28,11 @@ const AdminProducts = () => {
       if (result.isConfirmed) {
         const message = activo ? "Desactivado" : "Activado";
         changeActiveProduct(id);
-        Swal.fire(message, `El producto ha sido ${message.toLowerCase()}.`, "success");
+        Swal.fire(
+          message,
+          `El producto ha sido ${message.toLowerCase()}.`,
+          "success"
+        );
       }
     });
   };
@@ -46,38 +50,40 @@ const AdminProducts = () => {
         >
           Añadir Producto
         </button>
-        <table className={styles.tableUser}>
-          <thead>
-            <TableHeadProduct />
-          </thead>
-          <tbody>
-            {products &&
-              products.length > 0 &&
-              products.map((producto) => (
-                <TableRowProduct key={producto.id} producto={producto}>
-                  <FaRegEye
-                    size={30}
-                    className={styles.icon}
-                    onClick={() => handlerOpenModal(producto, "info")}
-                  />
-                  <MdEdit
-                    size={30}
-                    className={styles.icon}
-                    onClick={() => handlerOpenModal(producto, "edit")}
-                  />
-                  <FaPowerOff
-                    size={30}
-                    className={`${styles.icon} ${
-                      producto.activo ? styles.active : styles.deactive
-                    }`}
-                    onClick={() =>
-                      deleteProduct(producto.id!, producto.activo!)
-                    }
-                  />
-                </TableRowProduct>
-              ))}
-          </tbody>
-        </table>
+        <div className={styles.containerTable}>
+          <table className={styles.tableUser}>
+            <thead>
+              <TableHeadProduct />
+            </thead>
+            <tbody>
+              {products &&
+                products.length > 0 &&
+                products.map((producto) => (
+                  <TableRowProduct key={producto.id} producto={producto}>
+                    <FaRegEye
+                      size={30}
+                      className={styles.icon}
+                      onClick={() => handlerOpenModal(producto, "info")}
+                    />
+                    <MdEdit
+                      size={30}
+                      className={styles.icon}
+                      onClick={() => handlerOpenModal(producto, "edit")}
+                    />
+                    <FaPowerOff
+                      size={30}
+                      className={`${styles.icon} ${
+                        producto.activo ? styles.active : styles.deactive
+                      }`}
+                      onClick={() =>
+                        deleteProduct(producto.id!, producto.activo!)
+                      }
+                    />
+                  </TableRowProduct>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </section>
       {openModal.edit && (
         <ProductForm

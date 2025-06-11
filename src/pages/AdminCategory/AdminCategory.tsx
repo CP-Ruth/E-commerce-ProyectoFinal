@@ -25,22 +25,24 @@ const AdminCategory = () => {
         >
           Añadir Categoría
         </button>
-        <table className={styles.tableUser}>
-          <thead>
-            <TableHeadCategory />
-          </thead>
-          <tbody>
-            {categorias?.map((categoria) => (
-              <TableRowCategory key={categoria.id} categoria={categoria}>
-                <MdEdit
-                  size={30}
-                  className={styles.icon}
-                  onClick={() => handlerOpenModal(categoria, "edit")}
-                />
-              </TableRowCategory>
-            ))}
-          </tbody>
-        </table>
+        <div className={styles.containerTable}>
+          <table className={styles.tableUser}>
+            <thead>
+              <TableHeadCategory />
+            </thead>
+            <tbody>
+              {categorias?.map((categoria) => (
+                <TableRowCategory key={categoria.id} categoria={categoria}>
+                  <MdEdit
+                    size={30}
+                    className={styles.icon}
+                    onClick={() => handlerOpenModal(categoria, "edit")}
+                  />
+                </TableRowCategory>
+              ))}
+            </tbody>
+          </table>
+        </div>
         {openModal.edit && (
           <CategoryForm
             category={active as ICategory}
