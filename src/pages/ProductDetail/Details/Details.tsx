@@ -169,24 +169,6 @@ export const Details: FC<PropsDetails> = ({ product }) => {
           <h3>${product.precioVenta}</h3>
         )}
         <div className={styles.containerData}>
-          <div>
-            <p>Color:</p>
-            {variantes &&
-              variantes?.map((variante, i) => (
-                <span
-                  style={{ marginRight: "10px" }}
-                  className={
-                    product.id === variante.idDetalle ? styles.selected : ""
-                  }
-                  key={i}
-                  onClick={() => {
-                    navigate(`/producto/${variante.idDetalle}`);
-                  }}
-                >
-                  {variante.color}
-                </span>
-              ))}
-          </div>
           <div className={styles.talleContainer}>
             <p>Talle:</p>
             <select

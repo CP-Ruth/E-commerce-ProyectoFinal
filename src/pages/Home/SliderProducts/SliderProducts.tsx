@@ -31,7 +31,7 @@ const SliderProducts = () => {
         modules={[Navigation]}
         spaceBetween={10}
         navigation
-        loop={true}
+        loop={false}
         grabCursor={true}
         breakpoints={{
           400: { slidesPerView: 1 },
