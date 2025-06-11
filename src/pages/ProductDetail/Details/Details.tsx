@@ -40,7 +40,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
     ? product.descuento.porcentaje
     : 0;
   const precioProductoConDescuento =
-    product.precioVenta - product.precioVenta * descuento;
+    Math.abs(product.precioVenta - product.precioVenta * descuento);
 
   const handlerCount = (e: ChangeEvent<HTMLSelectElement>) => {
     setDetailSelected({
@@ -148,7 +148,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
   return (
     <>
       <button className={styles.comeBack} onClick={() => navigate(-1)}>
-        Volver al catalogo
+        Volver atras
       </button>
       <div className={styles.containerPrincipal}>
         <h2 style={{textAlign: "start"}}>{product.producto.nombre}</h2>
