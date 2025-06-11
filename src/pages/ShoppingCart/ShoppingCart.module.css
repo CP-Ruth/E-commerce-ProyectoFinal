@@ -1,12 +1,23 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+
 .mainContainer {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 1rem;
   flex: 1;
-  min-height: 70vh;
   margin: 1rem;
-  height: 100vh;
+  min-height: 80vh;
 }
 
 .containerSection {
@@ -16,16 +27,18 @@
 }
 
 .scrollBox {
-  max-height: 500px;
-  overflow-y: auto;
+  /* max-height: 500px; */
+  /* overflow-y: auto; */
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 @media (min-width: 768px) {
+  
   .containerSection {
     display: flex;
+    
   }
   .scrollBox {
     width: 80vw;
@@ -41,4 +54,9 @@
   .scrollBox {
     width: 45vw;
   }
+  .scrollBox {
+  max-height: 500px;
+  overflow-y: auto;
+  
+}
 }

@@ -108,7 +108,9 @@ const ShoppingCart = () => {
           />
         </section>
       </main>
+      <div>
       <Footer />
+      </div>
     </>
   );
 };
