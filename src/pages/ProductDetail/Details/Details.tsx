@@ -109,10 +109,12 @@ export const Details: FC<PropsDetails> = ({ product }) => {
 
   return (
     <>
-      <button className={styles.comeBack} onClick={() => navigate(-1)}>
-        Volver al catalogo
-      </button>
       <div className={styles.containerPrincipal}>
+        {/* <div className={styles.buttonWrapper}>
+          <button className={styles.comeBack} onClick={() => navigate(-1)}>
+            Volver al catalogo
+          </button>
+        </div> */}
         <h2>{product.producto.nombre}</h2>
         {descuento > 0 ? (
           <>

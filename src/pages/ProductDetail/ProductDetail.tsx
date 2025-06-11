@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Details from "./Details/Details";
@@ -20,9 +20,14 @@ const ProductDetail = () => {
     fetchProduct();
   }, [id]);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Header />
+      <button className={styles.comeBack} onClick={() => navigate(-1)}>
+            Volver al catalogo
+          </button>
       <main className={styles.mainContainer}>
         {activeProdcut && (
           <>

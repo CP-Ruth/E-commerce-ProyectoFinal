@@ -42,14 +42,15 @@
   cursor: not-allowed;
 }
 
+/* 
+botón desactivado 
 .comeBack{
-  position: absolute;
   top: 90px;
   left: 1rem;
   padding: 5px 15px;
   border: 1px solid black;
   
-}
+} */
 
 
 @media (min-width: 768px) {
@@ -66,4 +67,5 @@
   .containerData {
     font-size: 1rem;
   }
+  
 }
