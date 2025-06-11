@@ -1,7 +1,16 @@
+body {
+  background: white;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  
+}
+
 .mainContainer {
   margin: 0;
   padding: 20px;
 }
+
 
 @media (min-width: 768px) {
   .mainContainer {
@@ -17,9 +26,9 @@
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(2, 1fr);
-    width: 100%;
+    width: 100vw;
     margin: 40px 0;
     padding: 0;
-    
+    height: 90vh;
   }
 }

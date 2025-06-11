@@ -32,7 +32,9 @@ const ProductDetail = () => {
         )}
         {/* <Description /> */}
       </main>
+      <div className={styles.foot}>
       <Footer />
+      </div>
     </>
   );
 };
