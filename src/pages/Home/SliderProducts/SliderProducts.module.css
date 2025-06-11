@@ -3,5 +3,13 @@
   margin: 60px auto;
   position: relative;
 }
-
-
+@media (min-width: 768px) {
+  .container {
+    width: 76%;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    width: 74%;
+  }
+}
