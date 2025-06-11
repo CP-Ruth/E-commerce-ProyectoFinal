@@ -71,11 +71,16 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
     console.log(uploadArray);
     form.imagenes = uploadArray;
 
-    if (form.id) {
-      updateOneDetail(form);
+    const newForm = form
+
+    if (form.stocks[1].talle.name === "") {
+      newForm.stocks.pop()
+    }
+
+    if (newForm.id) {
+      updateOneDetail(newForm);
     } else {
-      console.log(form);
-      createOneDetail(form);
+      createOneDetail(newForm);
     }
 
     Swal.fire({
@@ -168,7 +173,6 @@ const DetailForm: FC<PropsDetailForm> = ({ detalle, onClose }) => {
                   name="talle"
                   value={stock.talle.name}
                   onChange={(e) => handlerTalleChange(e, index, talles)}
-                  required
                 >
                   <option value="">Seleccionar talle</option>
                   {talles.length > 0 &&

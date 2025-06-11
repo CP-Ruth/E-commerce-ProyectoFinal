@@ -150,7 +150,7 @@ export const Details: FC<PropsDetails> = ({ product }) => {
       <button
         className={styles.comeBack}
         onClick={() =>
-          navigate(`/catalogo/${product.producto.sexo.toLowerCase()}`)
+          navigate(-1)
         }
       >
         Volver atras

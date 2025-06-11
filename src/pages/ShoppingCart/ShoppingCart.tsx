@@ -106,6 +106,9 @@ const ShoppingCart = () => {
               </>
             )}
           />
+          {!stateConfirm.preferenceId && stateConfirm.open && (
+            <p>Cragando...</p>
+          )}
         </section>
       </main>
       <Footer />

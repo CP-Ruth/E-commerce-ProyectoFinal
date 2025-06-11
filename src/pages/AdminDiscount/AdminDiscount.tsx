@@ -31,15 +31,19 @@ const AdminDiscount = () => {
               <TableHeadDiscount />
             </thead>
             <tbody>
-              {descuentos?.map((descuento) => (
-                <TableRowDiscount key={descuento.id} descuento={descuento}>
-                  <MdEdit
-                    size={30}
-                    className={styles.icon}
-                    onClick={() => handlerOpenModal(descuento, "edit")}
-                  />
-                </TableRowDiscount>
-              ))}
+              {descuentos?.map((descuento) => {
+                if (descuento.nombre !== "Sin descuento") {
+                  return (
+                    <TableRowDiscount key={descuento.id} descuento={descuento}>
+                      <MdEdit
+                        size={30}
+                        className={styles.icon}
+                        onClick={() => handlerOpenModal(descuento, "edit")}
+                      />
+                    </TableRowDiscount>
+                  );
+                }
+              })}
             </tbody>
           </table>
         </div>

@@ -127,7 +127,7 @@ export const TableRowOrder: FC<PropsOrder> = ({ pedido, children }) => {
       <td className={styles.username}>{pedido.usuario.username}</td>
       <td>Tarjeta de Debito</td>
       <td>${pedido.total}</td>
-      <td>Confirmado</td>
+      <td>{pedido.estado}</td>
       <td>{children}</td>
     </tr>
   );

@@ -35,7 +35,7 @@ const AdminOrders = () => {
                   <MdEdit size={30} className={styles.icon} />
                 </TableRowOrder>
               ))
-            : "No hay usuarios"}
+            : <td colSpan={6} style={{ textAlign: "center", paddingTop: "20px" }}>No hay pedidos</td>}
         </tbody>
       </table>
       {openModal.info && (

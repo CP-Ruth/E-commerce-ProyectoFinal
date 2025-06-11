@@ -24,7 +24,7 @@ const BuyDetails: FC<PropsBuyDetails> = ({
         <p>Subtotal: ${subtotal}</p>
         <p>Envio: {costoEnvio === 0 ? "Gratuito" : `$${costoEnvio}`}</p>
         <p>Metodos de pago: Tarjeta de Debito</p>
-        <p>Total estimado: ${total}</p>
+        <p>Total estimado: <span style={{ fontWeight: "bold", color: "green" }}>${total}</span></p>
       </div>
       <div className={styles.containerButton}>
         {render(total)}

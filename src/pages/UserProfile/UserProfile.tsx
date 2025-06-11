@@ -92,6 +92,7 @@ const UserProfile = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem("token");
+        localStorage.removeItem("cart");
         setUserActive(null);
         navigate("/");
         Swal.fire("Sesion cerrada correctamente", "", "success");

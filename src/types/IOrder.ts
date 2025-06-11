@@ -26,6 +26,7 @@ export interface IOrderPay {
   detalleOrdenCompras: IDetailsOrder[];
   fechaCompra: string;
   total: number;
+  estado: "PENDIENTE" | "APROBADO" | "CANCELADO";
 }
 
 export interface IItem {
