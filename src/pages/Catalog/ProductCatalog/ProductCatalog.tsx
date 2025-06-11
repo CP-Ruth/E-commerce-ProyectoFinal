@@ -16,6 +16,9 @@ interface PropsProductCatalog {
 
 const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter, ref }) => {
   const { productos, getProducts } = useFilter();
+  //estado para mostrar/ocultar filtros
+  const [showFilters, setShowFilters] = useState(false);
+
   const [filters, setFilters] = useState<Filtros>({
     sexo: sexo,
     tipoProducto: filter,
@@ -33,6 +36,11 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter, ref }) => {
     }));
   };
 
+  const toggleFilters = () => {
+    setShowFilters(prev => !prev);
+  };
+
+
   useEffect(() => {
     setFilters((prev) => {
       if (prev.sexo === sexo && prev.tipoProducto === filter) return prev;
@@ -46,31 +54,61 @@ const ProductCatalog: FC<PropsProductCatalog> = ({ sexo, filter, ref }) => {
 
   return (
     <section className={styles.containerSection} ref={ref}>
-      <button className={styles.buttonFilter}>
-        <IoIosOptions size={25} className={styles.icon} />
-        Filtros
-      </button>
-      <div className={styles.containerProducts}>
-        <FiltersProducts
-          handleFilter={handleFilter}
-          filter={(filters.tipoProducto as string) || null}
-        />
-        <section className={styles.gridContainer}>
-          {productos && productos.length > 0 ? (
-            productos.map((producto) => (
-              <Product
-                key={producto.id}
-                detProducto={producto}
-                onClick={() => handleProductClick(producto.id!)}
-              />
-            ))
-          ) : (
-            <div className={styles.noProducts}>
-              <img src={wrong} alt="" />
-              No hay productos del filtro/s seleccionado/s
-            </div>
+      
+      <div className={styles.movile}>
+        <button className={styles.buttonFilter} onClick={toggleFilters}>
+          <IoIosOptions size={25} className={styles.icon} />
+          Filtros
+        </button>
+        <div className={styles.containerProducts}>
+          {showFilters && (
+            <FiltersProducts
+              handleFilter={handleFilter}
+              filter={(filters.tipoProducto as string) || null}
+            />
           )}
-        </section>
+          <section className={styles.gridContainer}>
+            {productos && productos.length > 0 ? (
+              productos.map((producto) => (
+                <Product
+                  key={producto.id}
+                  detProducto={producto}
+                  onClick={() => handleProductClick(producto.id!)}
+                />
+              ))
+            ) : (
+              <div className={styles.noProducts}>
+                <img src={wrong} alt="" />
+                No hay productos del filtro/s seleccionado/s
+              </div>
+            )}
+          </section>
+        </div>
+      </div>
+
+      <div className={styles.noMovile}>
+        <div className={styles.containerProducts}>
+          <FiltersProducts
+            handleFilter={handleFilter}
+            filter={(filters.tipoProducto as string) || null}
+          />
+          <section className={styles.gridContainer}>
+            {productos && productos.length > 0 ? (
+              productos.map((producto) => (
+                <Product
+                  key={producto.id}
+                  detProducto={producto}
+                  onClick={() => handleProductClick(producto.id!)}
+                />
+              ))
+            ) : (
+              <div className={styles.noProducts}>
+                <img src={wrong} alt="" />
+                No hay productos del filtro/s seleccionado/s
+              </div>
+            )}
+          </section>
+        </div>
       </div>
     </section>
   );
